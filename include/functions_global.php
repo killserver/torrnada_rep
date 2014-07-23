@@ -803,7 +803,7 @@ bbcode.addTag("codeFlash", "flash", null, "F", ctrl);
 bbcode.addTag("codeOpt", "li", "", "0", ctrl);
 bbcode.addTag("codeHR","hr", "", "8", ctrl);
 bbcode.addTag("codeBR","br", "", "", ctrl);
-bbcode.addTag("codeSpoiler", "spoiler=", null, "S",  ctrl);
+bbcode.addTag("codeSpoiler", "spoiler=", "/spoiler", "S",  ctrl);
 bbcode.addTag("fontFace", function(e) { var v=e.value; e.selectedIndex=0; return "font="+v+"" }, "/font");
 bbcode.addTag("codeColor", function(e) { var v=e.value; e.selectedIndex=0; return "color="+v }, "/color");
 bbcode.addTag("codeSize", function(e) { var v=e.value; e.selectedIndex=0; return "size="+v }, "/size");

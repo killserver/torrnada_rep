@@ -2,8 +2,6 @@
 require_once("include/bittorrent.php");
 dbconn();
 
-$type_down = 1; ///просмотр и скачка - 1; сразу скачка - 2
-
 if(!$CURUSER) {
 	$ip = getenv("REMOTE_ADDR");
 	$rows = sql_query("SELECT COUNT(*) as count FROM tmp_users WHERE ip = \"".$ip."\"");
@@ -53,14 +51,10 @@ if(!empty($s) && $row['owner'] != $CURUSER['id'] && get_user_class() < UC_MODERA
 
 
 $name = $row['filename'];
-if($type_down == 1) {
 stdhead();
 echo <<<HTML
 Для скачки нажмите: <a href="download.php?id={$id}&amp;name={$name}">ссылку</a>
 HTML;
 stdfoot();
-} else {
-header("Location: download.php?id=".$id."&name=".$name);
-}
 
 ?>

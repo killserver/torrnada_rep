@@ -504,7 +504,7 @@ if($CURUSER["id"] == $row["owner"]) {
 } elseif($CURUSER["username"] != "Нуб") {
 	$ld = "download.php?id=".$row['id']."&name=".$row['filename'];
 } else {
-	$ld = "download.php?id=".$row['id']."&name=".$row['filename'];
+	$ld = "download_file.php?id=".$row['id']."&name=".$row['filename'];
 	$ldadd .= "<br><small>Вы не можите скачивать не проверенные торренты</small>";
 }
 

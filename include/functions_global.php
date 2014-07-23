@@ -114,7 +114,7 @@ $col = "11";
 <script language="javascript" type="text/javascript" src="js/ajax.js"></script>
 
 <div id="loading-layer" style="display:none;font-family: Verdana;font-size: 11px;width:200px;height:50px;background:#FFF;padding:10px;text-align:center;border:1px solid #000">
-<div style="font-weight:bold" id="loading-layer-text">Загрузка предварительного просмотра. Пожалуйста, подождите...</div><br />
+<div style="font-weight:bold" id="loading-layer-text">Р—Р°РіСЂСѓР·РєР° РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕРіРѕ РїСЂРѕСЃРјРѕС‚СЂР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РїРѕРґРѕР¶РґРёС‚Рµ...</div><br />
 <img src="pic/loading.gif" border="0" />
 </div>
 
@@ -123,7 +123,7 @@ $col = "11";
 <style>
 .editbutton { cursor: pointer; padding: 2px 1px 0px 5px; }
 </style>
-<table cellpadding="0" cellspacing="0" align="сenter">
+<table cellpadding="0" cellspacing="0" align="СЃenter">
 
 <tr>
 <td class="b">
@@ -132,7 +132,7 @@ $col = "11";
 
 <div align="center">
 <select name="fontFace" class="editbutton">
-<option style="font-family: Verdana" value="-1" selected="selected">Шрифт:</option>
+<option style="font-family: Verdana" value="-1" selected="selected">РЁСЂРёС„С‚:</option>
 <option style="font-family: Courier" value="Courier">&nbsp;Courier</option>
 <option style="font-family: Courier New" value="Courier New">&nbsp;Courier New</option>
 <option style="font-family: monospace" value="monospace">&nbsp;monospace</option>
@@ -157,141 +157,141 @@ $col = "11";
 </select>
 &nbsp;
 <select name="codeColor" class="editbutton">
-<option style="color: black; background: #fff;" value="black" selected="selected">Цвет шрифта:</option>
-<option style="color: black" value="Black">&nbsp;Черный</option>
-<option style="color: sienna" value="Sienna">&nbsp;Охра</option>
-<option style="color: Beige" value="Beige">&nbsp;Бежевый</option>
-<option style="color: darkolivegreen" value="DarkOliveGreen">&nbsp;Олив. Зеленый</option>
-<option style="color: darkgreen" value="DarkGreen">&nbsp;Т. Зеленый</option>
-<option style="color: Cornflower" value="Cornflower">&nbsp;Васильковый</option>
-<option style="color: darkslateblue" value="DarkSlateBlue">&nbsp;Гриф.-синий</option>
-<option style="color: navy" value="Navy">&nbsp;Темно-синий</option>
-<option style="color: MidnightBlue" value="MidnightBlue">&nbsp;Полу.-синий</option>
-<option style="color: indigo" value="Indigo">&nbsp;Индиго</option>
-<option style="color: darkslategray" value="DarkSlateGray">&nbsp;Синевато-серый</option>
-<option style="color: darkred" value="DarkRed">&nbsp;Т. Красный</option>
-<option style="color: darkorange" value="DarkOrange">&nbsp;Т. Оранжевый</option>
-<option style="color: olive" value="Olive">&nbsp;Оливковый</option>
-<option style="color: green" value="Green">&nbsp;Зеленый</option>
-<option style="color: DarkCyan" value="DarkCyan">&nbsp;Темный циан</option>
-<option style="color: CadetBlue" value="CadetBlue">&nbsp;Серо-синий</option>
-<option style="color: Aquamarine" value="Aquamarine">&nbsp;Аквамарин</option>
-<option style="color: teal" value="Teal">&nbsp;Морской волны</option>
-<option style="color: blue" value="Blue">&nbsp;Голубой</option>
-<option style="color: slategray" value="SlateGray">&nbsp;Синевато-серый</option>
-<option style="color: dimgray" value="DimGray">&nbsp;Тускло-серый</option>
-<option style="color: red" value="Red">&nbsp;Красный</option>
-<option style="color: Chocolate" value="Chocolate">&nbsp;Шоколадный</option>
-<option style="color: Firebrick" value="Firebrick">&nbsp;Кирпичный</option>
-<option style="color: Saddlebrown" value="SaddleBrown">&nbsp;Кож.коричневый</option>
-<option style="color: yellowgreen" value="YellowGreen">&nbsp;Желт-Зеленый</option>
-<option style="color: seagreen" value="SeaGreen">&nbsp;Океан. Зеленый</option>
-<option style="color: mediumturquoise" value="MediumTurquoise">&nbsp;Бирюзовый</option>
-<option style="color: royalblue" value="RoyalBlue">&nbsp;Голубой Корол.</option>
-<option style="color: purple" value="Purple">&nbsp;Липовый</option>
-<option style="color: gray" value="Gray">&nbsp;Серый</option>
-<option style="color: magenta" value="Magenta">&nbsp;Пурпурный</option>
-<option style="color: orange" value="Orange">&nbsp;Оранжевый</option>
-<option style="color: yellow" value="Yellow">&nbsp;Желтый</option>
-<option style="color: Gold" value="Gold">&nbsp;Золотой</option>
-<option style="color: Goldenrod" value="Goldenrod">&nbsp;Золотистый</option>
-<option style="color: lime" value="Lime">&nbsp;Лимонный</option>
-<option style="color: cyan" value="Cyan">&nbsp;Зел.-голубой</option>
-<option style="color: deepskyblue" value="DeepSkyBlue">&nbsp;Т.Неб.-голубой</option>
-<option style="color: darkorchid" value="DarkOrchid">&nbsp;Орхидея</option>
-<option style="color: silver" value="Silver">&nbsp;Серебристый</option>
-<option style="color: pink" value="Pink">&nbsp;Розовый</option>
+<option style="color: black; background: #fff;" value="black" selected="selected">Р¦РІРµС‚ С€СЂРёС„С‚Р°:</option>
+<option style="color: black" value="Black">&nbsp;Р§РµСЂРЅС‹Р№</option>
+<option style="color: sienna" value="Sienna">&nbsp;РћС…СЂР°</option>
+<option style="color: Beige" value="Beige">&nbsp;Р‘РµР¶РµРІС‹Р№</option>
+<option style="color: darkolivegreen" value="DarkOliveGreen">&nbsp;РћР»РёРІ. Р—РµР»РµРЅС‹Р№</option>
+<option style="color: darkgreen" value="DarkGreen">&nbsp;Рў. Р—РµР»РµРЅС‹Р№</option>
+<option style="color: Cornflower" value="Cornflower">&nbsp;Р’Р°СЃРёР»СЊРєРѕРІС‹Р№</option>
+<option style="color: darkslateblue" value="DarkSlateBlue">&nbsp;Р“СЂРёС„.-СЃРёРЅРёР№</option>
+<option style="color: navy" value="Navy">&nbsp;РўРµРјРЅРѕ-СЃРёРЅРёР№</option>
+<option style="color: MidnightBlue" value="MidnightBlue">&nbsp;РџРѕР»Сѓ.-СЃРёРЅРёР№</option>
+<option style="color: indigo" value="Indigo">&nbsp;РРЅРґРёРіРѕ</option>
+<option style="color: darkslategray" value="DarkSlateGray">&nbsp;РЎРёРЅРµРІР°С‚Рѕ-СЃРµСЂС‹Р№</option>
+<option style="color: darkred" value="DarkRed">&nbsp;Рў. РљСЂР°СЃРЅС‹Р№</option>
+<option style="color: darkorange" value="DarkOrange">&nbsp;Рў. РћСЂР°РЅР¶РµРІС‹Р№</option>
+<option style="color: olive" value="Olive">&nbsp;РћР»РёРІРєРѕРІС‹Р№</option>
+<option style="color: green" value="Green">&nbsp;Р—РµР»РµРЅС‹Р№</option>
+<option style="color: DarkCyan" value="DarkCyan">&nbsp;РўРµРјРЅС‹Р№ С†РёР°РЅ</option>
+<option style="color: CadetBlue" value="CadetBlue">&nbsp;РЎРµСЂРѕ-СЃРёРЅРёР№</option>
+<option style="color: Aquamarine" value="Aquamarine">&nbsp;РђРєРІР°РјР°СЂРёРЅ</option>
+<option style="color: teal" value="Teal">&nbsp;РњРѕСЂСЃРєРѕР№ РІРѕР»РЅС‹</option>
+<option style="color: blue" value="Blue">&nbsp;Р“РѕР»СѓР±РѕР№</option>
+<option style="color: slategray" value="SlateGray">&nbsp;РЎРёРЅРµРІР°С‚Рѕ-СЃРµСЂС‹Р№</option>
+<option style="color: dimgray" value="DimGray">&nbsp;РўСѓСЃРєР»Рѕ-СЃРµСЂС‹Р№</option>
+<option style="color: red" value="Red">&nbsp;РљСЂР°СЃРЅС‹Р№</option>
+<option style="color: Chocolate" value="Chocolate">&nbsp;РЁРѕРєРѕР»Р°РґРЅС‹Р№</option>
+<option style="color: Firebrick" value="Firebrick">&nbsp;РљРёСЂРїРёС‡РЅС‹Р№</option>
+<option style="color: Saddlebrown" value="SaddleBrown">&nbsp;РљРѕР¶.РєРѕСЂРёС‡РЅРµРІС‹Р№</option>
+<option style="color: yellowgreen" value="YellowGreen">&nbsp;Р–РµР»С‚-Р—РµР»РµРЅС‹Р№</option>
+<option style="color: seagreen" value="SeaGreen">&nbsp;РћРєРµР°РЅ. Р—РµР»РµРЅС‹Р№</option>
+<option style="color: mediumturquoise" value="MediumTurquoise">&nbsp;Р‘РёСЂСЋР·РѕРІС‹Р№</option>
+<option style="color: royalblue" value="RoyalBlue">&nbsp;Р“РѕР»СѓР±РѕР№ РљРѕСЂРѕР».</option>
+<option style="color: purple" value="Purple">&nbsp;Р›РёРїРѕРІС‹Р№</option>
+<option style="color: gray" value="Gray">&nbsp;РЎРµСЂС‹Р№</option>
+<option style="color: magenta" value="Magenta">&nbsp;РџСѓСЂРїСѓСЂРЅС‹Р№</option>
+<option style="color: orange" value="Orange">&nbsp;РћСЂР°РЅР¶РµРІС‹Р№</option>
+<option style="color: yellow" value="Yellow">&nbsp;Р–РµР»С‚С‹Р№</option>
+<option style="color: Gold" value="Gold">&nbsp;Р—РѕР»РѕС‚РѕР№</option>
+<option style="color: Goldenrod" value="Goldenrod">&nbsp;Р—РѕР»РѕС‚РёСЃС‚С‹Р№</option>
+<option style="color: lime" value="Lime">&nbsp;Р›РёРјРѕРЅРЅС‹Р№</option>
+<option style="color: cyan" value="Cyan">&nbsp;Р—РµР».-РіРѕР»СѓР±РѕР№</option>
+<option style="color: deepskyblue" value="DeepSkyBlue">&nbsp;Рў.РќРµР±.-РіРѕР»СѓР±РѕР№</option>
+<option style="color: darkorchid" value="DarkOrchid">&nbsp;РћСЂС…РёРґРµСЏ</option>
+<option style="color: silver" value="Silver">&nbsp;РЎРµСЂРµР±СЂРёСЃС‚С‹Р№</option>
+<option style="color: pink" value="Pink">&nbsp;Р РѕР·РѕРІС‹Р№</option>
 <option style="color: wheat" value="Wheat">&nbsp;Wheat</option>
-<option style="color: lemonchiffon" value="LemonChiffon">&nbsp;Лимонный</option>
-<option style="color: palegreen" value="PaleGreen">&nbsp;Бл. Зеленый</option>
-<option style="color: paleturquoise" value="PaleTurquoise">&nbsp;Бл. Бирюзовый</option>
-<option style="color: lightblue" value="LightBlue">&nbsp;Св. Голубой</option>
-<option style="color: plum" value="Plum">&nbsp;Св. Розовый</option>
-<option style="color: white" value="White">&nbsp;Белый</option>
+<option style="color: lemonchiffon" value="LemonChiffon">&nbsp;Р›РёРјРѕРЅРЅС‹Р№</option>
+<option style="color: palegreen" value="PaleGreen">&nbsp;Р‘Р». Р—РµР»РµРЅС‹Р№</option>
+<option style="color: paleturquoise" value="PaleTurquoise">&nbsp;Р‘Р». Р‘РёСЂСЋР·РѕРІС‹Р№</option>
+<option style="color: lightblue" value="LightBlue">&nbsp;РЎРІ. Р“РѕР»СѓР±РѕР№</option>
+<option style="color: plum" value="Plum">&nbsp;РЎРІ. Р РѕР·РѕРІС‹Р№</option>
+<option style="color: white" value="White">&nbsp;Р‘РµР»С‹Р№</option>
 </select>
 &nbsp;
 <select name="codeSize" class="editbutton">
-	<option value="12" selected="selected">Размер шрифта:</option>
-	<option value="9" class="em">Маленький</option>
+	<option value="12" selected="selected">Р Р°Р·РјРµСЂ С€СЂРёС„С‚Р°:</option>
+	<option value="9" class="em">РњР°Р»РµРЅСЊРєРёР№</option>
 	<option value="10">&nbsp;size=10</option>
 	<option value="11">&nbsp;size=11</option>
-	<option value="12" class="em" disabled="disabled">Обычный</option>
+	<option value="12" class="em" disabled="disabled">РћР±С‹С‡РЅС‹Р№</option>
 	<option value="14">&nbsp;size=14</option>
 	<option value="16">&nbsp;size=16</option>
-	<option value="18" class="em">Большой</option>
+	<option value="18" class="em">Р‘РѕР»СЊС€РѕР№</option>
 
 	<option value="20">&nbsp;size=20</option>
 	<option value="22">&nbsp;size=22</option>
-	<option value="24" class="em">Огромный</option>
+	<option value="24" class="em">РћРіСЂРѕРјРЅС‹Р№</option>
 </select>
 &nbsp;
 
 <select name="codeAlign" class="editbutton">
-   <option value="" selected="selected">Выравнивание:</option>
-   <option value="left">&nbsp;По левому краю</option>
-   <option value="right">&nbsp;По правому краю</option>
-   <option value="center">&nbsp;По центру</option>
-   <option value="justify">&nbsp;По ширине</option>
+   <option value="" selected="selected">Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ:</option>
+   <option value="left">&nbsp;РџРѕ Р»РµРІРѕРјСѓ РєСЂР°СЋ</option>
+   <option value="right">&nbsp;РџРѕ РїСЂР°РІРѕРјСѓ РєСЂР°СЋ</option>
+   <option value="center">&nbsp;РџРѕ С†РµРЅС‚СЂСѓ</option>
+   <option value="justify">&nbsp;РџРѕ С€РёСЂРёРЅРµ</option>
 </select>
 </div>
 
 
 <div align="center">
 
-<input class="btn" type="button" value="&#8212;" name="codeHR" title="Горизонтальная линия (Ctrl+8)" style="font-weight: bold; width: 26px;" />
-<input class="btn" type="button" value="&para;" name="codeBR" title="Новая строка" style="width: 26px;" />
+<input class="btn" type="button" value="&#8212;" name="codeHR" title="Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ Р»РёРЅРёСЏ (Ctrl+8)" style="font-weight: bold; width: 26px;" />
+<input class="btn" type="button" value="&para;" name="codeBR" title="РќРѕРІР°СЏ СЃС‚СЂРѕРєР°" style="width: 26px;" />
 
-<input class="btn" type="button" value="Спойлер" name="codeSpoiler" title="Спойлер (Ctrl+S)" style="width: 70px;" />
+<input class="btn" type="button" value="РЎРїРѕР№Р»РµСЂ" name="codeSpoiler" title="РЎРїРѕР№Р»РµСЂ (Ctrl+S)" style="width: 70px;" />
 
-<input class="btn" type="button" value=" B " name="codeB" title="Жирный текст (Ctrl+B)" style="font-weight: bold; width: 30px;" />
-<input class="btn" type="button" value=" i " name="codeI" title="Наклонный текст (Ctrl+I)" style="width: 30px; font-style: italic;" />
-<input class="btn" type="button" value=" u " name="codeU" title="Подчеркнутый текст (Ctrl+U)" style="width: 30px; text-decoration: underline;" />
-<input class="btn" type="button" value=" s " name="codeS" title="Перечеркнутый текст" style="width: 30px; text-decoration: line-through;" />
+<input class="btn" type="button" value=" B " name="codeB" title="Р–РёСЂРЅС‹Р№ С‚РµРєСЃС‚ (Ctrl+B)" style="font-weight: bold; width: 30px;" />
+<input class="btn" type="button" value=" i " name="codeI" title="РќР°РєР»РѕРЅРЅС‹Р№ С‚РµРєСЃС‚ (Ctrl+I)" style="width: 30px; font-style: italic;" />
+<input class="btn" type="button" value=" u " name="codeU" title="РџРѕРґС‡РµСЂРєРЅСѓС‚С‹Р№ С‚РµРєСЃС‚ (Ctrl+U)" style="width: 30px; text-decoration: underline;" />
+<input class="btn" type="button" value=" s " name="codeS" title="РџРµСЂРµС‡РµСЂРєРЅСѓС‚С‹Р№ С‚РµРєСЃС‚" style="width: 30px; text-decoration: line-through;" />
 
-<input class="btn" type="button" value=" BB " name="codeBB" title="Чистый bb код (Неотформатированный) (Ctrl+N)" style="font-weight: bold; width: 30px;" />
+<input class="btn" type="button" value=" BB " name="codeBB" title="Р§РёСЃС‚С‹Р№ bb РєРѕРґ (РќРµРѕС‚С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРЅС‹Р№) (Ctrl+N)" style="font-weight: bold; width: 30px;" />
 
-<input class="btn" type="button" value=" PRE " name="codePRE" title="Преформатный текст (Ctrl+P)" style="width: 40px;" />
+<input class="btn" type="button" value=" PRE " name="codePRE" title="РџСЂРµС„РѕСЂРјР°С‚РЅС‹Р№ С‚РµРєСЃС‚ (Ctrl+P)" style="width: 40px;" />
 
-<input class="btn" type="button" value=" HTEXT " name="codeHT" title="Скрытие текста при наведение показ (Ctrl+H)" style="width: 60px;" />
+<input class="btn" type="button" value=" HTEXT " name="codeHT" title="РЎРєСЂС‹С‚РёРµ С‚РµРєСЃС‚Р° РїСЂРё РЅР°РІРµРґРµРЅРёРµ РїРѕРєР°Р· (Ctrl+H)" style="width: 60px;" />
 
-<input class="btn" type="button" value=" YOUTUBE " name="codeMYT" title="Вставка плеера с ютуба" style="width: 70px;" />
+<input class="btn" type="button" value=" YOUTUBE " name="codeMYT" title="Р’СЃС‚Р°РІРєР° РїР»РµРµСЂР° СЃ СЋС‚СѓР±Р°" style="width: 70px;" />
 
-<input class="btn" type="button" value=" Marquee " name="codeMG" title="Бегающая строка (Ctrl+M)" style="width: 70px;" />
+<input class="btn" type="button" value=" Marquee " name="codeMG" title="Р‘РµРіР°СЋС‰Р°СЏ СЃС‚СЂРѕРєР° (Ctrl+M)" style="width: 70px;" />
 
-<input class="btn" type="button" value="Цитата" name="codeQuote" title="Цитирование (Ctrl+Q)" style="width: 60px;" />
-<input class="btn" type="button" value="Img" name="codeImg" title="Картинка (Ctrl+R)" style="width: 40px;" />
+<input class="btn" type="button" value="Р¦РёС‚Р°С‚Р°" name="codeQuote" title="Р¦РёС‚РёСЂРѕРІР°РЅРёРµ (Ctrl+Q)" style="width: 60px;" />
+<input class="btn" type="button" value="Img" name="codeImg" title="РљР°СЂС‚РёРЅРєР° (Ctrl+R)" style="width: 40px;" />
 
 <?  if (basename($_SERVER['SCRIPT_FILENAME']) == 'edit.php' || basename($_SERVER['SCRIPT_FILENAME']) == 'uploadnext.php'){ $disab1="disabled=\"disabled\""; } ?>
 
-<input class="btn" type="button"  <?=$disab1;?>  value="Цитировать выделение" name="quoteselected" title="Цитировать выделенный текст" style="width: 165px;" onmouseout="bbcode.refreshSelection(false);" onmouseover="bbcode.refreshSelection(true);" onclick="bbcode.onclickQuoteSel();" />&nbsp;
+<input class="btn" type="button"  <?=$disab1;?>  value="Р¦РёС‚РёСЂРѕРІР°С‚СЊ РІС‹РґРµР»РµРЅРёРµ" name="quoteselected" title="Р¦РёС‚РёСЂРѕРІР°С‚СЊ РІС‹РґРµР»РµРЅРЅС‹Р№ С‚РµРєСЃС‚" style="width: 165px;" onmouseout="bbcode.refreshSelection(false);" onmouseover="bbcode.refreshSelection(true);" onclick="bbcode.onclickQuoteSel();" />&nbsp;
 
 
 <?  if (basename($_SERVER['SCRIPT_FILENAME']) <> 'edit.php' && basename($_SERVER['SCRIPT_FILENAME']) <> 'uploadnext.php'){ 	$disab="disabled=\"disabled\""; } ?>
 
-<input class="btn" type="button" value="Скрытый" <?=$disab;?> name="codeHIDE" title="Скрытый Текст, пока не прокомментируешь раздачу" style="width: 70px;" />
+<input class="btn" type="button" value="РЎРєСЂС‹С‚С‹Р№" <?=$disab;?> name="codeHIDE" title="РЎРєСЂС‹С‚С‹Р№ РўРµРєСЃС‚, РїРѕРєР° РЅРµ РїСЂРѕРєРѕРјРјРµРЅС‚РёСЂСѓРµС€СЊ СЂР°Р·РґР°С‡Сѓ" style="width: 70px;" />
 
 
-<input class="btn" type="button" value="URL" name="codeUr" title="URL ссылка" style="width: 40px; text-decoration: underline;" />
+<input class="btn" type="button" value="URL" name="codeUr" title="URL СЃСЃС‹Р»РєР°" style="width: 40px; text-decoration: underline;" />
 
-<input class="btn" type="button" value="PHP" name="codeCode" title="PHP код (Ctrl+K)" style="width: 46px;" />
+<input class="btn" type="button" value="PHP" name="codeCode" title="PHP РєРѕРґ (Ctrl+K)" style="width: 46px;" />
 
-<input class="btn" type="button" value="Flash" name="codeFlash" title="Flash анимания (Ctrl+F)" style="width: 50px;" />
+<input class="btn" type="button" value="Flash" name="codeFlash" title="Flash Р°РЅРёРјР°РЅРёСЏ (Ctrl+F)" style="width: 50px;" />
 
-<input class="btn" type="button" value="&#8226;" name="codeOpt" title="Маркированый список (Ctrl+0)" style="width: 30px;" />
+<input class="btn" type="button" value="&#8226;" name="codeOpt" title="РњР°СЂРєРёСЂРѕРІР°РЅС‹Р№ СЃРїРёСЃРѕРє (Ctrl+0)" style="width: 30px;" />
 
-<input class="btn" type="button" value="Рамка I" name="codeLG1" title="Рамка вокруг текста (Ctrl+1)" style="width: 65px;" />
+<input class="btn" type="button" value="Р Р°РјРєР° I" name="codeLG1" title="Р Р°РјРєР° РІРѕРєСЂСѓРі С‚РµРєСЃС‚Р° (Ctrl+1)" style="width: 65px;" />
 
-<input class="btn" type="button" value="Рамка II" name="codeLG2" title="Рамка вокруг текста с цитатой (Ctrl+2)" style="width: 65px;" />
+<input class="btn" type="button" value="Р Р°РјРєР° II" name="codeLG2" title="Р Р°РјРєР° РІРѕРєСЂСѓРі С‚РµРєСЃС‚Р° СЃ С†РёС‚Р°С‚РѕР№ (Ctrl+2)" style="width: 65px;" />
 
-<input class="btn" type="button" value="highlight" name="codeHIG" title="Подсветка синтаксиса" style="width: 60px;" />
+<input class="btn" type="button" value="highlight" name="codeHIG" title="РџРѕРґСЃРІРµС‚РєР° СЃРёРЅС‚Р°РєСЃРёСЃР°" style="width: 60px;" />
 
 
 <? if (basename($_SERVER['SCRIPT_FILENAME']) == 'edit.php' || basename($_SERVER['SCRIPT_FILENAME']) == 'uploadnext.php') { ?>
-<input class="btn" type="button" value="addBB" onclick='textbb_udesck("area")' title="Добавить теги (оформить читабельность)" style="width: 60px;" />
+<input class="btn" type="button" value="addBB" onclick='textbb_udesck("area")' title="Р”РѕР±Р°РІРёС‚СЊ С‚РµРіРё (РѕС„РѕСЂРјРёС‚СЊ С‡РёС‚Р°Р±РµР»СЊРЅРѕСЃС‚СЊ)" style="width: 60px;" />
 <? } ?>
 
 
-<input class="btn" type="button" value=" Смайлы " name="Smailes" title="Смайлы (окно всех смайлов)" onclick="javascript:winop()"/>&nbsp;
+<input class="btn" type="button" value=" РЎРјР°Р№Р»С‹ " name="Smailes" title="РЎРјР°Р№Р»С‹ (РѕРєРЅРѕ РІСЃРµС… СЃРјР°Р№Р»РѕРІ)" onclick="javascript:winop()"/>&nbsp;
 
 </div>
 
@@ -402,7 +402,7 @@ function InsertCode(code, info, type, error) {
 		//var text = prompt(info, ''); 
 		var header = prompt(type, ''); 
 		if (!header) 
-			header = 'Скрытая информация'; 
+			header = 'РЎРєСЂС‹С‚Р°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ'; 
 		mozWrap(TxtFeld, '[' + code + '=' + header + ']', '[/' + code + ']'); 
 	} else {
 		if ((clientVer >= 4) && is_ie && is_win) {
@@ -498,11 +498,11 @@ function repl(t,a,b){
 	}
 	return t;
 }
-var rus_lr2 = ('Е-е-О-о-Ё-Ё-Ё-Ё-Ж-Ж-Ч-Ч-Ш-Ш-Щ-Щ-Ъ-Ь-Э-Э-Ю-Ю-Я-Я-Я-Я-ё-ё-ж-ч-ш-щ-э-ю-я-я').split('-');
-var lat_lr2 = ('/E-/e-/O-/o-ЫO-Ыo-ЙO-Йo-ЗH-Зh-ЦH-Цh-СH-Сh-ШH-Шh-ъ'+String.fromCharCode(35)+'-ь'+String.fromCharCode(39)+'-ЙE-Йe-ЙU-Йu-ЙA-Йa-ЫA-Ыa-ыo-йo-зh-цh-сh-шh-йe-йu-йa-ыa').split('-');
-var rus_lr1 = ('А-Б-В-Г-Д-Е-З-И-Й-К-Л-М-Н-О-П-Р-С-Т-У-Ф-Х-Х-Ц-Щ-Ы-Я-а-б-в-г-д-е-з-и-й-к-л-м-н-о-п-р-с-т-у-ф-х-х-ц-щ-ъ-ы-ь-я').split('-');
+var rus_lr2 = ('Р•-Рµ-Рћ-Рѕ-РЃ-РЃ-РЃ-РЃ-Р–-Р–-Р§-Р§-РЁ-РЁ-Р©-Р©-РЄ-Р¬-Р­-Р­-Р®-Р®-РЇ-РЇ-РЇ-РЇ-С‘-С‘-Р¶-С‡-С€-С‰-СЌ-СЋ-СЏ-СЏ').split('-');
+var lat_lr2 = ('/E-/e-/O-/o-Р«O-Р«o-Р™O-Р™o-Р—H-Р—h-Р¦H-Р¦h-РЎH-РЎh-РЁH-РЁh-СЉ'+String.fromCharCode(35)+'-СЊ'+String.fromCharCode(39)+'-Р™E-Р™e-Р™U-Р™u-Р™A-Р™a-Р«A-Р«a-С‹o-Р№o-Р·h-С†h-СЃh-С€h-Р№e-Р№u-Р№a-С‹a').split('-');
+var rus_lr1 = ('Рђ-Р‘-Р’-Р“-Р”-Р•-Р—-Р-Р™-Рљ-Р›-Рњ-Рќ-Рћ-Рџ-Р -РЎ-Рў-РЈ-Р¤-РҐ-РҐ-Р¦-Р©-Р«-РЇ-Р°-Р±-РІ-Рі-Рґ-Рµ-Р·-Рё-Р№-Рє-Р»-Рј-РЅ-Рѕ-Рї-СЂ-СЃ-С‚-Сѓ-С„-С…-С…-С†-С‰-СЉ-С‹-СЊ-СЏ').split('-');
 var lat_lr1 = ('A-B-V-G-D-E-Z-I-J-K-L-M-N-O-P-R-S-T-U-F-H-X-C-W-Y-Q-a-b-v-g-d-e-z-i-j-k-l-m-n-o-p-r-s-t-u-f-h-x-c-w-'+String.fromCharCode(35)+'-y-'+String.fromCharCode(39)+'-q').split('-');
-var rus_rl = ('А-Б-В-Г-Д-Е-Ё-Ж-З-И-Й-К-Л-М-Н-О-П-Р-С-Т-У-Ф-Х-Ц-Ч-Ш-Щ-Ъ-Ы-Ь-Э-Ю-Я-а-б-в-г-д-е-ё-ж-з-и-й-к-л-м-н-о-п-р-с-т-у-ф-х-ц-ч-ш-щ-ъ-ы-ь-э-ю-я').split('-');
+var rus_rl = ('Рђ-Р‘-Р’-Р“-Р”-Р•-РЃ-Р–-Р—-Р-Р™-Рљ-Р›-Рњ-Рќ-Рћ-Рџ-Р -РЎ-Рў-РЈ-Р¤-РҐ-Р¦-Р§-РЁ-Р©-РЄ-Р«-Р¬-Р­-Р®-РЇ-Р°-Р±-РІ-Рі-Рґ-Рµ-С‘-Р¶-Р·-Рё-Р№-Рє-Р»-Рј-РЅ-Рѕ-Рї-СЂ-СЃ-С‚-Сѓ-С„-С…-С†-С‡-С€-С‰-СЉ-С‹-СЊ-СЌ-СЋ-СЏ').split('-');
 var lat_rl = ('A-B-V-G-D-E-JO-ZH-Z-I-J-K-L-M-N-O-P-R-S-T-U-F-H-C-CH-SH-SHH-'+String.fromCharCode(35)+String.fromCharCode(35)+'-Y-'+String.fromCharCode(39)+String.fromCharCode(39)+'-JE-JU-JA-a-b-v-g-d-e-jo-zh-z-i-j-k-l-m-n-o-p-r-s-t-u-f-h-c-ch-sh-shh-'+String.fromCharCode(35)+'-y-'+String.fromCharCode(39)+'-je-ju-ja').split('-');
 var transAN=true;
 function transliteText(txt){
@@ -789,7 +789,7 @@ bbcode.addTag("codeHT", "hideback", null, "H", ctrl);
 bbcode.addTag("codeMG", "marquee", null, "M", ctrl);
 bbcode.addTag("codeLG1", "legend", null, "1", ctrl);
 bbcode.addTag("codeMYT", "youtube", null, "1", ctrl);
-bbcode.addTag("codeLG2", function(e) { var v=e.value; e.selectedIndex=0; return "legend=Заголовок" }, "/legend", "2", ctrl);
+bbcode.addTag("codeLG2", function(e) { var v=e.value; e.selectedIndex=0; return "legend=Р—Р°РіРѕР»РѕРІРѕРє" }, "/legend", "2", ctrl);
 bbcode.addTag("codeHIDE", "hide", null, "", ctrl);
 bbcode.addTag("codeHIG", "highlight", null, "", ctrl);
 bbcode.addTag("codeI", "i", null, "I", ctrl);
@@ -797,7 +797,7 @@ bbcode.addTag("codeU", "u", null, "U", ctrl);
 bbcode.addTag("codeS", "s", null, "", ctrl);
 bbcode.addTag("codeQuote", "quote", null, "Q", ctrl);
 bbcode.addTag("codeImg", "img", null, "R", ctrl);
-bbcode.addTag("codeUr", "url=введите ссылку", "/url", "", ctrl);
+bbcode.addTag("codeUr", "url=РІСЃС‚Р°РІРёС‚СЊ СЃСЃС‹Р»РєСѓ", "/url", "", ctrl);
 bbcode.addTag("codeCode", "php", null, "K", ctrl);
 bbcode.addTag("codeFlash", "flash", null, "F", ctrl);
 bbcode.addTag("codeOpt", "li", "", "0", ctrl);
@@ -816,7 +816,7 @@ bbcode.addTag("codeAlign", function(e) { var v=e.value; e.selectedIndex=0; retur
 </td>
 </tr>
 
-<tr><td style="margin: 0px; padding: 0px;" align="center" class="b"><input type="button" name="preview" class="btn" title="ALT+ENTER Предпросмотр просмотр" value="Предпросмотр" onclick="javascript:ajaxpreview('<?=$name;?>');"/> <input type="reset" class="btn" value="Обратить изменения"/></td></tr>
+<tr><td style="margin: 0px; padding: 0px;" align="center" class="b"><input type="button" name="preview" class="btn" title="ALT+ENTER РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ РїСЂРѕСЃРјРѕС‚СЂ" value="РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ" onclick="javascript:ajaxpreview('<?=$name;?>');"/> <input type="reset" class="btn" value="РћР±СЂР°С‚РёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ"/></td></tr>
 <tr><td id="preview" style="margin: 0px; padding: 0px;" class="a"></td></tr>
 
 </table>
@@ -866,8 +866,8 @@ function newerr($heading = '', $text = '', $head = true, $foot = true, $die = tr
 function sqlerr($file = '', $line = '') {
 	global $queries;
 	print("<table border=\"0\" bgcolor=\"blue\" align=\"left\" cellspacing=\"0\" cellpadding=\"10\" style=\"background: blue\">" .
-	"<tr><td class=\"embedded\"><font color=\"white\"><h1>Ошибка в SQL</h1>\n" .
-	"<b>Ответ от сервера MySQL: " . htmlspecialchars_uni(mysql_error()) . ($file != '' && $line != '' ? "<p>в $file, линия $line</p>" : "") . "<p>Запрос номер $queries.</p></b></font></td></tr></table>");
+	"<tr><td class=\"embedded\"><font color=\"white\"><h1>РћС€РёР±РєР° РІ SQL</h1>\n" .
+	"<b>РћС‚РІРµС‚ РѕС‚ СЃРµСЂРІРµСЂР° MySQL: " . htmlspecialchars_uni(mysql_error()) . ($file != '' && $line != '' ? "<p>РІ $file, Р»РёРЅРёСЏ $line</p>" : "") . "<p>Р—Р°РїСЂРѕСЃ РЅРѕРјРµСЂ $queries.</p></b></font></td></tr></table>");
 
 
 mysql_errors($file,$line,$queries,htmlspecialchars_uni(mysql_error()));
@@ -877,7 +877,7 @@ mysql_errors($file,$line,$queries,htmlspecialchars_uni(mysql_error()));
 
 function mysql_errors($file,$line,$queries,$mysqlerror){ 
  global $queries,$CURUSER; 
-$error = $mysqlerror. ($file != '' && $line != '' ? " в $file, линия $line" : "") . "Запрос номер $queries."; 
+$error = $mysqlerror. ($file != '' && $line != '' ? " РІ $file, Р»РёРЅРёСЏ $line" : "") . "Р—Р°РїСЂРѕСЃ РЅРѕРјРµСЂ $queries."; 
 $time = sqlesc(get_date_time()); 
 $page = sqlesc($_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING']); 
 $ip = sqlesc($_SERVER['REMOTE_ADDR']); 
@@ -970,7 +970,7 @@ function format_quotes($s) {
 function encode_quote($text) {
 	$start_html = "<div align=\"center\"><div style=\"width: 85%; overflow: auto\">"
 		. "<table width=\"100%\" cellspacing=\"1\" cellpadding=\"3\" border=\"0\" align=\"center\" class=\"bgcolor4\">"
-		. "<tr bgcolor=\"FFE5E0\"><td><font class=\"block-title\">Цитата</font></td></tr><tr class=\"bgcolor1\"><td>";
+		. "<tr bgcolor=\"FFE5E0\"><td><font class=\"block-title\">Р¦РёС‚Р°С‚Р°</font></td></tr><tr class=\"bgcolor1\"><td>";
 	$end_html = "</td></tr></table></div></div>";
 	$text = preg_replace("#\[quote\](.*?)\[/quote\]#si", "" . $start_html . "\\1" . $end_html . "", $text);
 	return $text;
@@ -980,7 +980,7 @@ function encode_quote($text) {
 function encode_quote_from($text) {
 	$start_html = "<div align=\"center\"><div style=\"width: 85%; overflow: auto\">"
 		. "<table width=\"100%\" cellspacing=\"1\" cellpadding=\"3\" border=\"0\" align=\"center\" class=\"bgcolor4\">"
-		. "<tr bgcolor=\"FFE5E0\"><td><font class=\"block-title\">\\1 писал</font></td></tr><tr class=\"bgcolor1\"><td>";
+		. "<tr bgcolor=\"FFE5E0\"><td><font class=\"block-title\">\\1 РїРёСЃР°Р»</font></td></tr><tr class=\"bgcolor1\"><td>";
 	$end_html = "</td></tr></table></div></div>";
 	$text = preg_replace("#\[quote=(.+?)\](.*?)\[/quote\]#si", "" . $start_html . "\\2" . $end_html . "", $text);
 	return $text;
@@ -990,7 +990,7 @@ function encode_quote_from($text) {
 function encode_spoiler_from($text) {
         $q = time().mt_rand(1, 1024);
 
-$replace = "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"Показать\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\2</div>";
+$replace = "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"РџРѕРєР°Р·Р°С‚СЊ\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\2</div>";
 
 	$text = preg_replace("#\[spoiler=((\s|.)+?)\]((\s|.)+?)\[\/spoiler\]#si", $replace, $text);
 	return $text;
@@ -999,7 +999,7 @@ $replace = "<script language=\"javascript\" type=\"text/javascript\" src=\"js/sp
 
 function encode_spoiler_hide($text) {
         $q = time().mt_rand(1, 1024);
-	$replace = "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"Показать\">&nbsp;&nbsp;Скрытый текст</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\1</div>";
+	$replace = "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"РџРѕРєР°Р·Р°С‚СЊ\">&nbsp;&nbsp;РЎРєСЂС‹С‚С‹Р№ С‚РµРєСЃС‚</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\1</div>";
 	$text = preg_replace("#\[hide\]((\s|.)+?)\[\/hide\]#si", $replace, $text);
 	return $text;
 }
@@ -1007,7 +1007,7 @@ function encode_spoiler_hide($text) {
 
 function encode_spoiler_from_hide($text) {
         $q = time().mt_rand(1, 1024);
-	$replace = "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"Показать\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\2</div>";
+	$replace = "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"РџРѕРєР°Р·Р°С‚СЊ\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\2</div>";
 	$text = preg_replace("#\[hide=((\s|.)+?)\]((\s|.)+?)\[\/hide\]#si", $replace, $text);
 	return $text;
 }
@@ -1018,7 +1018,7 @@ function encode_spoiler_from_hide($text) {
 function encode_code($text) {
 	$start_html = "<div align=\"center\"><div style=\"width: 85%; overflow: auto\">"
 	."<table width=\"100%\" cellspacing=\"1\" cellpadding=\"3\" border=\"0\" align=\"center\" class=\"bgcolor4\">"
-	."<tr bgcolor=\"E5EFFF\"><td colspan=\"2\"><font class=\"block-title\">Код</font></td></tr>"
+	."<tr bgcolor=\"E5EFFF\"><td colspan=\"2\"><font class=\"block-title\">РљРѕРґ</font></td></tr>"
 	."<tr class=\"bgcolor1\"><td align=\"right\" class=\"code\" style=\"width: 5px; border-right: none\">{ZEILEN}</td><td class=\"code\">";
 	$end_html = "</td></tr></table></div></div>";
 	$match_count = preg_match_all("#\[code\](.*?)\[/code\]#si", $text, $matches);
@@ -1054,7 +1054,7 @@ function encode_code($text) {
 function encode_php($text) {
 	$start_html = "<div align=\"center\"><div style=\"width: 85%; overflow: auto\">"
 	."<table width=\"100%\" cellspacing=\"1\" cellpadding=\"3\" border=\"0\" align=\"center\" class=\"bgcolor4\">"
-	."<tr bgcolor=\"F3E8FF\"><td colspan=\"2\"><font class=\"block-title\">PHP - Код</font></td></tr>"
+	."<tr bgcolor=\"F3E8FF\"><td colspan=\"2\"><font class=\"block-title\">PHP - РљРѕРґ</font></td></tr>"
 	."<tr class=\"bgcolor1\"><td align=\"right\" class=\"code\" style=\"width: 5px; border-right: none\">{ZEILEN}</td><td>";
 	$end_html = "</td></tr></table></div></div>";
 	$match_count = preg_match_all("#\[php\](.*?)\[/php\]#si", $text, $matches);
@@ -1135,11 +1135,11 @@ $add_text[] = $s_html.$t_b.$e_html;
 if (in_array($host, array("message.php", "details.php", "comment.php")) && preg_match("#\[php\](.*?)\[/php\]#si", $s))
 $s = encode_php($s);
 
-$s = preg_replace("/\[b\](.*?)\[\/b\]/is", "<strong>\\1</strong>", $s); /// [b]жирный[/b]
-$s = preg_replace("/\[i\](.*?)\[\/i\]/is", "<i>\\1</i>", $s); /// [i]курсив[/i]
-$s = preg_replace("/\[h\](.*?)\[\/h\]/is", "<h3>\\1</h3>", $s); /// [h]крупный[/h]
-$s = preg_replace("/\[u\](.*?)\[\/u\]/is", "<u>\\1</u>", $s); /// [u]подчеркнутый[/u]
-$s = preg_replace("#\[s\](.*?)\[/s\]#si", "<s>\\1</s>", $s); /// [s]зачеркнутый[/s]
+$s = preg_replace("/\[b\](.*?)\[\/b\]/is", "<strong>\\1</strong>", $s); /// [b]Р¶РёСЂРЅС‹Р№[/b]
+$s = preg_replace("/\[i\](.*?)\[\/i\]/is", "<i>\\1</i>", $s); /// [i]РєСѓСЂСЃРёРІ[/i]
+$s = preg_replace("/\[h\](.*?)\[\/h\]/is", "<h3>\\1</h3>", $s); /// [h]РєСЂСѓРїРЅС‹Р№[/h]
+$s = preg_replace("/\[u\](.*?)\[\/u\]/is", "<u>\\1</u>", $s); /// [u]РїРѕРґС‡РµСЂРєРЅСѓС‚С‹Р№[/u]
+$s = preg_replace("#\[s\](.*?)\[/s\]#si", "<s>\\1</s>", $s); /// [s]Р·Р°С‡РµСЂРєРЅСѓС‚С‹Р№[/s]
 $s = preg_replace("#\[li\]#si", "<li>", $s); /// [li]
 $s = preg_replace("#\[hr\]#si", "<hr>", $s); /// [hr]
 $s = preg_replace("#\[br\]#si", "<br />", $s); /// [br]
@@ -1160,14 +1160,14 @@ $s = preg_replace("#\[img\](?!javascript:)([^?](?:[^\[]+|\[(?!url))*?)\[/img\]#i
 
 $s = preg_replace("/\[img=(http:\/\/[^\s'\"<>]+(\.(gif|jpeg|jpg|png)))\]/is", "<img border=\"0\" src=\"\\1\" alt=\"\\1\" />", $s); /// [img=http://www/image.gif]
 
-$s = preg_replace("/\[color=([a-zA-Z]+)\](.*?)\[\/color\]/is", "<font color=\"\\1\">\\2</font>", $s); /// [color=blue]Текст[/color]
+$s = preg_replace("/\[color=([a-zA-Z]+)\](.*?)\[\/color\]/is", "<font color=\"\\1\">\\2</font>", $s); /// [color=blue]РўРµРєСЃС‚[/color]
 /////////////////////////////////Tag [youtube][/youtube] writed by RoBoT 
 while (preg_match("/\[youtube\]((\s|.)+?)\[\/youtube\]/i", $s)) { 
 $s = str_replace("watch?v=","v/", $s); 
 $s = preg_replace ("/\[youtube\]((\s|.)+?)\[\/youtube\]/i", "<object width='640' height='505'><param name=movie value='\\1&hl=ru&fs=1&'></param><param name='allowFullScreen' value='true'></param><param name='allowscriptaccess' value='always'></param><embed width='500' height='300' src='\\1&hl=ru&fs=1&' type='application/x-shockwave-flash' allowscriptaccess='always' allowfullscreen='true' width='640' height='505'></embed></object>", $s); 
 } 
 ///////////////////////////////////end tag youtube    
-$s = preg_replace("/\[color=(#[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9])\](.*?)\[\/color\]/is", "<font color=\"\\1\">\\2</font>", $s); /// [color=#ffcc99]Текст[/color]
+$s = preg_replace("/\[color=(#[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9])\](.*?)\[\/color\]/is", "<font color=\"\\1\">\\2</font>", $s); /// [color=#ffcc99]РўРµРєСЃС‚[/color]
 
 
 $lnk = array_map('trim', explode(',', $tracker_lang['lnk_array']));
@@ -1176,21 +1176,21 @@ $s = preg_replace("/\[url=javascript:(.+?)\](.*?)\[\/url\]/is", "\\2", $s);
 
 if ($host == "shoutbox.php"){
 
-$s = preg_replace("/\[url=((http|https):\/\/[^()<>\s]+?)\](.*?)\[\/url\]/is", "<a href=\"\\1\" target=\"_blank\" rel=\"nofollow\">\\3</a>", $s); /// [url=http://www.example.com]Пример[/url]
+$s = preg_replace("/\[url=((http|https):\/\/[^()<>\s]+?)\](.*?)\[\/url\]/is", "<a href=\"\\1\" target=\"_blank\" rel=\"nofollow\">\\3</a>", $s); /// [url=http://www.example.com]РџСЂРёРјРµСЂ[/url]
 $s = preg_replace("/\[url\]((http|https):\/\/[^()<>\s]+?)\[\/url\]/is", "<a href=\"\\1\" rel=\"nofollow\" target=\"_blank\">\\1</a>", $s); /// [url]http://www.example.com[/url]
 
 } else {
 
 
-$s = preg_replace("/\[url=((http|https):\/\/".$site."+(\/|.*?))\](.*?)\[\/url\]/is", "<a title=\"".$site."\" href=\"\\1\" rel=\"nofollow\">\\4</a>", $s); /// для ссылок вида: http://localhost
-$s = preg_replace("/\[url\]((http|https):\/\/".$site."+(\/|.*?))\[\/url\]/is", "<a href=\"\\1\" title=\"".$site."\" rel=\"nofollow\">\\1</a>", $s); /// для ссылок вида: http://localhost
+$s = preg_replace("/\[url=((http|https):\/\/".$site."+(\/|.*?))\](.*?)\[\/url\]/is", "<a title=\"".$site."\" href=\"\\1\" rel=\"nofollow\">\\4</a>", $s); /// РґР»СЏ СЃСЃС‹Р»РѕРє РІРёРґР°: http://localhost
+$s = preg_replace("/\[url\]((http|https):\/\/".$site."+(\/|.*?))\[\/url\]/is", "<a href=\"\\1\" title=\"".$site."\" rel=\"nofollow\">\\1</a>", $s); /// РґР»СЏ СЃСЃС‹Р»РѕРє РІРёРґР°: http://localhost
 
 $s = preg_replace("/\[url\]((http|https):\/\/[^()<>\s]+?)\[\/url\]/is", "<a target=\"blank\" href=\"\\1\" rel=\"nofollow\">\\1</a>", $s);
 $s = preg_replace("/\[url=((http|https):\/\/[^()<>\s]+?)\](.*?)\[\/url\]/is", "<a target=\"blank\" href=\"\\1\" rel=\"nofollow\">\\3</a>", $s);
 
 }
 
-$s = preg_replace("/\[url=([a-zA-Z]+.php(.*?))\](.*?)\[\/url\]/is", "<a target=\"blank\" href=\"\\1\" rel=\"nofollow\">\\3</a>", $s); /// [url=browse.php?search=Хорошее]Хорошее[/url]
+$s = preg_replace("/\[url=([a-zA-Z]+.php(.*?))\](.*?)\[\/url\]/is", "<a target=\"blank\" href=\"\\1\" rel=\"nofollow\">\\3</a>", $s); /// [url=browse.php?search=РҐРѕСЂРѕС€РµРµ]РҐРѕСЂРѕС€РµРµ[/url]
 //$s = preg_replace("/(\\n|\\s|^)((http|ftp|https|ftps):\/\/[^()<>\s]+)/is", "\\1<a target=\"blank\" href=\"\\2\" rel=\"nofollow\">\\2</a>", $s);
 
 
@@ -1223,18 +1223,18 @@ $s = preg_replace("/\[flash]((www.|http:\/\/|https:\/\/)[^\s'\"<>&]+(\.swf))\[\/
 
 $s = preg_replace("/\[mcom=(#[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]):(#[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9])\](.*?)\[\/mcom\]/is", "<div style=\"background-color: \\1; color: \\2; font-weight: bold; font-size: small;\">\\3</div>", $s); /// [mcom=#FFD42A:#002AFF]Text[/mcom]
 
-$s = wordwrap($s, 150, "\n", 1); //linebreak - по умолчанию 75 - было 100
+$s = wordwrap($s, 150, "\n", 1); //linebreak - РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ 75 - Р±С‹Р»Рѕ 100
 
-$s = preg_replace("/\[video=(http:\/\/www.(youtube-nocookie.com|youtube.com).*?(\/v\/|watch\?v=))(.*?)\]/is", "<object width='640' height='505'><param name=movie value='http://www.youtube-nocookie.com/v/\\4&hl=ru&hd=1'></param><param name='allowFullScreen' value='true'></param><param name='allowscriptaccess' value='always'></param><embed src='http://www.youtube-nocookie.com/v/\\4&hl=ru&hd=1' type='application/x-shockwave-flash' allowscriptaccess='always' allowfullscreen='true' width='640' height='505'></embed></object>", $s); /// youtube тег video, длинные ссылки вида (http://www.youtube.com/watch?v=xPzblzRq6kM или http://www.youtube-nocookie.com/v/SWnmDRM0e18)
+$s = preg_replace("/\[video=(http:\/\/www.(youtube-nocookie.com|youtube.com).*?(\/v\/|watch\?v=))(.*?)\]/is", "<object width='640' height='505'><param name=movie value='http://www.youtube-nocookie.com/v/\\4&hl=ru&hd=1'></param><param name='allowFullScreen' value='true'></param><param name='allowscriptaccess' value='always'></param><embed src='http://www.youtube-nocookie.com/v/\\4&hl=ru&hd=1' type='application/x-shockwave-flash' allowscriptaccess='always' allowfullscreen='true' width='640' height='505'></embed></object>", $s); /// youtube С‚РµРі video, РґР»РёРЅРЅС‹Рµ СЃСЃС‹Р»РєРё РІРёРґР° (http://www.youtube.com/watch?v=xPzblzRq6kM РёР»Рё http://www.youtube-nocookie.com/v/SWnmDRM0e18)
 
-$s = preg_replace("/\[video=(http:\/\/youtu.be\/(.*?))\]/is", "<object width='640' height='505'><param name=movie value='http://www.youtube-nocookie.com/v/\\2&hl=ru&hd=1'></param><param name='allowFullScreen' value='true'></param><param name='allowscriptaccess' value='always'></param><embed src='http://www.youtube-nocookie.com/v/\\2&hl=ru&hd=1' type='application/x-shockwave-flash' allowscriptaccess='always' allowfullscreen='true' width='640' height='505'></embed></object>", $s); /// youtube тег video, короткая ссылка вида (http://youtu.be/xPzblzRq6kM?hd=1)
+$s = preg_replace("/\[video=(http:\/\/youtu.be\/(.*?))\]/is", "<object width='640' height='505'><param name=movie value='http://www.youtube-nocookie.com/v/\\2&hl=ru&hd=1'></param><param name='allowFullScreen' value='true'></param><param name='allowscriptaccess' value='always'></param><embed src='http://www.youtube-nocookie.com/v/\\2&hl=ru&hd=1' type='application/x-shockwave-flash' allowscriptaccess='always' allowfullscreen='true' width='640' height='505'></embed></object>", $s); /// youtube С‚РµРі video, РєРѕСЂРѕС‚РєР°СЏ СЃСЃС‹Р»РєР° РІРёРґР° (http://youtu.be/xPzblzRq6kM?hd=1)
 
 
 //[spoiler][/spoiler] 
 while (preg_match("#\[spoiler]((\s|.)+?)\[/spoiler\]#is", $s)) 
 { 
         $q = time().mt_rand(1, 1024); 
-        $s = preg_replace("/\[spoiler]((\s|.)+?)\[\/spoiler\]/i", "<div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"Показать\">&nbsp;&nbsp;Скрытый текст</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\1</div>", $s, 1); 
+        $s = preg_replace("/\[spoiler]((\s|.)+?)\[\/spoiler\]/i", "<div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"РџРѕРєР°Р·Р°С‚СЊ\">&nbsp;&nbsp;РЎРєСЂС‹С‚С‹Р№ С‚РµРєСЃС‚</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\1</div>", $s, 1); 
 }  
 
 
@@ -1247,7 +1247,7 @@ while (preg_match("#\[spoiler]((\s|.)+?)\[/spoiler\]#is", $s))
 while (preg_match("#\[spoiler=((\s|.)+?)\]((\s|.)+?)\[/spoiler\]#is", $s)) 
 { 
         $q = time().mt_rand(1, 1024); 
-        $s = preg_replace("/\[spoiler=((\s|.)+?)\]((\s|.)+?)\[\/spoiler\]/i", "<div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"Показать\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\3</div>", $s, 1); 
+        $s = preg_replace("/\[spoiler=((\s|.)+?)\]((\s|.)+?)\[\/spoiler\]/i", "<div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"РџРѕРєР°Р·Р°С‚СЊ\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\3</div>", $s, 1); 
 }   
 
 
@@ -1280,16 +1280,16 @@ return $s;
 /*
 function format_comment($text, $strip_html = true) {
 /*
-//Цензура мата by Kreker666 
-    $s = preg_replace('/хуй/i', 'где моя циркулярная пила?мне надо кое-что в туалете себе отрезать', $s); 
-    $s = preg_replace('/хуйня/i', 'бред', $s); 
-    $s = preg_replace('/жжош/i', 'круто', $s); 
-    $s = preg_replace('/админ/i', 'царь во дворце', $s); 
+//Р¦РµРЅР·СѓСЂР° РјР°С‚Р° by Kreker666 
+    $s = preg_replace('/С…СѓР№/i', 'РіРґРµ РјРѕСЏ С†РёСЂРєСѓР»СЏСЂРЅР°СЏ РїРёР»Р°?РјРЅРµ РЅР°РґРѕ РєРѕРµ-С‡С‚Рѕ РІ С‚СѓР°Р»РµС‚Рµ СЃРµР±Рµ РѕС‚СЂРµР·Р°С‚СЊ', $s); 
+    $s = preg_replace('/С…СѓР№РЅСЏ/i', 'Р±СЂРµРґ', $s); 
+    $s = preg_replace('/Р¶Р¶РѕС€/i', 'РєСЂСѓС‚Рѕ', $s); 
+    $s = preg_replace('/Р°РґРјРёРЅ/i', 'С†Р°СЂСЊ РІРѕ РґРІРѕСЂС†Рµ', $s); 
 
 $badwords = array();
- $badwords[] = "бля";
- $badwords[] = "блябля";
- $badwords[] = "хуй";
+ $badwords[] = "Р±Р»СЏ";
+ $badwords[] = "Р±Р»СЏР±Р»СЏ";
+ $badwords[] = "С…СѓР№";
 
  $s = str_replace($badwords,"---",$s);
 */ /*
@@ -1312,15 +1312,15 @@ $badwords = array();
 	$html[] = "<img class=\"linked-image\" src=\"\\1\" border=\"0\" alt=\"\\1\" title=\"\\1\" />";
 	$bb[] = "#\[img=([a-zA-Z]+)\](?!javascript:)([^?](?:[^\[]+|\[(?!url))*?)\[/img\]#is";
 	$html[] = "<img class=\"linked-image\" src=\"\\2\" align=\"\\1\" border=\"0\" alt=\"\\2\" title=\"\\2\" />";
-	$bb[] = "#\[img\ alt=([a-zA-Zа-яА-Я0-9\_\-\. ]+)\](?!javascript:)([^?](?:[^\[]+|\[(?!url))*?)\[/img\]#is";
+	$bb[] = "#\[img\ alt=([a-zA-ZР°-СЏРђ-РЇ0-9\_\-\. ]+)\](?!javascript:)([^?](?:[^\[]+|\[(?!url))*?)\[/img\]#is";
 	$html[] = "<img class=\"linked-image\" src=\"\\2\" align=\"\\1\" border=\"0\" alt=\"\\1\" title=\"\\1\" />";
-	$bb[] = "#\[img=([a-zA-Z]+) alt=([a-zA-Zа-яА-Я0-9\_\-\. ]+)\](?!javascript:)([^?](?:[^\[]+|\[(?!url))*?)\[/img\]#is";
+	$bb[] = "#\[img=([a-zA-Z]+) alt=([a-zA-ZР°-СЏРђ-РЇ0-9\_\-\. ]+)\](?!javascript:)([^?](?:[^\[]+|\[(?!url))*?)\[/img\]#is";
 	$html[] = "<img class=\"linked-image\" src=\"\\3\" align=\"\\1\" border=\"0\" alt=\"\\2\" title=\"\\2\" />";
 	$bb[] = "#\[kp=([0-9]+)\]#is";
-	$html[] = "<a href=\"http://www.kinopoisk.ru/level/1/film/\\1/\" rel=\"nofollow\"><img src=\"http://www.kinopoisk.ru/rating/\\1.gif/\" alt=\"Кинопоиск\" title=\"Кинопоиск\" border=\"0\" /></a>";
+	$html[] = "<a href=\"http://www.kinopoisk.ru/level/1/film/\\1/\" rel=\"nofollow\"><img src=\"http://www.kinopoisk.ru/rating/\\1.gif/\" alt=\"РљРёРЅРѕРїРѕРёСЃРє\" title=\"РљРёРЅРѕРїРѕРёСЃРє\" border=\"0\" /></a>";
 
 	$bb[] = "#\[imdb\]((\s|.)+?)\[\/imdb\]#i";
-	$html[] = "<a href=\"http://www.imdb.com/title/\\1/\" rel=\"nofollow\"><img src=\"imdb.php?\\1\" alt=\"Кинопоиск\" title=\"Кинопоиск\" border=\"0\" /></a>";
+	$html[] = "<a href=\"http://www.imdb.com/title/\\1/\" rel=\"nofollow\"><img src=\"imdb.php?\\1\" alt=\"РљРёРЅРѕРїРѕРёСЃРє\" title=\"РљРёРЅРѕРїРѕРёСЃРє\" border=\"0\" /></a>";
 
 	$bb[] = "#\[url\]([\w]+?://([\w\#$%&~/.\-;:=,?@\]+]+|\[(?!url=))*?)\[/url\]#is";
 	$html[] = "<a href=\"away.php?to=\\1\" target='_blank' title=\"\\1\">\\1</a>";
@@ -1362,7 +1362,7 @@ $badwords = array();
 	// Yeah, unsecure! Hello noobies! :D
 	#$bb[] = "#\[youtube=([a-zA-Z0-9]+)\]#si";
 	#$html = "<object width=\"480\" height=\"385\"><param name=\"movie\" value=\"http://www.youtube.com/v/\\1?fs=1&amp;rel=0\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/\\1?fs=1&amp;rel=0\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"480\" height=\"385\"></embed></object>";
-	//$html[] = "<div class=\"spoiler-wrap\"><div class=\"spoiler-head folded clickable\">Скрытый текст</div><div class=\"spoiler-body\"><textarea>\\1</textarea></div></div>";
+	//$html[] = "<div class=\"spoiler-wrap\"><div class=\"spoiler-head folded clickable\">РЎРєСЂС‹С‚С‹Р№ С‚РµРєСЃС‚</div><div class=\"spoiler-body\"><textarea>\\1</textarea></div></div>";
 	//$bb[] = "/\[hide=\s*((\s|.)+?)\s*\]((\s|.)+?)\[\/hide\]/i";
 	//$html[] = "<div class=\"spoiler-wrap\"><div class=\"spoiler-head folded clickable\">\\1</div><div class=\"spoiler-body\"><textarea>\\3</textarea></div></div>";
 
@@ -1381,8 +1381,8 @@ $s = preg_replace ("/\[youtube\]((\s|.)+?)\[\/youtube\]/i", "<object width='540'
 $s = str_replace(array("javascript", "alert", "<body", "<html"), "", $s);
 
 // [movie].movie[/movie]   
-// [movie]сюда вставляем прямую ссылку на FLY файл[/movie]   
-// [movie]например http://intv.ru/uplay/dNqg6vD4LI[/movie]   
+// [movie]СЃСЋРґР° РІСЃС‚Р°РІР»СЏРµРј РїСЂСЏРјСѓСЋ СЃСЃС‹Р»РєСѓ РЅР° FLY С„Р°Р№Р»[/movie]   
+// [movie]РЅР°РїСЂРёРјРµСЂ http://intv.ru/uplay/dNqg6vD4LI[/movie]   
 $s = preg_replace( "/\[video=([^()<>\s]+?)\]/i", "<object width=\"560\" height=\"349\"><param name=\"movie\" value=\"http://www.youtube.com/v/\\1?version=3&amp;hl=ru_RU&hd=1\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/\\1?version=3&amp;hl=ru_RU&hd=1\" type=\"application/x-shockwave-flash\" width=\"560\" height=\"349\" allowscriptaccess=\"always\" allowfullscreen=\"true\"></embed></object>", $s); 
 
 $s = preg_replace( "/\[vk=([^()<>\s]+?)\]/i", "<iframe src=\"\\1\" width=\"607\" height=\"360\" frameborder=\"0\"></iframe>", $s); 
@@ -1399,7 +1399,7 @@ while (preg_match("#\[spoiler=((\s|.)+?)\]((\s|.)+?)\[/spoiler\]#is", $s))
 { 
         $q = time().mt_rand(1, 1024); 
         $s = preg_replace("/\[spoiler=((\s|.)+?)\]((\s|.)+?)\[\/spoiler\]/i", 
-     "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"Показать\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\3</div>", $s, 1); 
+     "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"РџРѕРєР°Р·Р°С‚СЊ\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\3</div>", $s, 1); 
 } 
 
 
@@ -1407,7 +1407,7 @@ while (preg_match("#\[hide=((\s|.)+?)\]((\s|.)+?)\[/hide\]#is", $s))
 {
         $q = time().mt_rand(1, 1024);
         $s = preg_replace("/\[hide=((\s|.)+?)\]((\s|.)+?)\[\/hide\]/i", 
-     "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"Показать\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\3</div>", $s, 1);
+     "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"РџРѕРєР°Р·Р°С‚СЊ\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\3</div>", $s, 1);
 }
 
 
@@ -1417,7 +1417,7 @@ while (preg_match("#\[hide=((\s|.)+?)\]((\s|.)+?)\[/hide\]#is", $s))
 { 
         $q = time().mt_rand(1, 1024); 
         $s = preg_replace("/\[hide=((\s|.)+?)\]((\s|.)+?)\[\/hide\]/i", 
-     "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"Показать\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\3</div>", $s, 1); 
+     "<script language=\"javascript\" type=\"text/javascript\" src=\"js/spoiler.js\"></script><div class=\"spoiler_head\" onclick=\"javascript:showspoiler('".$q."')\"><img border=\"0\" src=\"pic/plus.gif\" id=\"pic".$q."\" title=\"РџРѕРєР°Р·Р°С‚СЊ\">&nbsp;&nbsp;\\1</div><div class=\"spoiler_body\" style=\"display:none;\" id=".$q." name=".$q.">\\3</div>", $s, 1); 
 } 
 *//*
 
@@ -1433,8 +1433,8 @@ $nummatch = $q;
      $s = preg_replace("/\[spoiler=\s*((\s|.)+?)\s*\]((\s|.)+?)\[\/spoiler\]/i",    
      "<br><script language='javascript' type='text/javascript' src='js/show_hide.js'></script>  
      <div style='border: 1px solid E0E0E0; padding: 3px'>    
-     <div style='padding-bottom: 3px' class='clickable' onclick=\"javascript: show_hide('s$nummatch')\" title='Показать/Скрыть спойлер' tooltip='Показать'>    
-     <img id='pics$nummatch' src='pic/plus.gif' border='0' title='Показать/Скрыть спойлер' tooltip='Показать'> \\1</div>    
+     <div style='padding-bottom: 3px' class='clickable' onclick=\"javascript: show_hide('s$nummatch')\" title='РџРѕРєР°Р·Р°С‚СЊ/РЎРєСЂС‹С‚СЊ СЃРїРѕР№Р»РµСЂ' tooltip='РџРѕРєР°Р·Р°С‚СЊ'>    
+     <img id='pics$nummatch' src='pic/plus.gif' border='0' title='РџРѕРєР°Р·Р°С‚СЊ/РЎРєСЂС‹С‚СЊ СЃРїРѕР№Р»РµСЂ' tooltip='РџРѕРєР°Р·Р°С‚СЊ'> \\1</div>    
      <div id='ss$nummatch' style='DISPLAY: none; border: 1px dashed #E0E0E0; padding: 2px'>\\3</div>    
      </div>", $s,1);      
 
@@ -1449,8 +1449,8 @@ $nummatch = $q;
 	 /*
      "<script language='javascript' type='text/javascript' src='js/show_hide.js'></script>  
      <div style='border: 1px solid #E0E0E0; padding: 3px'>    
-     <div style='padding-bottom: 3px' class='clickable' onclick=\"javascript: show_hide('s$nummatch')\" title='Показать/Скрыть спойлер'>    
-     <img id='pics$nummatch'src='pic/plus.gif' border='0' title='Показать/Скрыть спойлер' tooltip='Показать'> Скрытый текст    
+     <div style='padding-bottom: 3px' class='clickable' onclick=\"javascript: show_hide('s$nummatch')\" title='РџРѕРєР°Р·Р°С‚СЊ/РЎРєСЂС‹С‚СЊ СЃРїРѕР№Р»РµСЂ'>    
+     <img id='pics$nummatch'src='pic/plus.gif' border='0' title='РџРѕРєР°Р·Р°С‚СЊ/РЎРєСЂС‹С‚СЊ СЃРїРѕР№Р»РµСЂ' tooltip='РџРѕРєР°Р·Р°С‚СЊ'> РЎРєСЂС‹С‚С‹Р№ С‚РµРєСЃС‚    
      </div>    
      <div id='ss$nummatch' style='DISPLAY: none; border: 1px dashed #E0E0E0; padding: 2px'>\\1</div>    
      </div>", $s,1);      
@@ -1473,17 +1473,17 @@ $nummatch = $q;
 
 
 	foreach ($me as $code => $url)
-		$s = str_replace($code, "Я ".$url."", $s);
+		$s = str_replace($code, "РЇ ".$url."", $s);
 
 	foreach ($movie as $code => $url)
-		$s = str_replace($code, "Я ".$url."", $s);
+		$s = str_replace($code, "РЇ ".$url."", $s);
 
 	foreach ($mat as $code)
-		$s = str_replace($code, "А я матюкнулся...", $s);
+		$s = str_replace($code, "Рђ СЏ РјР°С‚СЋРєРЅСѓР»СЃСЏ...", $s);
 
-		$s = str_replace("!рейтинг", "<b>ГОЛОСУЕМ ЗА НАШ ТРЕКЕР => <a href=http://www.tematop.com/details.php?id=514><img src=http://www.tematop.com/buttons/baner2.gif></a></b>", $s);
+		$s = str_replace("!СЂРµР№С‚РёРЅРі", "<b>Р“РћР›РћРЎРЈР•Рњ Р—Рђ РќРђРЁ РўР Р•РљР•Р  => <a href=http://www.tematop.com/details.php?id=514><img src=http://www.tematop.com/buttons/baner2.gif></a></b>", $s);
 
-		$s = str_replace("!статрейт", "<b>Голосуем за наш трекер:</b> <center><a href=http://www.uptracker.ru/tracker/1400><img src=http://www.uptracker.ru/buttons/b_vote_silver.png></a><br><a href=http://torrent-trackers.ru/tracker/killserver.superhub.ru><img src=http://torrent-trackers.ru/static/widget/button.gif></a><br><a href=http://www.tematop.com/details.php?id=514><img src=http://www.tematop.com/buttons/toptema.gif></a></center>", $s);
+		$s = str_replace("!СЃС‚Р°С‚СЂРµР№С‚", "<b>Р“РѕР»РѕСЃСѓРµРј Р·Р° РЅР°С€ С‚СЂРµРєРµСЂ:</b> <center><a href=http://www.uptracker.ru/tracker/1400><img src=http://www.uptracker.ru/buttons/b_vote_silver.png></a><br><a href=http://torrent-trackers.ru/tracker/killserver.superhub.ru><img src=http://torrent-trackers.ru/static/widget/button.gif></a><br><a href=http://www.tematop.com/details.php?id=514><img src=http://www.tematop.com/buttons/toptema.gif></a></center>", $s);
 
 	foreach ($privatesmilies as $code => $url)
 		$s = str_replace($code, "<img border=\"0\" src=\"pic/smilies/$url\">", $s);
@@ -1638,25 +1638,25 @@ function get_elapsed_time($ts) {
   $days -= $weeks * 7;
   $t = "";
   if ($weeks > 0)
-    return "$weeks недел" . ($weeks > 1 ? "и" : "я");
+    return "$weeks РЅРµРґРµР»" . ($weeks > 1 ? "Рё" : "СЏ");
   if ($days > 0)
-    return "$days д" . ($days > 1 ? "ней" : "ень");
+    return "$days Рґ" . ($days > 1 ? "РЅРµР№" : "РµРЅСЊ");
   if ($hours > 0)
-    return "$hours час" . ($hours > 1 ? "ов" : "");
+    return "$hours С‡Р°СЃ" . ($hours > 1 ? "РѕРІ" : "");
   if ($mins > 0)
-    return "$mins минут" . ($mins > 1 ? "" : "а");
-  return "< 1 минуты";
+    return "$mins РјРёРЅСѓС‚" . ($mins > 1 ? "" : "Р°");
+  return "< 1 РјРёРЅСѓС‚С‹";
 }
 
 
 
 function get_user_class_group($class) {
-    if     ($class == 1) return 'Участник'; 
+    if     ($class == 1) return 'РЈС‡Р°СЃС‚РЅРёРє'; 
     elseif ($class == 2) return 'VIP';
-    elseif ($class == 3) return 'Модератор';
-    elseif ($class == 4) return 'Администратор';
-    elseif ($class == 5) return 'Создатель';
-    elseif ($class == 6) return 'Руководитель';
+    elseif ($class == 3) return 'РњРѕРґРµСЂР°С‚РѕСЂ';
+    elseif ($class == 4) return 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ';
+    elseif ($class == 5) return 'РЎРѕР·РґР°С‚РµР»СЊ';
+    elseif ($class == 6) return 'Р СѓРєРѕРІРѕРґРёС‚РµР»СЊ';
     else return 'n\a';
 }
 

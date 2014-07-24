@@ -51,7 +51,7 @@ $txt = str_replace ( '(@date)' , date('d.m.Y'), $txt );
 $txt = str_replace ( '(@torr_list)' , $torr_list, $txt );
 
 
-$sql = "SELECT id,email,username FROM `users` WHERE  status = :status AND email_dist = :email_dist ORDER BY `id`".(!isset($_GET['debug'])?" LIMIT ".($limit*$hour).",".$limit : "");
+$sql = "SELECT id,email,username FROM `users` WHERE  status = :status AND email_dist = :email_dist AND email != \"\" ORDER BY `id`".(!isset($_GET['debug'])?" LIMIT ".($limit*$hour).",".$limit : "");
 $data = array(':status' => 'confirmed',':email_dist' => 'yes');
 
 $info = $db->sql($sql, $data);

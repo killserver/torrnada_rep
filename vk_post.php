@@ -2,6 +2,7 @@
 
 $token="your_access_token";//твой токкен
 $group_id="12345678";//id группы куда будет отправленно сообщение; если нужно несколько групп: array("12345678", "23456789"), если нужна одна группа: "12345678"
+$user_id = "";//тоже самое как с группами, только для юзеров
 $tags = array('tags');//теги...просто теги:)
 $text = "Мой супер-пупер текст";//текст постинга на стену
 $PATH="";//путь картинки, может быть пустым
@@ -9,12 +10,16 @@ $path_bool=true;//имеет 2 значения true и false; предназн�
 
 class vk {
 
+	private $userid = 0;
 	private $group_id = 0;
 	private $token = "";
 
-	function __construct($token=null, $group=null) {
-		if(!empty($token)) {
+	function __construct($token=null, $group=null, $userid=null) {
+		if(!empty($group)) {
 			$this->group_id = $group;
+		}
+		if(!empty($userid)) {
+			$this->userid = $userid;
 		}
 		if(!empty($token)) {
 			$this->token = $token;
@@ -51,10 +56,10 @@ class vk {
 	return $Responce_step2;
 	}
 
-	public function post($text, $PATH, $path_bool=true, $tags=null, $group=0) {
+	public function post($text, $PATH=null, $path_bool=true, $tags=null, $group=null, $userid=null) {
 		$api="";
-		if($group>0) {
-			$this->group_id = $group;
+		if(!empty($group)) {
+			$this->group_id = "-".$group;
 		}
 		if(!empty($PATH)) {
 			if($path_bool) {
@@ -76,7 +81,18 @@ class vk {
 	        }
 		$text = html_entity_decode($text);
 		$text = urlencode(iconv("cp1251", "utf-8", $text));
-		$fin = $this->curl("https://api.vkontakte.ru/method/wall.post?owner_id=-" . $this->group_id . "&message=" . $text . "&access_token=" . $this->token . $api);
+		if(!empty($group)) {
+			$group_id = "-".$group;
+		} elseif(!empty($userid)) {
+			$group_id = $userid;
+		} else {
+			if(!empty($this->group_id)) {
+				$group_id = "-".$this->group_id;
+			} else {
+				$group_id = $this->userid;
+			}
+		}
+		$fin = $this->curl("https://api.vkontakte.ru/method/wall.post?owner_id=" . $group_id . "&message=" . $text . "&access_token=" . $this->token . $api);
 	return $fin;
 	}
 
@@ -86,9 +102,19 @@ if(is_array($group_id)) {
 	for($i=0;$i<sizeof($group_id);$i++) {
 		var_dump($vk->post($text, $PATH, $path_bool, $tags, $group_id[$i]));
 	}
+} elseif(is_array($user_id)) {
+	$vk = new VK($token);
+	for($i=0;$i<sizeof($user_id);$i++) {
+		var_dump($vk->post($text, $PATH, $path_bool, $tags, null, $user_id[$i]));
+	}
 } else {
-	$vk = new VK($token, $group_id);
-	var_dump($vk->post($text, $PATH, $path_bool, $tags));
+	if(!empty($user_id)) {
+		$vk = new VK($token, null, $user_id);
+		var_dump($vk->post($text, $PATH, $path_bool, $tags));
+	} else {
+		$vk = new VK($token, $group_id);
+		var_dump($vk->post($text, $PATH, $path_bool, $tags));
+	}
 }
 
 ?>

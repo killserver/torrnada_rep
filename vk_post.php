@@ -51,7 +51,7 @@ class vk {
 	return $Responce_step2;
 	}
 
-	public function post($text, $PATH, $path_bool=true, $tags) {
+	public function post($text, $PATH, $path_bool=true, $tags=null) {
 		$api="";
 		if(!empty($PATH)) {
 			if($path_bool) {

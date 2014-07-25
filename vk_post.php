@@ -1,7 +1,7 @@
 <?php
 
 $token="your_access_token";//твой токкен
-$group_id="12345678";//id группы куда будет отправленно сообщение
+$group_id="12345678";//id группы куда будет отправленно сообщение; если нужно несколько групп: array("12345678", "23456789"), если нужна одна группа: "12345678"
 $tags = array('tags');//теги...просто теги:)
 $text = "Мой супер-пупер текст";//текст постинга на стену
 $PATH="";//путь картинки, может быть пустым
@@ -51,8 +51,11 @@ class vk {
 	return $Responce_step2;
 	}
 
-	public function post($text, $PATH, $path_bool=true, $tags=null) {
+	public function post($text, $PATH, $path_bool=true, $tags=null, $group=0) {
 		$api="";
+		if($group>0) {
+			$this->group_id = $group;
+		}
 		if(!empty($PATH)) {
 			if($path_bool) {
 				$PATH=dirname(__FILE__)."/".$PATH;
@@ -78,7 +81,14 @@ class vk {
 	}
 
 }
-$vk = new VK($token, $group_id);
-var_dump($vk->post($text, $PATH, $path_bool, $tags));
+if(is_array($group_id)) {
+	$vk = new VK($token);
+	for($i=0;$i<sizeof($group_id);$i++) {
+		var_dump($vk->post($text, $PATH, $path_bool, $tags, $group_id[$i]));
+	}
+} else {
+	$vk = new VK($token, $group_id);
+	var_dump($vk->post($text, $PATH, $path_bool, $tags));
+}
 
 ?>

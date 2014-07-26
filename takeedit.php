@@ -387,8 +387,6 @@ $updateset[] = "moderatedby = ".sqlesc($CURUSER["id"]);
 }*/
 
 sql_query('REPLACE INTO torrents_index (torrent, descr) VALUES ('.implode(', ', array_map('sqlesc', array($id, strip_bbcode($descr)))).')') or sqlerr(); 
-sql_query("DELETE FROM torrents_descr WHERE id = ".$id);
-sql_query('REPLACE INTO torrents_descr (tid, descr_hash, descr_parsed) VALUES ('.implode(', ', array_map('sqlesc', array($id, md5($descr), format_comment($descr)))).')') or sqlerr(__FILE__,__LINE__);
 
 
 if($update_torrent) {
@@ -422,10 +420,11 @@ sql_query("UPDATE torrents SET " . join(",", $updateset) . " WHERE id = ".$id) o
 
 write_log("Торрент '".$name."' был отредактирован пользователем ".$CURUSER['username']."\n","F25B61","torrent");
 
-$returl = "details.php?id=".$id;
+$returl = "details.php?id=".$id."&unset_descr";
 if(isset($_POST["returnto"])) {
 	$returl .= "&returnto=" . urlencode($_POST["returnto"]);
 }
+
 
 header("Refresh: 0; url=".$returl);
 

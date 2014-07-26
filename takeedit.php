@@ -387,6 +387,34 @@ $updateset[] = "moderatedby = ".sqlesc($CURUSER["id"]);
 }*/
 
 sql_query('REPLACE INTO torrents_index (torrent, descr) VALUES ('.implode(', ', array_map('sqlesc', array($id, strip_bbcode($descr)))).')') or sqlerr(); 
+sql_query("DELETE FROM torrents_descr WHERE id = ".$id);
+@unlink("cache/details/details_id".$id.".txt");
+
+
+if(!empty($descr)) {//empty($row['descr_parsed']) && 
+	$find = "[b]В ролях:[/b]";
+	if(strpos($descr, $find)!==false) {
+		$total_length = strlen($descr);
+		$length_before = strlen($descr) - strlen(strstr($descr, $find));
+		$length_after = strlen(strstr(strstr($descr, $find), "\n"));
+		$before = substr($descr, 0, $length_before);
+		$after = strstr(strstr($descr, $find), "\n");
+		$match = substr($descr, $length_before + strlen($find), $total_length - $length_before - $length_after - strlen($find));
+		$matches = explode(",", $match);
+		$descr = format_comment($before, true)."<br>";
+		$descr .= "<b>В ролях</b>: ";
+
+		for($i=0;$i<sizeof($matches);$i++) {
+			$actors[] = ($i ? ' ' : '') . '<b><a href="browse.php?search=' . trim($matches[$i]) . '&on=2" title="Поиск фильмов с участием этого актера">' . trim($matches[$i]) . '</a></b>';
+		}
+
+		$descr .= implode(",", $actors);
+		$descr .= "<br>". format_comment($after, true);
+         } else {
+		$descr = format_comment($descr);
+         }
+}
+sql_query('REPLACE INTO torrents_descr (tid, descr_hash, descr_parsed) VALUES ('.implode(', ', array_map('sqlesc', array($id, md5($descr), $descr))).')') or sqlerr(__FILE__,__LINE__);
 
 
 if($update_torrent) {
@@ -420,11 +448,10 @@ sql_query("UPDATE torrents SET " . join(",", $updateset) . " WHERE id = ".$id) o
 
 write_log("Торрент '".$name."' был отредактирован пользователем ".$CURUSER['username']."\n","F25B61","torrent");
 
-$returl = "details.php?id=".$id."&unset_descr";
+$returl = "details.php?id=".$id;
 if(isset($_POST["returnto"])) {
 	$returl .= "&returnto=" . urlencode($_POST["returnto"]);
 }
-
 
 header("Refresh: 0; url=".$returl);
 

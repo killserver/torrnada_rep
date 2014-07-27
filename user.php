@@ -45,7 +45,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
             $ret .= "
                 <tr>\n
                 <td rowspan=\"2\" style=\"padding:0;margin:0;\"><a href=\"browse.php?cat=$catid\"><img src=\"pic/cats/$catimage\" title=\"$catname\" alt=\"\" border=\"0\"/></a></td>\n
-                <td colspan=\"7\"><a href=details.php?id=$arr[torrent]&amp;hit=1><b>" . $arr["torrentname"] ."</b></a></td>\n
+                <td colspan=\"7\"><a href=details.php?id=$arr[torrent]&amp;hit=1><b>" . view_saves($arr["torrentname"]) ."</b></a></td>\n
                 </tr>\n
                 <tr>\n
                 <td align=\"left\"><font color=\"#808080\" size=\"1\">" . $arr["added"] . "</font></td>\n

@@ -1,6 +1,6 @@
 <?php
 
-$now_charset="";//указать кодировку
+$now_charset = "";//указать кодировку
 $token="your_access_token";//твой токкен
 $group_id="12345678";//id группы куда будет отправленно сообщение; если нужно несколько групп: array("12345678", "23456789"), если нужна одна группа: "12345678"
 $user_id = "";//тоже самое как с группами, только для юзеров
@@ -26,7 +26,7 @@ class vk {
 		if(!empty($token)) {
 			$this->token = $token;
 		}
-		if(!empty($token)) {
+		if(!empty($now_charset)) {
 			$this->now_charset = $now_charset;
 		}
 	}
@@ -64,16 +64,16 @@ class vk {
 	public function post($text, $PATH=null, $path_bool=true, $tags=null, $group=null, $userid=null) {
 		$api="";
 		if(!empty($group)) {
-			$this->group_id = "-".$group;
+			$this->group_id = $group;
 		}
 		if(!empty($PATH)) {
 			if($path_bool) {
 				$PATH=dirname(__FILE__)."/".$PATH;
 			}
-			$sRequest_step1 = $this->curl("https://api.vkontakte.ru/method/photos.getWallUploadServer?gid=" . $this->group_id . "&access_token=" . $this->token);
+			$sRequest_step1 = $this->curl("https://api.vkontakte.ru/method/photos.getWallUploadServer?group_id=" . $this->group_id . "&access_token=" . $this->token);
 			$oResponce_step1 = json_decode($sRequest_step1);
 			$Responce_step2 = $this->upload_file($oResponce_step1->response->upload_url, $PATH);
-			$imgdata = $this->curl("https://api.vkontakte.ru/method/photos.saveWallPhoto?gid=" . $this->group_id . "&photo=" . $Responce_step2->photo . "&server=" . $Responce_step2->server . "&hash=" . $Responce_step2->hash . "&access_token=" . $this->token);
+			$imgdata = $this->curl("https://api.vkontakte.ru/method/photos.saveWallPhoto?group_id=" . $this->group_id . "&photo=" . $Responce_step2->photo . "&server=" . $Responce_step2->server . "&hash=" . $Responce_step2->hash . "&access_token=" . $this->token);
 			$step3 = json_decode($imgdata);
 			$media = $step3->response[0]->id;
 			$api .= "&attachments=".$media;

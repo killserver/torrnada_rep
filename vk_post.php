@@ -1,5 +1,6 @@
 <?php
 
+$now_charset="";//указать кодировку
 $token="your_access_token";//твой токкен
 $group_id="12345678";//id группы куда будет отправленно сообщение; если нужно несколько групп: array("12345678", "23456789"), если нужна одна группа: "12345678"
 $user_id = "";//тоже самое как с группами, только для юзеров
@@ -13,8 +14,9 @@ class vk {
 	private $userid = 0;
 	private $group_id = 0;
 	private $token = "";
+	private $now_charset = "cp1251";
 
-	function __construct($token=null, $group=null, $userid=null) {
+	function __construct($token=null, $now_charset=null, $group=null, $userid=null) {
 		if(!empty($group)) {
 			$this->group_id = $group;
 		}
@@ -23,6 +25,9 @@ class vk {
 		}
 		if(!empty($token)) {
 			$this->token = $token;
+		}
+		if(!empty($token)) {
+			$this->now_charset = $now_charset;
 		}
 	}
 
@@ -80,7 +85,10 @@ class vk {
 		        }
 	        }
 		$text = html_entity_decode($text);
-		$text = urlencode(iconv("cp1251", "utf-8", $text));
+		if($this->now_charset!="utf-8") {
+			$text = iconv($this->now_charset, "utf-8", $text);
+		}
+		$text = urlencode($text);
 		if(!empty($group)) {
 			$group_id = "-".$group;
 		} elseif(!empty($userid)) {
@@ -98,21 +106,21 @@ class vk {
 
 }
 if(is_array($group_id)) {
-	$vk = new VK($token);
+	$vk = new VK($token, $now_charset);
 	for($i=0;$i<sizeof($group_id);$i++) {
 		var_dump($vk->post($text, $PATH, $path_bool, $tags, $group_id[$i]));
 	}
 } elseif(is_array($user_id)) {
-	$vk = new VK($token);
+	$vk = new VK($token, $now_charset);
 	for($i=0;$i<sizeof($user_id);$i++) {
 		var_dump($vk->post($text, $PATH, $path_bool, $tags, null, $user_id[$i]));
 	}
 } else {
 	if(!empty($user_id)) {
-		$vk = new VK($token, null, $user_id);
+		$vk = new VK($token, $now_charset, null, $user_id);
 		var_dump($vk->post($text, $PATH, $path_bool, $tags));
 	} else {
-		$vk = new VK($token, $group_id);
+		$vk = new VK($token, $now_charset, $group_id);
 		var_dump($vk->post($text, $PATH, $path_bool, $tags));
 	}
 }

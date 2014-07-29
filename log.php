@@ -71,7 +71,7 @@
     {
       $date = substr($arr['added'], 0, strpos($arr['added'], " "));
       $time = substr($arr['added'], strpos($arr['added'], " ") + 1);
-      print("<tr style=\"background-color: $arr[color]\"><td>$date</td><td>$time</td><td align=left>".$arr['txt']."</td></tr>\n");
+      print("<tr style=\"background-color: $arr[color]\"><td>$date</td><td>$time</td><td align=left>".view_saves($arr['txt'])."</td></tr>\n");
     }
     print("</table>");
   }

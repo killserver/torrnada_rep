@@ -31,7 +31,7 @@ if ($action == "simular"){
 $sql = sql_query("SELECT name FROM torrents WHERE id = ".sqlesc($id)." LIMIT 5") or sqlerr(__FILE__,__LINE__);
 $row = mysql_fetch_array($sql);
 
-$search = htmlspecialchars_uni($row["name"]);
+$search = view_saves(htmlspecialchars_uni($row["name"]));
 
 $search = preg_replace("/\(((\s|.)+?)\)/is", "", preg_replace("/\[((\s|.)+?)\]/is", "", $search));
 
@@ -74,8 +74,8 @@ $name2 = preg_replace("/\(((\s|.)+?)\)/is", "", preg_replace("/\[((\s|.)+?)\]/is
 $proc = @similar_text($name1, $name2);
 
 if ($id <> $t["id"] && $proc >= $Torrent_Config["procents"]){
-    $t['name']=str_replace(array("&quot;","&amp;"),array("\"", "&"), $t['name']);
-echo "<li><a href=\"details.php?id=".$t['id']."\">".view_saves(htmlspecialchars_uni($t['name']))."</a> ".($CURUSER ? "<a title=\"Нажмите, чтобы скачать файл\" href=\"download.php?id=".$t['id']."\">[".mksize($t["size"])."]</a>":"[".mksize($t["size"])."]")."</li>";
+    $t['name']=view_saves(htmlspecialchars_uni($t['name']));
+echo "<li><a href=\"details.php?id=".$t['id']."\">".($t['name'])."</a> ".($CURUSER ? "<a title=\"Нажмите, чтобы скачать файл\" href=\"download.php?id=".$t['id']."\">[".mksize($t["size"])."]</a>":"[".mksize($t["size"])."]")."</li>";
 
 $pogre[] = $proc;
 $num_p = 1;
@@ -461,4 +461,4 @@ echo "</table>\n";
 
 
 
-?> 
+?>

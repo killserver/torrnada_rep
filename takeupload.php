@@ -376,7 +376,7 @@ foreach ($filelist as $file) {
 sql_query('REPLACE INTO torrents_index (torrent, descr) VALUES ('.implode(', ', array_map('sqlesc', array($id, strip_bbcode($descr)))).')') or sqlerr();
 
 
-move_uploaded_file($tmpname, "$torrent_dir/$id.torrent");
+move_uploaded_file($tmpname, $torrent_dir."/".$id.".torrent");
 
 $fp = fopen($torrent_dir."/".$id.".torrent", "w");
 if ($fp) {
@@ -404,7 +404,6 @@ bot_msg($bot_text);
 @unlink("cache/details/delthanks_comm_id".$id.".txt");
 @unlink("cache/details/details_relizgroup_id".$id.".txt");
 @unlink("cache/details/download_id".$id.".txt");
-@unlink("include/cache/realises/block-realises_0.txt");
 
 header("Location: ".$DEFAULTBASEURL."/details-".$id);
 

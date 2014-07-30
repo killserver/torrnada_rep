@@ -311,6 +311,7 @@ if ($update_torrent) {
 	$updateset[] = "size = " . sqlesc($totallen);
 	$updateset[] = "type = " . sqlesc($torrent_type);
 	$updateset[] = "numfiles = " . count($filelist);
+	$updateset[] = "addtime = UNIX_TIMESTAMP()";
 
 	@sql_query("DELETE FROM files WHERE torrent = ".$id);
 	foreach($filelist as $file) {

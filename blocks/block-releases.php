@@ -6,7 +6,7 @@ exit;
 } 
 
 
-
+//UPDATE torrents SET addtime = UNIX_TIMESTAMP(last_action);
 $cacheStatFile = "include/cache/realises/block-realises_" . intval($_GET['page']).".txt";
 $expire = 10*60; // 20 минут
 if (file_exists($cacheStatFile) && filesize($cacheStatFile)<>0 && filemtime($cacheStatFile) > (time() - $expire)) {
@@ -22,7 +22,7 @@ $content .= "<table cellspacing=\"0\" cellpadding=\"5\" width=\"100%\"><tr><td i
     include "include/codecs.php";
     $perpage = 10;
     list($pagertop, $pagerbottom, $limit) = pager($perpage, $row1[0], $_SERVER["PHP_SELF"] . "?" );
-    $res = sql_query("SELECT torrents.id, torrents.name, torrents.descr, torrents.free, torrents.image1, torrents.image6, torrents.size, torrents.times_completed, torrents.comments, torrents.owner, categories.id AS catid, categories.name AS catname, categories.image AS catimage, users.username, torrents.new, (torrents.f_seeders + torrents.seeders) as seeders, (torrents.f_leechers + torrents.leechers) as leechers, users.class as ownerclass FROM torrents LEFT JOIN users ON torrents.owner = users.id LEFT JOIN categories ON torrents.category = categories.id  WHERE ".$where." ORDER BY torrents.added DESC ".$limit) or sqlerr(__FILE__, __LINE__);
+    $res = sql_query("SELECT torrents.id, torrents.name, torrents.descr, torrents.free, torrents.image1, torrents.image6, torrents.size, torrents.times_completed, torrents.comments, torrents.owner, categories.id AS catid, categories.name AS catname, categories.image AS catimage, users.username, torrents.new, (torrents.f_seeders + torrents.seeders) as seeders, (torrents.f_leechers + torrents.leechers) as leechers, users.class as ownerclass FROM torrents LEFT JOIN users ON torrents.owner = users.id LEFT JOIN categories ON torrents.category = categories.id  WHERE ".$where." ORDER BY addtime DESC ".$limit) or sqlerr(__FILE__, __LINE__);
 //and category <> 19
     $content .= $pagertop;
     $content .= "</td></tr>";

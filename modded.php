@@ -39,7 +39,7 @@ $limit = "30";
   {
     while ($row = mysql_fetch_array($res)){
 
-      echo '<tr><td><a href="details.php?id='.$row["id"].'">'.$row["name"].'</a></td><td><a href="userdetails.php?id='.$row["owner"].'">'.get_user_class_color($row["class"], $row["username"]).'</a></td><td><a href="userdetails.php?id='.$row["moderatedby"].'">'.$row["moderatedby"].'</a></td></tr>';
+      echo '<tr><td><a href="details.php?id='.$row["id"].'">'.view_saves($row["name"]).'</a></td><td><a href="userdetails.php?id='.$row["owner"].'">'.get_user_class_color($row["class"], $row["username"]).'</a></td><td><a href="userdetails.php?id='.$row["moderatedby"].'">'.$row["moderatedby"].'</a></td></tr>';
 }
 
 /*
@@ -84,7 +84,7 @@ $count = $arra[0];
   else
   {
     while ($row = mysql_fetch_array($res))
-      echo '<tr><td><a href="details.php?id='.$row["id"].'">'.$row["name"].'</a></td><td><a href="userdetails.php?id='.$row["owner"].'">'.get_user_class_color($row["class"], $row["username"]).'</a></td><td>'.$row["modtime"].'</td></tr>';
+      echo '<tr><td><a href="details.php?id='.$row["id"].'">'.view_saves($row["name"]).'</a></td><td><a href="userdetails.php?id='.$row["owner"].'">'.get_user_class_color($row["class"], $row["username"]).'</a></td><td>'.$row["modtime"].'</td></tr>';
   }
 
   if ($count)
@@ -104,7 +104,7 @@ $resi = mysql_query("SELECT count(moderated) FROM torrents WHERE status=''") or 
 $arra = mysql_fetch_row($resi); 
 $count = $arra[0];
   list($pagertop, $pagerbottom, $limit) = pager($limit, $count, "modded.php?");
-  begin_frame("Непроверенные торренты [$count]");
+  begin_frame("Непроверенные торренты [".$count."]");
   echo '<table width="100%" cellpadding="5"><tr><td class="colhead">Торрент</td><td class="colhead">Загрузил</td><td class="colhead">Когда?</td></tr>';
 
 

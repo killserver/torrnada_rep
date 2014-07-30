@@ -4,8 +4,8 @@ require "include/bittorrent.php";
 dbconn(false);
 loggedinorreturn();
 
-/*if (get_user_class() < UC_MODERATOR)
-  stderr($tracker_lang['error'], "Нет доступа.");*/
+if (get_user_class() < UC_MODERATOR)
+  stderr($tracker_lang['error'], "Нет доступа.");
 
 stdhead("Обзор проверки торрентов");
 
@@ -72,11 +72,13 @@ $arra = mysql_fetch_row($resi);
 $count = $arra[0];
 
   list($pagertop, $pagerbottom, $limit) = pager(15, $count, "modded.php?moderator=".unesc($_GET["moderator"])."&");
-  $res = sql_query("SELECT users.id, users.username, users.class, torrents.moderatedby FROM users LEFT JOIN torrents ON users.id = torrents.moderatedby  WHERE torrents.moderatedby = ".sqlesc($moderaror))  or sqlerr(__FILE__,__LINE__);
+  //$res = sql_query("SELECT users.id, users.username, users.class, torrents.moderatedby FROM users LEFT JOIN torrents ON users.id = torrents.moderatedby  WHERE torrents.moderatedby = ".sqlesc($moderaror))  or sqlerr(__FILE__,__LINE__);
+  $res = sql_query("SELECT id, username, class, (SELECT moderatedby FROM torrents WHERE moderatedby=id) as moderatedby FROM users WHERE moderatedby = ".sqlesc($moderaror))  or sqlerr(__FILE__,__LINE__);
   $row = mysql_fetch_array($res);
-  begin_frame("Торренты, проверенные <a href=\"userdetails.php?id=".$row["id"]."\">".get_user_class_color($row["class"], $row["username"])."</a> [$count]");
+  begin_frame("Торренты, проверенные <a href=\"userdetails.php?id=".$row["id"]."\">".get_user_class_color($row["class"], $row["username"])."</a> [".$count."]");
   echo '<table width="100%" cellpadding="5"><tr><td class="colhead">Торрент</td><td class="colhead">Загрузил</td><td class="colhead">Проверен</td></tr>';
-  $res = sql_query("SELECT torrents.*, users.username, users.class FROM torrents LEFT JOIN users ON torrents.owner = users.id  WHERE moderatedby = ".sqlesc($moderaror)." ORDER BY torrents.modtime DESC")  or sqlerr(__FILE__,__LINE__);
+  //$res = sql_query("SELECT torrents.*, users.username, users.class FROM torrents LEFT JOIN users ON torrents.owner = users.id  WHERE moderatedby = ".sqlesc($moderaror)." ORDER BY torrents.modtime DESC")  or sqlerr(__FILE__,__LINE__);
+  $res = sql_query("SELECT id, name, owner, modtime, (SELECT username FROM users WHERE id=owner) AS username, (SELECT class FROM users WHERE id=owner) AS class FROM torrents WHERE moderatedby = ".sqlesc($moderaror)." ORDER BY modtime DESC")  or sqlerr(__FILE__,__LINE__);
   if (!mysql_num_rows($res) || empty($moderaror))
       echo ("<tr><td colspan=\"4\">Не проверено ни одного торрента этим модератором</td></tr>");
   else
@@ -116,7 +118,7 @@ print($pagertop);
 
 
 
-  $res = sql_query("SELECT torrents.*, users.username, users.class FROM torrents LEFT JOIN users ON torrents.owner = users.id  WHERE torrents.status = '' ORDER BY torrents.id $limit")  or sqlerr(__FILE__,__LINE__);
+  $res = sql_query("SELECT owner, id, name, added, (SELECT username FROM users WHERE id=owner) AS username, (SELECT class FROM users WHERE id=owner) AS class FROM torrents WHERE status = '' ORDER BY id ".$limit)  or sqlerr(__FILE__,__LINE__);
   if (!mysql_num_rows($res))
       echo ("<tr><td colspan=\"3\">Все торренты проверены</td></tr>");
   else

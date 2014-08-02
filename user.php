@@ -178,7 +178,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
             while ($row = mysql_fetch_assoc($res))
             {
 		        $cat = "<a href=\"browse.php?cat=".$row['catid']."\"><img src=\"pic/cats/".$row['catimage']."\" alt=\"".$row['catname']."\" border=\"0\" /></a>";
-                print("<tr><td rowspan=\"2\" style=\"padding:0;margin:0;\">".$cat."</td><td colspan=\"3\"><a href=\"details.php?id=" . $row["id"] . "&hit=1\"><b>" . $row["name"] . "</b></a></td></tr>\n");
+                print("<tr><td rowspan=\"2\" style=\"padding:0;margin:0;\">".$cat."</td><td colspan=\"3\"><a href=\"details.php?id=" . $row["id"] . "&hit=1\"><b>" . view_saves($row["name"]) . "</b></a></td></tr>\n");
                 print("<tr><td><font color=\"#808080\" size=\"1\">" . $row["added"] . "</font></td><td align=\"center\">".$row['seeders']."</td><td align=\"center\">".$row['leechers']."</td></tr>\n");
             }
             print("</table>");

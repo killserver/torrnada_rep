@@ -25,7 +25,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
             if ($arr["downloaded"] > 0)
             {
                 $ratio = number_format($arr["uploaded"] / $arr["downloaded"], 3);
-                $ratio = "<font color=" . get_ratio_color($ratio) . ">$ratio</font>";
+                $ratio = "<font color=" . get_ratio_color($ratio) . ">".$ratio."</font>";
             }
             else
             {
@@ -44,24 +44,24 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
         	$leechers = number_format($arr["leechers"]);
             $ret .= "
                 <tr>\n
-                <td rowspan=\"2\" style=\"padding:0;margin:0;\"><a href=\"browse.php?cat=$catid\"><img src=\"pic/cats/$catimage\" title=\"$catname\" alt=\"\" border=\"0\"/></a></td>\n
-                <td colspan=\"7\"><a href=details.php?id=$arr[torrent]&amp;hit=1><b>" . view_saves($arr["torrentname"]) ."</b></a></td>\n
+                <td rowspan=\"2\" style=\"padding:0;margin:0;\"><a href=\"browse.php?cat=".$catid."\"><img src=\"pic/cats/".$catimage."\" title=\"".$catname."\" alt=\"\" border=\"0\"/></a></td>\n
+                <td colspan=\"7\"><a href=details.php?id=".$arr['torrent']."&amp;hit=1><b>" . view_saves($arr["torrentname"]) ."</b></a></td>\n
                 </tr>\n
                 <tr>\n
                 <td align=\"left\"><font color=\"#808080\" size=\"1\">" . $arr["added"] . "</font></td>\n
-                <td align=\"center\">$size</td>\n
-                <td align=\"center\">$seeders</td>\n
-                <td align=\"center\">$leechers</td>\n
-                <td align=\"center\">$uploaded</td>\n
-        		<td align=\"center\">$downloaded</td>\n
-                <td align=\"center\">$ratio</td>\n
+                <td align=\"center\">".$size."</td>\n
+                <td align=\"center\">".$seeders."</td>\n
+                <td align=\"center\">".$leechers."</td>\n
+                <td align=\"center\">".$uploaded."</td>\n
+        	<td align=\"center\">".$downloaded."</td>\n
+                <td align=\"center\">".$ratio."</td>\n
                 </tr>\n";
         }
         $ret .= "</table>\n";
         return $ret;
     }
 
-    $res = @sql_query("SELECT * FROM users WHERE id = $id") or sqlerr(__FILE__, __LINE__);
+    $res = @sql_query("SELECT * FROM users WHERE id = ".$id) or sqlerr(__FILE__, __LINE__);
     $user = mysql_fetch_array($res) or die("Неверный идентификатор");
 
     print("<style>\n");
@@ -99,12 +99,12 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
                 else
                     $gender = "<img src=\"pic/female.gif\" alt=\"Девушка\" title=\"Девушка\" />";
                 print("<div class=\"friend\">\n");
-                print("<div class=\"avatar\"><a href=\"userdetails.php?id=" . $row['id'] . "\"><img src=\"$avatar\" alt=\"\" /></a></div>\n");
+                print("<div class=\"avatar\"><a href=\"userdetails.php?id=" . $row['id'] . "\"><img src=\"".$avatar."\" alt=\"\" /></a></div>\n");
                 print("<div class=\"finfo\">\n");
                 print("<p><b>Имя:</b>&nbsp;<a href=\"userdetails.php?id=" . $row['id'] . "\">" . get_user_class_color($row['class'], $row['name']) . "</a></p>\n");
                 print("<p><b>Пол:</b>&nbsp;$gender</p>\n");
                 print("<p><b>Класс:</b>&nbsp;" . get_user_class_name($row['class']) . "</p>\n");
-                print("<p><b>Статус:</b>&nbsp;$status</p>\n");
+                print("<p><b>Статус:</b>&nbsp;".$status."</p>\n");
                 print("</div>\n");
                 print("<div class=\"actions\">\n");
                 print("<p><a href=\"message.php?action=sendmessage&receiver=" . $row['id'] . "\">Отправить сообщение</a></p>\n");
@@ -123,7 +123,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
     }
     elseif ($act == "downloaded")
     {
-        $res = sql_query("SELECT snatched.torrent AS id, snatched.uploaded, snatched.seeder, snatched.downloaded, snatched.startdat, snatched.completedat, snatched.last_action, categories.name AS catname, categories.image AS catimage, categories.id AS catid, torrents.name, (torrents.f_seeders + torrents.seeders) as seeders, (torrents.f_leechers + torrents.leechers) as leechers FROM snatched JOIN torrents ON torrents.id = snatched.torrent JOIN categories ON torrents.category = categories.id WHERE snatched.finished='yes' AND userid = $id ORDER BY torrent") or sqlerr(__FILE__,__LINE__);
+        $res = sql_query("SELECT snatched.torrent AS id, snatched.uploaded, snatched.seeder, snatched.downloaded, snatched.startdat, snatched.completedat, snatched.last_action, categories.name AS catname, categories.image AS catimage, categories.id AS catid, torrents.name, (torrents.f_seeders + torrents.seeders) as seeders, (torrents.f_leechers + torrents.leechers) as leechers FROM snatched JOIN torrents ON torrents.id = snatched.torrent JOIN categories ON torrents.category = categories.id WHERE snatched.finished='yes' AND userid = ".$id." ORDER BY torrent") or sqlerr(__FILE__,__LINE__);
         if (mysql_num_rows($res) > 0)
         {
             print "<table class=\"tt\" width=\"100%\">\n
@@ -143,7 +143,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
                 if ($row["downloaded"] > 0)
                 {
                     $ratio = number_format($row["uploaded"] / $row["downloaded"], 3);
-                    $ratio = "<font color=\"" . get_ratio_color($ratio) . "\">$ratio</font>";
+                    $ratio = "<font color=\"" . get_ratio_color($ratio) . "\">".$ratio."</font>";
                 }
                 else
                 {
@@ -158,9 +158,9 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
             	    $seeder = "<font color=\"green\">Да</font>";
                 else
             	    $seeder = "<font color=\"red\">Нет</font>";
-            	$cat = "<a href=\"browse.php?cat=$row[catid]\"><img src=\"pic/cats/$row[catimage]\" alt=\"$row[catname]\" border=\"0\" /></a>";
-                print "<tr><td style=\"padding:0;margin:0;\" rowspan=\"2\">$cat</td><td colspan=\"9\"><a href=\"details.php?id=" . $row["id"] . "&amp;hit=1\"><b>" . $row["name"] . "</b></a></td></tr>" .
-                  "<tr><td align=\"left\" width=500></td><td align=\"center\">$row[seeders]</td><td align=\"center\">$row[leechers]</td><td align=\"center\"><nobr>$uploaded</nobr></td><td align=\"center\"><nobr>$downloaded</nobr></td><td align=\"center\">$ratio</td><td align=\"center\"><nobr style=\"font-size:10px;\">$row[startdat]</nobr></td><td align=\"center\"><nobr style=\"font-size:10px;\">$row[completedat]</nobr></td><td align=\"center\">$seeder</td>\n";
+            	$cat = "<a href=\"browse.php?cat=".$row['catid']."\"><img src=\"pic/cats/".$row['catimage']."\" alt=\"".$row['catname']."\" border=\"0\" /></a>";
+                print "<tr><td style=\"padding:0;margin:0;\" rowspan=\"2\">".$cat."</td><td colspan=\"9\"><a href=\"details.php?id=" . $row["id"] . "&amp;hit=1\"><b>" . view_saves($row["name"]) . "</b></a></td></tr>" .
+                  "<tr><td align=\"left\" width=500></td><td align=\"center\">".$row['seeders']."</td><td align=\"center\">".$row['leechers']."</td><td align=\"center\"><nobr>".$uploaded."</nobr></td><td align=\"center\"><nobr>".$downloaded."</nobr></td><td align=\"center\">".$ratio."</td><td align=\"center\"><nobr style=\"font-size:10px;\">".$row['startdat']."</nobr></td><td align=\"center\"><nobr style=\"font-size:10px;\">".$row['completedat']."</nobr></td><td align=\"center\">".$seeder."</td>\n";
             }
             print "</table>";
         }
@@ -170,16 +170,16 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
     }
     elseif ($act == "uploaded")
     {
-        $res = sql_query("SELECT t.id, t.name, t.added, (t.f_seeders + t.seeders) as seeders, (t.f_leechers + t.leechers) as leechers, t.category, c.name AS catname, c.image AS catimage, c.id AS catid FROM torrents AS t LEFT JOIN categories AS c ON t.category = c.id WHERE t.owner = $id ORDER BY t.name") or sqlerr(__FILE__, __LINE__);
+        $res = sql_query("SELECT t.id, t.name, t.added, (t.f_seeders + t.seeders) as seeders, (t.f_leechers + t.leechers) as leechers, t.category, c.name AS catname, c.image AS catimage, c.id AS catid FROM torrents AS t LEFT JOIN categories AS c ON t.category = c.id WHERE t.owner = ".$id." ORDER BY t.name") or sqlerr(__FILE__, __LINE__);
         if (mysql_num_rows($res) > 0)
         {
             print("<table class=\"tt\">\n" .
             "<tr><td class=\"tt\" style=\"padding:0;margin:0;width:45px;\" align=\"center\"><img src=\"pic/genre.gif\" title=\"Категория\" alt=\"\" /></td><td class=\"tt\"><img src=\"pic/release.gif\" title=\"Название\" alt=\"\" /></td><td class=\"tt\" width=\"30\" align=\"center\"><img src=\"pic/seeders.gif\" title=\"Раздают\" alt=\"\" /></td><td class=\"tt\" width=\"30\" align=\"center\"><img src=\"pic/leechers.gif\" title=\"Качают\" alt=\"\" /></td></tr>\n");
             while ($row = mysql_fetch_assoc($res))
             {
-		        $cat = "<a href=\"browse.php?cat=$row[catid]\"><img src=\"pic/cats/$row[catimage]\" alt=\"$row[catname]\" border=\"0\" /></a>";
-                print("<tr><td rowspan=\"2\" style=\"padding:0;margin:0;\">$cat</td><td colspan=\"3\"><a href=\"details.php?id=" . $row["id"] . "&hit=1\"><b>" . $row["name"] . "</b></a></td></tr>\n");
-                print("<tr><td><font color=\"#808080\" size=\"1\">" . $row["added"] . "</font></td><td align=\"center\">$row[seeders]</td><td align=\"center\">$row[leechers]</td></tr>\n");
+		        $cat = "<a href=\"browse.php?cat=".$row['catid']."\"><img src=\"pic/cats/".$row['catimage']."\" alt=\"".$row['catname']."\" border=\"0\" /></a>";
+                print("<tr><td rowspan=\"2\" style=\"padding:0;margin:0;\">".$cat."</td><td colspan=\"3\"><a href=\"details.php?id=" . $row["id"] . "&hit=1\"><b>" . $row["name"] . "</b></a></td></tr>\n");
+                print("<tr><td><font color=\"#808080\" size=\"1\">" . $row["added"] . "</font></td><td align=\"center\">".$row['seeders']."</td><td align=\"center\">".$row['leechers']."</td></tr>\n");
             }
             print("</table>");
         }
@@ -189,7 +189,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
     }
     elseif ($act == "downloading")
     {
-        $res = sql_query("SELECT torrent, added, uploaded, downloaded, torrents.name AS torrentname, categories.name AS catname, categories.id AS catid, size, image, category, seeders, leechers FROM peers LEFT JOIN torrents ON peers.torrent = torrents.id LEFT JOIN categories ON torrents.category = categories.id WHERE userid = $id AND seeder='no'") or sqlerr(__FILE__, __LINE__);
+        $res = sql_query("SELECT torrent, added, uploaded, downloaded, torrents.name AS torrentname, categories.name AS catname, categories.id AS catid, size, image, category, seeders, leechers FROM peers LEFT JOIN torrents ON peers.torrent = torrents.id LEFT JOIN categories ON torrents.category = categories.id WHERE userid = ".$id." AND seeder='no'") or sqlerr(__FILE__, __LINE__);
         if (mysql_num_rows($res) > 0)
             print(maketable($res));
         else
@@ -198,7 +198,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
     }
     elseif ($act == "uploading")
     {
-        $res = sql_query("SELECT torrent, added, uploaded, downloaded, torrents.name AS torrentname, categories.name AS catname, categories.id AS catid, size, image, category, seeders, leechers FROM peers LEFT JOIN torrents ON peers.torrent = torrents.id LEFT JOIN categories ON torrents.category = categories.id WHERE userid = $id AND seeder='yes'") or sqlerr(__FILE__, __LINE__);
+        $res = sql_query("SELECT torrent, added, uploaded, downloaded, torrents.name AS torrentname, categories.name AS catname, categories.id AS catid, size, image, category, seeders, leechers FROM peers LEFT JOIN torrents ON peers.torrent = torrents.id LEFT JOIN categories ON torrents.category = categories.id WHERE userid = ".$id." AND seeder='yes'") or sqlerr(__FILE__, __LINE__);
         if (mysql_num_rows($res) > 0)
             print(maketable($res));
         else
@@ -213,23 +213,23 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
             print("<h2>Модерирование</h2>\n");
             print("<table width=\"100%\" cellpadding=\"5\">\n");
             print("<tr><td>\n");
-              print("<form method=\"post\" action=\"modtask.php\">\n");
+            print("<form method=\"post\" action=\"modtask.php\">\n");
             print("<input type=\"hidden\" name=\"action\" value=\"edituser\">\n");
-            print("<input type=\"hidden\" name=\"userid\" value=\"$id\">\n");
-            print("<input type=\"hidden\" name=\"returnto\" value=\"userdetails.php?id=$id\">\n");
+            print("<input type=\"hidden\" name=\"userid\" value=\"".$id."\">\n");
+            print("<input type=\"hidden\" name=\"returnto\" value=\"userdetails.php?id=".$id."\">\n");
             print("<table width=\"100%\" cellpadding=\"5\" align=\"left\">\n");
-            print("<tr><td class=\"rowhead\">Заголовок</td><td colspan=\"2\" align=\"left\"><input type=\"text\" size=\"60\" name=\"title\" value=\"" . htmlspecialchars($user[title]) . "\"></tr>\n");
+            print("<tr><td class=\"rowhead\">Заголовок</td><td colspan=\"2\" align=\"left\"><input type=\"text\" size=\"60\" name=\"title\" value=\"" . htmlspecialchars($user['title']) . "\"></tr>\n");
           	$avatar = htmlspecialchars($user["avatar"]);
-            print("<tr><td class=\"rowhead\">Аватар</td><td colspan=\"2\" align=\"left\"><input type=\"text\" size=\"60\" name=\"avatar\" value=\"$avatar\"></tr>\n");
+            print("<tr><td class=\"rowhead\">Аватар</td><td colspan=\"2\" align=\"left\"><input type=\"text\" size=\"60\" name=\"avatar\" value=\"".$avatar."\"></tr>\n");
    if ($CURUSER["class"] < UC_ADMINISTRATOR)
-	  print("<input type=\"hidden\" name=\"donor\" value=\"$user[donor]\">\n");
+	  print("<input type=\"hidden\" name=\"donor\" value=\"".$user['donor']."\">\n");
 	else {
 		print("<tr><td class=\"rowhead\">Донор</td><td colspan=\"2\" align=\"left\"><input type=\"radio\" name=\"donor\" value=\"yes\"" .($user["donor"] == "yes" ? " checked" : "").">Да <input type=\"radio\" name=\"donor\" value=\"no\"" .($user["donor"] == "no" ? " checked" : "").">Нет</td></tr>\n");
 
 		echo Awards($user['awards'],0); 
 	}
           	if (get_user_class() == UC_MODERATOR && $user["class"] > UC_VIP)
-          	    print("<input type=\"hidden\" name=\"class\" value=\"$user[class]\">\n");
+          	    print("<input type=\"hidden\" name=\"class\" value=\"".$user['class']."\">\n");
           	else
           	{
                 print("<tr><td class=\"rowhead\">Класс</td><td colspan=\"2\" align=\"left\"><select name=\"class\">\n");
@@ -240,7 +240,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
                 else
                     $maxclass = get_user_class() - 1;
                 for ($i = 0; $i <= $maxclass; ++$i)
-                    print("<option value=\"$i\"" . ($user["class"] == $i ? " selected" : "") . ">$prefix" . get_user_class_name($i) . "\n");
+                    print("<option value=\"$i\"" . ($user["class"] == $i ? " selected" : "") . ">".$prefix . get_user_class_name($i) . "\n");
                 print("</select></td></tr>\n");
 
                 print("<tr><td class=\"rowhead\">Причина изменения класса</td><td colspan=\"2\" align=\"left\"><input type=\"text\" name=\"classreason\"></td></tr>");
@@ -250,7 +250,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
           	$supportfor = htmlspecialchars($user["supportfor"]);
           	print("<tr><td class=rowhead>Поддержка</td><td colspan=2 align=left><input type=radio name=support value=yes" .($user["support"] == "yes" ? " checked" : "").">Да <input type=radio name=support value=no" .($user["support"] == "no" ? " checked" : "").">Нет</td></tr>\n");
           	print("<tr><td class=rowhead>Поддержка для:</td><td colspan=2 align=left><textarea cols=60 rows=6 name=supportfor>$supportfor</textarea></td></tr>\n");
-          	print("<tr><td class=rowhead>История пользователя</td><td colspan=2 align=left><textarea cols=60 rows=6".(get_user_class() < UC_SYSOP ? " readonly" : " name=modcomment").">$modcomment</textarea></td></tr>\n");
+          	print("<tr><td class=rowhead>История пользователя</td><td colspan=2 align=left><textarea cols=60 rows=6".(get_user_class() < UC_SYSOP ? " readonly" : " name=modcomment").">".$modcomment."</textarea></td></tr>\n");
           	print("<tr><td class=rowhead>Добавить заметку</td><td colspan=2 align=left><textarea cols=60 rows=3 name=modcomm></textarea></td></tr>\n");
           	$warned = $user["warned"] == "yes";
 
@@ -295,7 +295,7 @@ $disabler = <<<DIS
 DIS;
 
 	if ($enabled)
-		print("<tr><td>Отключить на:<br />$disabler</td><td>Причина отключения:<br /><input type=\"text\" name=\"disreason\" size=\"60\" /></td></td></tr>");
+		print("<tr><td>Отключить на:<br />".$disabler."</td><td>Причина отключения:<br /><input type=\"text\" name=\"disreason\" size=\"60\" /></td></td></tr>");
 	else
 		print("<tr><td>Включить?<br /><input name=\"enabled\" value=\"yes\" type=\"radio\">Да <input name=\"enabled\" value=\"no\" type=\"radio\" checked>Нет<br /></td><td>Причина включения:<br /><input type=\"text\" name=\"enareason\" size=\"60\" /></td></tr>");
 
@@ -314,7 +314,7 @@ DIS;
 DIS;
 
 			if ($user['ban_upload'] == 0)
-		print("<tr><td>Запретить заливку на:<br />$banup</td><td>Причина запрета:<br /><input type=\"text\" name=\"banupreason\" size=\"60\" /></td></td></tr>");
+		print("<tr><td>Запретить заливку на:<br />".$banup."</td><td>Причина запрета:<br /><input type=\"text\" name=\"banupreason\" size=\"60\" /></td></td></tr>");
 	else
 		print("<tr><td>Разрешить заливку?<br /><input name=\"unbanupenabled\" value=\"yes\" type=\"radio\">Да <input name=\"unbanupenabled\" value=\"no\" type=\"radio\" checked>Нет<br /></td><td>Причина разрешения:<br /><input type=\"text\" name=\"banupreason\" size=\"60\" /></td></tr>");
 
@@ -340,22 +340,22 @@ function togglepic(bu, picid, formid)
 
 </script>
 <?
-			print("<tr><td class=\"rowhead\">Изменить раздачу</td><td align=\"left\"><img src=\"pic/plus.gif\" id=\"uppic\" onClick=\"togglepic('$DEFAULTBASEURL','uppic','upchange')\" style=\"cursor: pointer;\">&nbsp;<input type=\"text\" name=\"amountup\" size=\"10\" /><td>\n<select name=\"formatup\">\n<option value=\"mb\">MB</option>\n<option value=\"gb\">GB</option></select></td></tr>");
-            print("<tr><td class=\"rowhead\">Изменить скачку</td><td align=\"left\"><img src=\"pic/plus.gif\" id=\"downpic\" onClick=\"togglepic('$DEFAULTBASEURL','downpic','downchange')\" style=\"cursor: pointer;\">&nbsp;<input type=\"text\" name=\"amountdown\" size=\"10\" /><td>\n<select name=\"formatdown\">\n<option value=\"mb\">MB</option>\n<option value=\"gb\">GB</option></select></td></tr>");
+			print("<tr><td class=\"rowhead\">Изменить раздачу</td><td align=\"left\"><img src=\"pic/plus.gif\" id=\"uppic\" onClick=\"togglepic('".$DEFAULTBASEURL."','uppic','upchange')\" style=\"cursor: pointer;\">&nbsp;<input type=\"text\" name=\"amountup\" size=\"10\" /><td>\n<select name=\"formatup\">\n<option value=\"mb\">MB</option>\n<option value=\"gb\">GB</option></select></td></tr>");
+            print("<tr><td class=\"rowhead\">Изменить скачку</td><td align=\"left\"><img src=\"pic/plus.gif\" id=\"downpic\" onClick=\"togglepic('".$DEFAULTBASEURL."','downpic','downchange')\" style=\"cursor: pointer;\">&nbsp;<input type=\"text\" name=\"amountdown\" size=\"10\" /><td>\n<select name=\"formatdown\">\n<option value=\"mb\">MB</option>\n<option value=\"gb\">GB</option></select></td></tr>");
             print("<tr><td class=\"rowhead\">Сбросить passkey</td><td colspan=\"2\" align=\"left\"><input name=\"resetkey\" value=\"1\" type=\"checkbox\"></td></tr>\n");
    if (5-$user["num_warned"]>0) 
-  $mes_warn = "Добавив ".($Num_warn_disable-$user["num_warned"])." звезд пользователь заблокируется в ближайшие $autoclean_interval сек."; 
+  $mes_warn = "Добавив ".($Num_warn_disable-$user["num_warned"])." звезд пользователь заблокируется в ближайшие ".$autoclean_interval." сек."; 
       
-   print("<tr><td class=\"rowhead\">Изменить<br>предупреждения</td><td colspan=\"2\" align=\"left\"><img src=\"pic/plus.gif\" id=\"warnpic\" onClick=\"togglepic('$DEFAULTBASEURL','warnpic','warnchange')\" style=\"cursor: pointer;\">&nbsp;<input type=\"text\" name=\"amountwarn\" size=\"3\" />&nbsp;$mes_warn</td></tr>");
+   print("<tr><td class=\"rowhead\">Изменить<br>предупреждения</td><td colspan=\"2\" align=\"left\"><img src=\"pic/plus.gif\" id=\"warnpic\" onClick=\"togglepic('".$DEFAULTBASEURL."','warnpic','warnchange')\" style=\"cursor: pointer;\">&nbsp;<input type=\"text\" name=\"amountwarn\" size=\"3\" />&nbsp;".$mes_warn."</td></tr>");
 
 print("<tr><td class=rowhead>Написание Лс</td><td colspan=2 align=left><input type=radio name=messagblock value=yes" .($user["messagblock"]=="yes" ? " checked" : "") . ">Да <input type=radio name=messagblock value=no" .($user["messagblock"]=="no" ? " checked" : "") . ">Нет</td></tr>\n");
 
 print("<tr><td class=rowhead>Использовать Чат</td><td colspan=2 align=left><input type=radio name=schoutboxpos value=yes" .($user["schoutboxpos"]=="yes" ? " checked" : "") . ">Да <input type=radio name=schoutboxpos value=no" .($user["schoutboxpos"]=="no" ? " checked" : "") . ">Нет</td></tr>\n");
 
-print ( "<tr><td class=\"rowhead\">Изменить бонус</td><td align=\"left\" colspan=\"2\"><img src=\"" . $pic_base_url . "plus.gif\" id=\"bpic\" onClick=\"togglepic('$DEFAULTBASEURL', 'bpic', 'bchange');\" style=\"cursor: pointer;\">&nbsp;<input type=\"text\" name=\"bonusup\" size=\"10\" /></td></tr>" );
+print ( "<tr><td class=\"rowhead\">Изменить бонус</td><td align=\"left\" colspan=\"2\"><img src=\"" . $pic_base_url . "plus.gif\" id=\"bpic\" onClick=\"togglepic('".$DEFAULTBASEURL."', 'bpic', 'bchange');\" style=\"cursor: pointer;\">&nbsp;<input type=\"text\" name=\"bonusup\" size=\"10\" /></td></tr>" );
 
    if ($CURUSER["class"] == UC_SYSTEM) {
-  print("<tr><td class=\"rowhead\">Изменить кредиты</td><td colspan=\"2\" align=\"left\"><img src=\"pic/plus.gif\" id=\"moneypic\" onClick=\"togglepic('$DEFAULTBASEURL','moneypic','moneychange')\" style=\"cursor: pointer;\">&nbsp;<input type=\"text\" name=\"amountmoney\" size=\"3\" /></td></tr>");
+  print("<tr><td class=\"rowhead\">Изменить кредиты</td><td colspan=\"2\" align=\"left\"><img src=\"pic/plus.gif\" id=\"moneypic\" onClick=\"togglepic('".$DEFAULTBASEURL."','moneypic','moneychange')\" style=\"cursor: pointer;\">&nbsp;<input type=\"text\" name=\"amountmoney\" size=\"3\" /></td></tr>");
 }
  if ($CURUSER["class"] > UC_SYSTEM)
   	print("<input type=\"hidden\" name=\"deluser\">");
@@ -400,7 +400,7 @@ print ( "<tr><td class=\"rowhead\">Изменить бонус</td><td align=\"l
         print("<div id=\"operation\"></div>\n");
         print("<p>Тема: <input name=\"subject\" type=\"text\" style=\"width:370px;\" /></p>");
         textbbcode("pm", "msg", htmlspecialchars($text), $long);
-        print("<p><input type=\"button\" value=\"Отправить\" onclick=\"javascript:send_message('$id', document.pm.msg.value, document.pm.subject.value);\"/>&nbsp;&nbsp;<input type=\"reset\" value=\"Отменить\" /></p>\n");
+        print("<p><input type=\"button\" value=\"Отправить\" onclick=\"javascript:send_message('".$id."', document.pm.msg.value, document.pm.subject.value);\"/>&nbsp;&nbsp;<input type=\"reset\" value=\"Отменить\" /></p>\n");
         print("</td></tr>\n");
         print("</table>\n");
         print("</form>\n");
@@ -460,7 +460,7 @@ print ( "<tr><td class=\"rowhead\">Изменить бонус</td><td align=\"l
             die("Прямой доступ закрыт");
         if ($type == "add")
         {
-            $res = sql_query("SELECT id, status FROM friends WHERE userid=" . sqlesc($CURUSER['id']) . " AND friendid = $id") or sqlerr(__FILE__, __LINE__);
+            $res = sql_query("SELECT id, status FROM friends WHERE userid=" . sqlesc($CURUSER['id']) . " AND friendid = ".$id) or sqlerr(__FILE__, __LINE__);
             $row = mysql_fetch_array($res);
             if ($row['status'] == 'yes')
                 die("<div class=\"error\">Пользователь уже ваш друг.</div>");
@@ -470,23 +470,23 @@ print ( "<tr><td class=\"rowhead\">Изменить бонус</td><td align=\"l
                 die("<div class=\"error\">Пользователь отказал Вам в дружбе.</div>");
             else
             {
-                sql_query("INSERT INTO friends (userid, friendid) VALUES (" . sqlesc($CURUSER['id']) . ", $id)") or sqlerr(__FILE__, __LINE__);
+                sql_query("INSERT INTO friends (userid, friendid) VALUES (" . sqlesc($CURUSER['id']) . ", ".$id.")") or sqlerr(__FILE__, __LINE__);
                 $newid = mysql_insert_id();
                 $dt = sqlesc(get_date_time());
-                $msg = sqlesc("Пользователь [url=userdetails.php?id=" . $CURUSER['id'] . "]" . $CURUSER['username'] . "[/url] желает добавить Вас в список друзей. [[url=friends.php?id=$newid&act=accept&user=" . $CURUSER['id'] . "]Принять[/url]] [[url=friends.php?id=$newid&act=surrender&user=" . $CURUSER['id'] . "]Отказать[/url]]");
+                $msg = sqlesc("Пользователь [url=userdetails.php?id=" . $CURUSER['id'] . "]" . $CURUSER['username'] . "[/url] желает добавить Вас в список друзей. [[url=friends.php?id=".$newid."&act=accept&user=" . $CURUSER['id'] . "]Принять[/url]] [[url=friends.php?id=".$newid."&act=surrender&user=" . $CURUSER['id'] . "]Отказать[/url]]");
                 $subj = sqlesc("Предложение дружбы.");
-                sql_query("INSERT INTO messages (sender, receiver, added, msg, subject) VALUES (0, $id, $dt, $msg, $subj)") or sqlerr(__FILE__, __LINE__);
+                sql_query("INSERT INTO messages (sender, receiver, added, msg, subject) VALUES (0, ".$id.", ".$dt.", ".$msg.", ".$subj.")") or sqlerr(__FILE__, __LINE__);
                 die("<div class=\"success\">Запрос на дружбу отправлен. Дождитесь ответа пользователя.</div>");
             }
         }
         if ($type = "delete")
         {
-            sql_query("DELETE FROM friends WHERE userid = $id AND friendid = " . sqlesc($CURUSER['id']));
-            sql_query("DELETE FROM friends WHERE friendid = $id AND userid = " . sqlesc($CURUSER['id']));
+            sql_query("DELETE FROM friends WHERE userid = ".$id." AND friendid = " . sqlesc($CURUSER['id']));
+            sql_query("DELETE FROM friends WHERE friendid = ".$id." AND userid = " . sqlesc($CURUSER['id']));
             $dt = sqlesc(get_date_time());
             $msg = sqlesc("Пользователь [url=userdetails.php?id=" . $CURUSER['id'] . "]" . $CURUSER['username'] . "[/url] удалил Вас из друзей.");
             $subj = sqlesc("Отмена дружбы.");
-            sql_query("INSERT INTO messages (sender, receiver, added, msg, subject) VALUES (0, $id, $dt, $msg, $subj)") or sqlerr(__FILE__, __LINE__);
+            sql_query("INSERT INTO messages (sender, receiver, added, msg, subject) VALUES (0, ".$id.", ".$dt.", ".$msg.", ".$subj.")") or sqlerr(__FILE__, __LINE__);
             die("<div class=\"success\">Пользователь удален из друзей.</div>");
         }
         die();

@@ -30,9 +30,9 @@ $limit = "30";
     echo $pagertop;
   }
 
-  begin_frame("Проверенные торренты [$count]");
+  begin_frame("Проверенные торренты [".$count."]");
   echo '<table width="100%" cellpadding="5"><tr><td class="colhead">Торрент</td><td class="colhead">Загрузил</td><td class="colhead">Проверил</td></tr>';
-  $res = sql_query("SELECT torrents.*, users.username, users.class FROM torrents LEFT JOIN users ON torrents.owner = users.id WHERE torrents.status = '3'  ORDER BY torrents.added DESC $limit")  or sqlerr(__FILE__,__LINE__);
+  $res = sql_query("SELECT torrents.*, users.username, users.class FROM torrents LEFT JOIN users ON torrents.owner = users.id WHERE torrents.status = '3'  ORDER BY torrents.added DESC ".$limit)  or sqlerr(__FILE__,__LINE__);
   if (!mysql_num_rows($res))
       echo ("<tr><td colspan=\"4\">Нет проверенных торрентов</td></tr>");
   else
@@ -124,7 +124,7 @@ print($pagertop);
   else
   {
     while ($row = mysql_fetch_array($res))
-      echo '<tr><td><a href="details.php?id='.$row["id"].'">'.$row["name"].'</a></td><td><a href="userdetails.php?id='.$row["owner"].'">'.get_user_class_color($row["class"], $row["username"]).'</a></td><td>'.$row["added"].'</td></tr>';
+      echo '<tr><td><a href="details.php?id='.$row["id"].'">'.view_saves($row["name"]).'</a></td><td><a href="userdetails.php?id='.$row["owner"].'">'.get_user_class_color($row["class"], $row["username"]).'</a></td><td>'.$row["added"].'</td></tr>';
   }
 
   if ($count)

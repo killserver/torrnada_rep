@@ -48,25 +48,25 @@ function uploadimage($x, $imgname, $tid) {
 	// Add more types here if you like
 	);
 
-	if (!($_FILES[image.$x]['name'] == "")) {
+	if (!($_FILES["image".$x]['name'] == "")) {
 
 		if ($imgname != "") {
 			// Make sure is same as in takeedit.php (except for the $imgname bit)
-			$img = "torrents/images/$imgname";
-			$del = unlink($img);
+			$img = "torrents/images/".$imgname;
+			@unlink($img);
 		}
 
 		$y = $x + 1;
 
 		// Is valid filetype?
-		if (!array_key_exists($_FILES[image.$x]['type'], $allowed_types))
-			bark("Invalid file type! Image $y (".htmlspecialchars($_FILES[image.$x]['type']).")");
+		if (!array_key_exists($_FILES["image".$x]['type'], $allowed_types))
+			bark("Invalid file type! Image $y (".htmlspecialchars($_FILES["image".$x]['type']).")");
 
-		if (!preg_match('/^(.+)\.(jpg|jpeg|png|gif)$/si', $_FILES[image.$x]['name']))
+		if (!preg_match('/^(.+)\.(jpg|jpeg|png|gif)$/si', $_FILES["image".$x]['name']))
 			bark("Неверное имя файла (не картинка).");
 
 		// Is within allowed filesize?
-		if ($_FILES[image.$x]['size'] > $maxfilesize)
+		if ($_FILES["image".$x]['size'] > $maxfilesize)
 			bark("Invalid file size! Image $y - Must be less than 500kb");
 
 		// Where to upload?
@@ -74,11 +74,12 @@ function uploadimage($x, $imgname, $tid) {
 		$uploaddir = "torrents/images/";
 
 		// What is the temporary file name?
-		$ifile = $_FILES[image.$x]['tmp_name'];
+		$ifile = $_FILES["image".$x]['tmp_name'];
 
 		// By what filename should the tracker associate the image with?
 		//$ifilename = $tid . $x . substr($_FILES[image.$x]['name'], strlen($_FILES[image.$x]['name'])-4, 4);
-		$ifilename = $tid . $x . '.' . end(explode('.', $_FILES[image.$x]['name']));
+		$exp = explode('.', $_FILES["image".$x]['name']);
+		$ifilename = $tid . $x . '.' . end($exp);
 
 		// Upload the file
 		$copy = copy($ifile, $uploaddir.$ifilename);
@@ -167,7 +168,7 @@ for ($x=1; $x <= 6; $x++) {
 		$updateset[] = 'image' . $x . ' = ' .sqlesc(uploadimage($x - 1, $row['image' . $x], $id));
 	if ($_GLOBALS['img'.$x.'action'] == 'delete') {
 		if ($row['image' . $x]) {
-			$del = unlink('torrents/images/' . $row['image' . $x]);
+			@unlink('torrents/images/' . $row['image' . $x]);
 			$updateset[] = 'image' . $x . ' = ""';
 		}
 	}

@@ -326,7 +326,7 @@ print("<td align=\"left\">
 
 		if ($variant == "mytorrents")
 			print("returnto=" . urlencode($_SERVER["REQUEST_URI"]) . "&amp;");
-		print("id=$id");
+		print("id=".$id."");
 		if ($variant == "index" || $variant == "bookmarks")
 			print("&amp;hit=1");
 		print("\">");
@@ -379,7 +379,7 @@ print("<b>$dispname</b></a> $thisisfree $tstatus\n");
 				$s = false;
 			}
 			if($s) {
-				print("<a href=\"download.php?id=$id\"><img src=\"pic/download.gif\" border=\"0\" alt=\"".$tracker_lang['download']."\" title=\"".$tracker_lang['download']."\"></a>\n".(!empty($CURUSER['username']) ? "<a href=\"".magnet($row)."\"><img src=\"/pic/magnet.gif\" border=\"0\" alt=\"Примагнититься\" title=\"Примагнититься\"></a>\n" : ""));
+				print("<a href=\"download.php?id=".$id."\"><img src=\"pic/download.gif\" border=\"0\" alt=\"".$tracker_lang['download']."\" title=\"".$tracker_lang['download']."\"></a>\n".(!empty($CURUSER['username']) ? "<a href=\"".magnet($row)."\"><img src=\"/pic/magnet.gif\" border=\"0\" alt=\"Примагнититься\" title=\"Примагнититься\"></a>\n" : ""));
 			}*/
 		if ($CURUSER["id"] == $row["owner"] || get_user_class() >= UC_MODERATOR)
 			$owned = 1;
@@ -421,24 +421,24 @@ print("<b>$dispname</b></a> $thisisfree $tstatus\n");
 			//print("<td align=\"right\">" . $row["numfiles"] . "</td>\n");
 		//else {
 			if ($variant == "index")
-				print("<td align=\"center\"><b><a href=\"details.php?id=$id&amp;hit=1&amp;filelist=1\">" . $row["numfiles"] . "</a></b></td>\n");
+				print("<td align=\"center\"><b><a href=\"details.php?id=".$id."&amp;hit=1&amp;filelist=1\">" . $row["numfiles"] . "</a></b></td>\n");
 			else
-				print("<td align=\"center\"><b><a href=\"details.php?id=$id&amp;filelist=1#filelist\">" . $row["numfiles"] . "</a></b></td>\n");
+				print("<td align=\"center\"><b><a href=\"details.php?id=".$id."&amp;filelist=1#filelist\">" . $row["numfiles"] . "</a></b></td>\n");
 		//}
 
 		if (!$row["comments"])
 			print("<td align=\"center\">" . $row["comments"] . "</td>\n");
 		else {
 			if ($variant == "index")
-				print("<td align=\"center\"><b><a href=\"details.php?id=$id&amp;hit=1&amp;tocomm=1\">" . $row["comments"] . "</a></b></td>\n");
+				print("<td align=\"center\"><b><a href=\"details.php?id=".$id."&amp;hit=1&amp;tocomm=1\">" . $row["comments"] . "</a></b></td>\n");
 			else
-				print("<td align=\"center\"><b><a href=\"details.php?id=$id&amp;page=0#startcomments\">" . $row["comments"] . "</a></b></td>\n");
+				print("<td align=\"center\"><b><a href=\"details.php?id=".$id."&amp;page=0#startcomments\">" . $row["comments"] . "</a></b></td>\n");
 		}
 
 				$ttl = ($ttl_days*24) - floor((gmtime() - sql_timestamp_to_unix_timestamp($row["added"])) / 3600);
 				if ($ttl == 1) $ttl .= " час"; else $ttl .= "&nbsp;часов";
 		if ($use_ttl)
-			print("<td align=\"center\">$ttl</td>\n");
+			print("<td align=\"center\">".$ttl."</td>\n");
 		print("<td align=\"center\">" . str_replace(" ", "<br />", mksize($row["size"])) . "</td>\n");
 
 		print("<td align=\"center\">");
@@ -447,12 +447,12 @@ print("<b>$dispname</b></a> $thisisfree $tstatus\n");
 			if ($variant == "index")
 			{
 			   if ($row["leechers"]) $ratio = $row["seeders"] / $row["leechers"]; else $ratio = 1;
-				print("<b><a href=\"details.php?id=$id&amp;hit=1&amp;toseeders=1\"><font color=" .
+				print("<b><a href=\"details.php?id=".$id."&amp;hit=1&amp;toseeders=1\"><font color=" .
 				  get_slr_color($ratio) . ">" . $row["seeders"] + $row["f_seeders"]."</font></a></b>\n");
 			}
 			else
-				print("<b><a class=\"" . linkcolor($row["seeders"]) . "\" href=\"details.php?id=$id&amp;dllist=1#seeders\">" .
-				  $row["seeders"] . " + ".$row[f_seeders]."</a></b>\n");
+				print("<b><a class=\"" . linkcolor($row["seeders"]) . "\" href=\"details.php?id=".$id."&amp;dllist=1#seeders\">" .
+				  $row["seeders"] . " + ".$row['f_seeders']."</a></b>\n");
 		}elseif ($row["f_seeders"]) {
 			print("<span class=\"" . get_slr_color($ratio) . "\">" . $row["seeders"] + $row['f_seeders'] . "</span>");
 }
@@ -463,11 +463,11 @@ print("<b>$dispname</b></a> $thisisfree $tstatus\n");
 
 		if ($row["leechers"]) {
 			if ($variant == "index")
-				print("<b><a href=\"details.php?id=$id&amp;hit=1&amp;todlers=1\">" .
+				print("<b><a href=\"details.php?id=".$id."&amp;hit=1&amp;todlers=1\">" .
 				   number_format($row["leechers"]) . ($peerlink ? "</a>" : "") .
 				   "</b>\n");
 			else
-				print("<b><a class=\"" . linkcolor($row["leechers"]) . "\" href=\"details.php?id=$id&amp;dllist=1#leechers\">" .
+				print("<b><a class=\"" . linkcolor($row["leechers"]) . "\" href=\"details.php?id=".$id."&amp;dllist=1#leechers\">" .
 				  $row["leechers"] . " + " . $row['f_leechers'] . "</a></b>\n");
 		}
 		else
@@ -479,13 +479,13 @@ print("<b>$dispname</b></a> $thisisfree $tstatus\n");
 			print("<td align=\"center\">" . (isset($row["username"]) ? ("<a href=\"userdetails.php?id=" . $row["owner"] . "\"><b>" . get_user_class_color($row["class"], htmlspecialchars_uni($row["username"])) . "</b></a>") : "<i>(unknown)</i>") . "</td>\n");
 
 		if ($variant == "bookmarks")
-			print ("<td align=\"center\"><input type=\"checkbox\" name=\"delbookmark[]\" value=\"" . $row[bookmarkid] . "\" /></td>");
+			print ("<td align=\"center\"><input type=\"checkbox\" name=\"delbookmark[]\" value=\"" . $row['bookmarkid'] . "\" /></td>");
 
 		if ((get_user_class() >= UC_MODERATOR) && $variant == "index") {
 			if (empty($row["status"]) || $row['status'] == "0")
 				print("<td align=\"center\"><font color=\"red\"><b>Нет</b></font></td>\n");
 			else
-				print("<td align=\"center\"><a href=\"userdetails.php?id=$row[moderatedby]\"><font color=\"green\"><b>Да</b></font></a></td>\n");
+				print("<td align=\"center\"><a href=\"userdetails.php?id=".$row['moderatedby']."\"><font color=\"green\"><b>Да</b></font></a></td>\n");
 		}
 
 		//if ((get_user_class() >= UC_MODERATOR) && $variant == "index")

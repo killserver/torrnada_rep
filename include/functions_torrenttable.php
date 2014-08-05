@@ -194,10 +194,10 @@ print("</tr>\n");
 while ($row = mysql_fetch_assoc($res)) {
 $row['name']=view_saves($row['name']);
 	$id = $row["id"];
-	$details_link .= "id=$id";
-        $descr=$row["descr"]; 
-        if (strlen($descr) > 420)   
-        $descr = substr($descr, 0, 420) . "...";  
+	$details_link .= "id=".$id;
+        $descr=$row["descr"];
+        if (strlen($descr) > 420)
+        $descr = substr($descr, 0, 420) . "...";
 
              
 print("<tr><td colspan='2' class=\"colhead\" align=\"center\">"); 
@@ -230,7 +230,7 @@ echo "<img src=pic/freedownload.gif border=0 title=\"".$tracker_lang['golden']."
 		print(($row["sticky"] == "yes" ? "Важный: " : "")."");
 
 		print(($row["new"] == "yes" ? "<img src=\"pic/new.png\" title=\"Новинка\" alt=\"Новое\"> " : "")."");
-echo "<a href=\"details.php?id=$id\"><b><font size=\"2\" color=\"black\">$row[name]</font></b></a>";
+echo "<a href=\"details.php?id=".$id."\"><b><font size=\"2\" color=\"black\">$row[name]</font></b></a>";
 $torentdate = get_date_time(($row["addtime"])); 
 $torentdate = date("d-m-Y", strtotime($torentdate)); 
 	if ($row["free"] > '0')
@@ -295,29 +295,28 @@ print("</tr>");
 if ($row["image1"])
 																					     	   
 	//print("<tr><td valign=\"top\" align=\"center\" width=\"135\" style=\"padding: 0px\"><a href=\"torrents/images/$row[image1]\" class=\"highslide\" onclick=\"return hs.expand(this)\"><img  border=\"0\" title=\"Увеличить картинку\" src=\"torrents/images/".$row["image1"]."\" width=\"132\" height=\"176\"></a> ");		// Скриншоты и постеры в Highslide
-print("<tr><td valign=\"top\" align=\"center\" width=\"135\" style=\"padding: 0px\"><a href=\"details.php?id=$row[id]\" class=\"highslide\" onclick=\"return hs.expand(this)\"><img  border=\"0\" class=\"glossy\" title=\"$row[name]\" src=\"torrents/images/".$row["image1"]."\" width=\"132\" height=\"176\"></a> ");
+print("<tr><td valign=\"top\" align=\"center\" width=\"135\" style=\"padding: 0px\"><a href=\"details.php?id=".$row['id']."\" class=\"highslide\" onclick=\"return hs.expand(this)\"><img  border=\"0\" class=\"glossy\" title=\"".$row['name']."\" src=\"torrents/images/".$row["image1"]."\" width=\"132\" height=\"176\"></a> ");
 
      else
-	print("<tr><td valign=\"top\" align=\"center\" width=\"135\" style=\"padding: 0px\"><img  src='pic/noimage.gif'  border='0'  class=\"glossy\" title='Постер не загружен' width=\"132\" height=\"176\"> ");
+	print("<tr><td valign=\"top\" align=\"center\" width=\"135\" style=\"padding: 0px\"><img src='pic/noimage.gif'  border='0' class=\"glossy\" title='Постер не загружен' width=\"132\" height=\"176\"> ");
 
 
 
 print("</td>");
 
-echo "<td><a href=\"browse.php?cat=" . $row["category"] . "\"><img src=\"pic/cats/".$row["cat_pic"]."\" class='glossy'  title=\"Категория: $row[cat_name]\" align=\"right\" border=\"0\" ></a>";
-
+echo "<td><a href=\"browse.php?cat=" . $row["category"] . "\"><img src=\"pic/cats/".$row["cat_pic"]."\" class='glossy'  title=\"Категория: ".$row['cat_name']."\" align=\"right\" border=\"0\" ></a>";
 
 print(" ".format_comment($descr)." <p>");
 
    	print("--------------------------<br>");
 
 
-	//print("<div style=\"float: left; width: auto;\"><a href=\"browse.php?".$oldlink."sort=7&type=".$link7."\"><font color=black>Раздают:</font></a> <a href=details.php?id=$id&amp;dllist=1#seeders><font color=green><b>" . $row["seeders"] . "+".$row[f_seeders]."</b></font></a> &nbsp;/&nbsp; <a href=\"browse.php?".$oldlink."sort=8&type=".$link8."\"><font color=black>Качают:</font></a> <b><a class=\"" . linkcolor($row["leechers"]) . "\" href=\"details.php?id=$id&amp;dllist=1#leechers\"><font color=red>$row[leechers] + ".$row[f_leechers]."</font></a></b></div>");
+	//print("<div style=\"float: left; width: auto;\"><a href=\"browse.php?".$oldlink."sort=7&type=".$link7."\"><font color=black>Раздают:</font></a> <a href=details.php?id=".$id."&amp;dllist=1#seeders><font color=green><b>" . $row["seeders"] . "+".$row[f_seeders]."</b></font></a> &nbsp;/&nbsp; <a href=\"browse.php?".$oldlink."sort=8&type=".$link8."\"><font color=black>Качают:</font></a> <b><a class=\"" . linkcolor($row["leechers"]) . "\" href=\"details.php?id=".$id."&amp;dllist=1#leechers\"><font color=red>$row[leechers] + ".$row[f_leechers]."</font></a></b></div>");
 
 $seeders = $row['seeders'] + $row['f_seeders'];
 $leechers = $row['leechers'] + $row['f_leechers'];
 
-	print("<div style=\"float: left; width: auto;\"><a href=\"browse.php?".$oldlink."sort=7&type=".$link7."\"><font color=black>Раздают:</font></a> <a href=details.php?id=$id&amp;dllist=1#seeders><font color=green><b>" . $seeders ."</b></font></a> &nbsp;/&nbsp; <a href=\"browse.php?".$oldlink."sort=8&type=".$link8."\"><font color=black>Качают:</font></a> <b><a class=\"" . linkcolor($row["leechers"]) . "\" href=\"details.php?id=$id&amp;dllist=1#leechers\"><font color=red>".$leechers."</font></a></b></div>");
+	print("<div style=\"float: left; width: auto;\"><a href=\"browse.php?".$oldlink."sort=7&type=".$link7."\"><font color=black>Раздают:</font></a> <a href=details.php?id=".$id."&amp;dllist=1#seeders><font color=green><b>" . $seeders ."</b></font></a> &nbsp;/&nbsp; <a href=\"browse.php?".$oldlink."sort=8&type=".$link8."\"><font color=black>Качают:</font></a> <b><a class=\"" . linkcolor($row["leechers"]) . "\" href=\"details.php?id=".$id."&amp;dllist=1#leechers\"><font color=red>".$leechers."</font></a></b></div>");
 
 ?>
 
@@ -326,7 +325,7 @@ $leechers = $row['leechers'] + $row['f_leechers'];
 		if ($row["moderated"] == "no"){
 			$downl = "";
 		}
-	//print("<div align=\"right\">[<a href=\"details.php?id=$id\" title=\"$row[name]\" target=\"_blank\">Подробнее</a> $downl]&nbsp;</div> ");
+	//print("<div align=\"right\">[<a href=\"details.php?id=".$id."\" title=\"$row[name]\" target=\"_blank\">Подробнее</a> $downl]&nbsp;</div> ");
 
 print("</td>\n");
 
@@ -334,7 +333,7 @@ print("</td>\n");
 
 
 if ($variant == "bookmarks")
-	print ("<td align=\"center\"><form method=\"post\" action=\"takedelbookmark.php\"><input type=\"checkbox\" name=\"delbookmark[]\" value=\"" . $row[bookmarkid] . "\" /></td>");
+	print ("<td align=\"center\"><form method=\"post\" action=\"takedelbookmark.php\"><input type=\"checkbox\" name=\"delbookmark[]\" value=\"" . $row['bookmarkid'] . "\" /></td>");
 //print ("<form method=\"post\" action=\"takedelbookmark.php\">");
 
      	print("</tr> <tr><td id=\"td_".$id."\" colspan=\"3\" style=\"display:none;\"><span id=\"details_" .$id. "\"></span></td></tr>");

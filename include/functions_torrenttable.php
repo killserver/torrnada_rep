@@ -231,7 +231,7 @@ echo "<img src=pic/freedownload.gif border=0 title=\"".$tracker_lang['golden']."
 
 		print(($row["new"] == "yes" ? "<img src=\"pic/new.png\" title=\"Новинка\" alt=\"Новое\"> " : "")."");
 echo "<a href=\"details.php?id=$id\"><b><font size=\"2\" color=\"black\">$row[name]</font></b></a>";
-$torentdate = get_date_time(sql_timestamp_to_unix_timestamp($row["added"])); 
+$torentdate = get_date_time(($row["addtime"])); 
 $torentdate = date("d-m-Y", strtotime($torentdate)); 
 	if ($row["free"] > '0')
 		//$thisisfree = ($row[free]=="yes" ? "<img src=\"pic/freedownload.gif\" title=\"".$tracker_lang['golden']."\" alt=\"".$tracker_lang['golden']."\">" : "");

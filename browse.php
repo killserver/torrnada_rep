@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 require_once("include/bittorrent.php");
 
@@ -45,7 +45,7 @@ case '7': $column = "seeders"; break;
 case '8': $column = "leechers"; break;
 case '9': $column = "owner"; break;
 case '10': if (get_user_class() >= UC_MODERATOR) $column = "moderatedby"; break;
-default: $column = "id"; break;
+default: $column = "addtime"; break;
 }
 
     switch($_GET['type']) {
@@ -59,7 +59,7 @@ $orderby = "ORDER BY torrents." . $column . " " . $ascdesc;
 $pagerlink = "sort=" . intval($_GET['sort']) . "&type=" . $linkascdesc . "&";
 
 } else {
-	$orderby = "ORDER BY torrents.sticky DESC, torrents.id DESC,  torrents.addtime DESC";
+	$orderby = "ORDER BY torrents.sticky DESC, torrents.addtime DESC";
 	$pagerlink = "";
 } 
 
@@ -336,7 +336,7 @@ if($count) {
 
 
 	list($pagertop, $pagerbottom, $limit) = pager($torrentsperpage, $count, "browse.php?".$addparam);
-$query = "SELECT SQL_CACHE torrents.image1, torrents.image6, torrents.status, torrents.moderated, torrents.category, torrents.leechers, torrents.seeders, torrents.f_seeders, torrents.f_leechers, torrents.free, torrents.name, torrents.owner, torrents.save_as, torrents.descr, torrents.visible, torrents.size, torrents.info_hash, torrents.added, torrents.times_completed, torrents.id, torrents.type, torrents.numfiles, torrents.name, torrents.times_completed, torrents.size, torrents.added, torrents.comments, torrents.numfiles, torrents.filename, torrents.sticky, torrents.new, torrents.owner, torrents.status, categories.name AS cat_name, categories.image AS cat_pic, categories.name AS cat_name, categories.image AS cat_pic, users.username, users.class FROM torrents LEFT JOIN categories ON category = categories.id LEFT JOIN users ON torrents.owner = users.id ".$conditional_joins." ".$where." ".$orderby." ".$limit;
+$query = "SELECT SQL_CACHE torrents.image1, torrents.image6, torrents.status, torrents.moderated, torrents.category, torrents.leechers, torrents.seeders, torrents.f_seeders, torrents.f_leechers, torrents.free, torrents.name, torrents.owner, torrents.save_as, torrents.descr, torrents.visible, torrents.size, torrents.info_hash, torrents.added, torrents.times_completed, torrents.id, torrents.type, torrents.numfiles, torrents.name, torrents.times_completed, torrents.size, torrents.addtime, torrents.comments, torrents.numfiles, torrents.filename, torrents.sticky, torrents.new, torrents.owner, torrents.status, categories.name AS cat_name, categories.image AS cat_pic, categories.name AS cat_name, categories.image AS cat_pic, users.username, users.class FROM torrents LEFT JOIN categories ON category = categories.id LEFT JOIN users ON torrents.owner = users.id ".$conditional_joins." ".$where." ".$orderby." ".$limit;
 
         $res = sql_query($query) or die(mysql_error());
 } else {

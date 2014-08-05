@@ -225,15 +225,15 @@ print("<tbody id=\"highlighted\">");
 
 	while ($row = mysql_fetch_assoc($res)) {
 $row['name']=view_saves($row['name']);
-	$day_added = $row['added'];
-$day_show = strtotime($day_added);
+	$day_added = $row['addtime'];
+$day_show = ($day_added);
 $thisdate = date('Y-m-d',$day_show);
  
 if($thisdate==$prevdate){
 $cleandate = '';
  
 }else{
-$day_added = '  '.date('l d M', strtotime($row['added'])); 
+$day_added = '  '.date('l d M', ($row['addtime'])); 
 $cleandate = "<tr><td colspan=15 class=colhead>Торренты за $day_added</td></tr>\n";
 }
 $prevdate = $thisdate;

@@ -120,7 +120,7 @@ HTML;
 			"<td>".$reb['name']."</td>".
 			"<td>"."http://".$reb['link']."</td>".
 			"<td>".$reb['image']."</td>".
-			"<a href=http://".$reb['link']." target=\"_blank\">".(!empty($reb['image']) ? "<img src=\"".$reb['image']."\">" : $reb['name'])."</a></td>".
+			"<td><a href=http://".$reb['link']." target=\"_blank\">".(!empty($reb['image']) ? "<img src=\"".$reb['image']."\">" : $reb['name'])."</a></td>".
 			"</tr>";
 	}
 	echo "</table>";

@@ -28,6 +28,7 @@ if(isset($_GET['edit']) && !empty($_GET['edit'])) {
     begin_frame("Редактировать рекламу"); 
 echo '<form action="reklama.php?done=edit" METHOD="POST">
 Редактировать: <input type="RADIO" name="id" value='.$reb['id'].' CHECKED><Br />
+  название: <input type="text" name="name" value='.$reb['name'].'><Br />
   ссылка: <input type="text" name="link" value='.$reb['link'].'><Br />
   Картинка: <input type="text" name="image" value='.$reb['image'].'><Br />
   Что именно:          <input type="radio" name="enum" value="http">Ссылка <input type="radio" name="enum" value="img" checked>Картинка<Br />

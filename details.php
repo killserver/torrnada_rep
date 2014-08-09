@@ -264,9 +264,9 @@ if($CURUSER){
 $ld = $ldadd = "";
 if($CURUSER) {
 	if($CURUSER["id"] == $row["owner"]) {
-		$ld = "download.php?id=$id&amp;name=[torrnada.ru]_".rawurlencode($row["filename"]);
+		$ld = "download.php?id=$id&amp;name=".(strpos($row['filename'], "torrnada.ru")===false ? "[torrnada.ru]_" : "").rawurlencode($row["filename"]);
 	} else {
-		$ld = "download.php?id=$id&amp;name=[torrnada.ru]_".rawurlencode($row["filename"]);
+		$ld = "download.php?id=$id&amp;name=".(strpos($row['filename'], "torrnada.ru")===false ? "[torrnada.ru]_" : "").rawurlencode($row["filename"]);
 	}
 	switch($row['free']) {
 		case 'no':
@@ -284,7 +284,7 @@ if($CURUSER) {
 	}
 } else {
 	//if ($row["moderated"] == "yes") {
-		$ld = "download_file.php?id=$id&amp;name=[torrnada.ru]_" . rawurlencode($row["filename"]);
+		$ld = "download_file.php?id=$id&amp;name=".(strpos($row['filename'], "torrnada.ru")===false ? "[torrnada.ru]_" : "") . rawurlencode($row["filename"]);
 	//}
 }
 

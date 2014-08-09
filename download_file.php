@@ -52,7 +52,7 @@ if(!empty($s) && $row['owner'] != $CURUSER['id'] && get_user_class() < UC_MODERA
 
 
 
-$name = $row['filename'];
+$name = (strpos($row['filename'], "torrnada.ru")===false ? "[torrnada.ru]_" : "").$row['filename'];
 if($type_down == 1) {
 stdhead();
 echo <<<HTML

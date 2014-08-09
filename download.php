@@ -137,7 +137,7 @@ header ("Pragma: no-cache");
 header ("Accept-Ranges: bytes");
 header ("Connection: close");
 header ("Content-Transfer-Encoding: binary");
-header ("Content-Disposition: attachment; filename=\"[torrnada.ru]_".$name."\"");
+header ("Content-Disposition: attachment; filename=\"".(strpos($name, "torrnada.ru")===false ? "[torrnada.ru]_" : "").$name."\"");
 header ("Content-Type: application/x-bittorrent");
 ob_implicit_flush(true);
 

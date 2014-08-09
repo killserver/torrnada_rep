@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once("include/bittorrent.php");
 
 ini_set("max_execution_time", 0);
@@ -307,7 +307,7 @@ if($row["status"] == "1" && get_user_class() < UC_MODERATOR){
 if($row["status"] == "0" && get_user_class() < UC_MODERATOR) {
 	$s = "<b>".$row['name']."</b><br /><h2><font color=\"red\">Данный релиз находится на проверке. После проверки - релиз будет доступен к скачиванию. Благодарим за понимание!</font></h2>"; 
 	if(isset($CURUSER['id']) && $CURUSER["id"] == $row["owner"]) {
-		$s = "<a href=\"download.php?id=$id&amp;name=[torrnada.ru]_".rawurlencode($row["filename"])."\"><b>".$row['name']."</b></a>";
+		$s = "<a href=\"download.php?id=$id&amp;name=".(strpos($row['filename'], "torrnada.ru")===false ? "[torrnada.ru]_" : "").rawurlencode($row["filename"])."\"><b>".$row['name']."</b></a>";
 	}
 }
 	if($owned && ($row["status"] == "0" || $row["status"] == "1" || $row["status"] == "2" || $row["status"] == "5" || $row["status"] == "6" || $row["status"] == "7" || $row["status"] == "8")) {

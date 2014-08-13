@@ -279,7 +279,7 @@ elseif ($action == "delete")
 	if ($torrentid && mysql_affected_rows() > 0)
 		sql_query("UPDATE torrents SET comments = comments - 1 WHERE id = ".$torrentid);
 
-	list($commentid) = mysql_fetch_row(sql_query("SELECT id FROM comments WHERE torrent = ".$torrentid" ORDER BY added DESC LIMIT 1"));
+	list($commentid) = mysql_fetch_row(sql_query("SELECT id FROM comments WHERE torrent = ".$torrentid." ORDER BY added DESC LIMIT 1"));
 	$returnto = "details.php?id=".$torrentid."&viewcomm=".$commentid."#comm".$commentid;
 	@unlink("cache/details/details_comments_id".$torrentid."_limitLIMIT 0,10.txt");
 
@@ -302,7 +302,7 @@ elseif ($action == "vieworiginal")
   $res = sql_query("SELECT c.*, t.name, t.id AS tid FROM comments AS c LEFT JOIN torrents AS t ON c.torrent = t.id WHERE c.id=".$commentid) or sqlerr(__FILE__,__LINE__);
   $arr = mysql_fetch_array($res);
   if (!$arr)
-  	stderr($tracker_lang['error'], "Неверный идентификатор $commentid.");
+  	stderr($tracker_lang['error'], "Неверный идентификатор ".$commentid.".");
 
   stdhead("Просмотр оригинала");
   print("<h1>Оригинальное содержание комментария №".$commentid."</h1><p>\n");
@@ -315,7 +315,7 @@ elseif ($action == "vieworiginal")
   $returnto = "details.php?id=".$arr["tid"]."&amp;viewcomm=".$commentid."#comm".$commentid;
 //	$returnto = "details.php?id=$torrentid&amp;viewcomm=$commentid#$commentid";
 	if ($returnto)
- 		print("<p><font size=small><a href=$returnto>Назад</a></font></p>\n");
+ 		print("<p><font size=small><a href=\"".$returnto."\">Назад</a></font></p>\n");
 
 	stdfoot();
 	die();

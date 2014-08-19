@@ -1,19 +1,18 @@
 ﻿<?
-
 require_once("include/bittorrent.php");
 
 if (!mkglobal("id"))
 	die();
 
 $id = intval($id);
-if (!$id)
+if($id<1)
 	die();
 
 dbconn();
 
 loggedinorreturn();
 
-$res = sql_query("SELECT * FROM torrents WHERE id = $id");
+$res = sql_query("SELECT * FROM torrents WHERE id = ".$id);
 $row = mysql_fetch_array($res);
 if (!$row)
 	die();
@@ -24,7 +23,7 @@ if($row['block_edit']!="false" && get_user_class() < UC_MODERATOR) {
 
 stdhead("Редактирование торрента \"" . $row["name"] . "\"");
 
-if (!isset($CURUSER) || ($CURUSER["id"] != $row["owner"] && get_user_class() < UC_MODERATOR)) {
+if(!isset($CURUSER) || ($CURUSER["id"] != $row["owner"] && get_user_class() < UC_MODERATOR)) {
 	stdmsg($tracker_lang['error'],"Вы не можете редактировать этот торрент.");
 } else {
 	print("<table border=\"1\" cellspacing=\"0\" cellpadding=\"5\">\n");
@@ -37,8 +36,8 @@ if (!isset($CURUSER) || ($CURUSER["id"] != $row["owner"] && get_user_class() < U
 	<script type="text/javascript">
 	function FormClick ()  
 	{
-	$.post("details_cache.php?clear_cache", { id: "<?=$id?>" }, function(data){
-	    $("#result_cache").html(data);
+	jQuery.post("details_cache.php?clear_cache", { id: "<?php echo $id; ?>" }, function(data){
+	    jQuery("#result_cache").html(data);
 	  });  
 	}
 	</script>
@@ -50,7 +49,7 @@ if (!isset($CURUSER) || ($CURUSER["id"] != $row["owner"] && get_user_class() < U
 	print("<form name=\"edit\" method=post action=takeedit.php enctype=multipart/form-data>\n");
 	print("<input type=\"hidden\" name=\"id\" value=\"$id\">\n");
 	if (isset($_GET["returnto"]))
-		print("<input type=\"hidden\" name=\"returnto\" value=\"" . htmlspecialchars($_GET["returnto"]) . "\" />\n");
+		print("<input type=\"hidden\" name=\"returnto\" value=\"" . htmlspecialchars_uni($_GET["returnto"]) . "\" />\n");
 
 	tr("Мульти-трекер <font color=red>*</font>", "<label><input type=radio name=multitr value=yes" .($row["multitracker"] == "yes" ? " checked" : "").">Да </label><label><input type=radio name=multitr value=no" .($row["multitracker"] == "no" ? " checked" : "").">Нет </label><i>Разрешить / Запретить подключение внешних сидов и пиров (для обеспечения max скорости скачивания)</i> <br>Работает только с обновлением torrent файла (<b>вкладка ниже</b>)", 1);
 
@@ -126,7 +125,7 @@ font-weight:bold;
 		tr("Забанен", "<input type=\"checkbox\" name=\"banned\"" . (($row["banned"] == "yes") ? " checked=\"checked\"" : "" ) . " value=\"1\" />", 1);
     if(get_user_class() >= UC_ADMINISTRATOR)
         //tr("Золотая раздача", "<input type=\"checkbox\" name=\"free\"" . (($row["free"] == "yes") ? " checked=\"checked\"" : "" ) . " value=\"1\" /> Золотая раздача (считаеться только раздача, скачка не учитиваеться)", 1);
-tr("Золотая раздача", "<input name=\"free\" type=\"radio\" value=\"no\" ".(($row["free"] == "no") ? "checked=\"checked\"" : "" ) . " ".(($row["free"] == "") ? "checked=\"checked\"" : "" ) . ">&nbsp;Стандартная (трафик учитывается в полном объёме)<br><input name=\"free\" type=\"radio\" value=\"silver\" ".(($row["free"] == "silver") ? "checked=\"checked\"" : "" ) . ">&nbsp;Серебряная раздача (Учитыватся только половина скачанного трафика)<br><input name=\"free\" type=\"radio\" value=\"gold\" ".(($row["free"] == "gold") ? "checked=\"checked\"" : "" ) . ">&nbsp;Золотая раздача(Скачанный трафик не учитыватся)", 1);
+tr("Золотая раздача", "<input name=\"free\" type=\"radio\" value=\"no\" ".(($row["free"] == "no") ? "checked=\"checked\"" : "" ) . " ".(($row["free"] == "") ? "checked=\"checked\"" : "" ) . ">&nbsp;Стандартная (трафик учитывается в полном объёме)<br><input name=\"free\" type=\"radio\" value=\"silver\" ".(($row["free"] == "silver") ? "checked=\"checked\"" : "" ) . ">&nbsp;Серебряная раздача (Учитыватся только половина скачанного трафика)<br /><input name=\"free\" type=\"radio\" value=\"gold\" ".(($row["free"] == "gold") ? "checked=\"checked\"" : "" ) . ">&nbsp;Золотая раздача(Скачанный трафик не учитыватся)", 1);
 
     if(get_user_class() >= UC_SYSOP) {
         tr("Новинка", "<input type=\"checkbox\" name=\"new\"" . (($row["new"] == "yes") ? " checked=\"checked\"" : "" ) . " value=\"yes\" /> Прикрепляет пометку о том что торрент только-только вышел на экраны", 1);
@@ -138,23 +137,33 @@ tr("Золотая раздача", "<input name=\"free\" type=\"radio\" value=\
 
 ?> 
 <tr><td align="right" valign="middle"><strong>Релиз-группа</strong></td><td><select name="reliz"> 
-<?php if ($row["relizgroup"] != 0){ 
-$reliz = mysql_query("SELECT * FROM relizgroup WHERE id='$row[relizgroup]'"); 
-$rel = mysql_fetch_array($reliz); ?> 
+<?php
+if($row["relizgroup"] != 0) {
+$reliz = mysql_query("SELECT * FROM relizgroup WHERE id='".$row['relizgroup']."'"); 
+$rel = mysql_fetch_array($reliz);
+?> 
 <option value="<?php echo $rel["id"]; ?>"><?php echo $rel["link"]; ?></option> 
 <option value="0">Нет релиз-группы</option> 
 <?php $reliz = mysql_query("SELECT * FROM relizgroup"); 
- while($rel = mysql_fetch_array($reliz)){?> 
-<option style="background-image:url(pic/reliz-grup/<?php echo $rel["img"]; ?>); font-size:16px;" value="<?php echo $rel["id"]; ?>"><?php echo $rel["link"]; ?></option> <?php } 
-}else{?> 
-<option value="0">Нет релиз-группы</option> <?php 
+ while($rel = mysql_fetch_array($reliz)) { ?> 
+<option style="background-image:url(pic/reliz-grup/<?php echo $rel["img"]; ?>); font-size:16px;" value="<?php echo $rel["id"]; ?>"><?php echo $rel["link"]; ?></option> <?php
+ } 
+} else {
+?> 
+<option value="0">Нет релиз-группы</option>
+<?php 
 $reliz = mysql_query("SELECT * FROM relizgroup"); 
-while($rel = mysql_fetch_array($reliz)){?> 
-<option style="background-image:url(pic/reliz-grup/<?php echo $rel["img"]; ?>); font-size:16px;" value="<?php echo $rel["id"]; ?>"><?php echo $rel["link"]; ?></option> <?php }}?> 
+while($rel = mysql_fetch_array($reliz)){
+?> 
+<option style="background-image:url(pic/reliz-grup/<?php echo $rel["img"]; ?>); font-size:16px;" value="<?php echo $rel["id"]; ?>"><?php echo $rel["link"]; ?></option>
+<?php
+}
+}
+?> 
 </select></td></tr> 
 <?php
 
-	print("<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"Отредактировать\" style=\"height: 25px; width: 100px\"> <input type=reset value=\"Обратить изменения\" style=\"height: 25px; width: 100px\"></td></tr>\n");
+	print("<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"Отредактировать\" style=\"height: 25px; width: 100px\"> <!--input type=reset value=\"Обратить изменения\" style=\"height: 25px; width: 100px\"--></td></tr>\n");
 
 
 	print("</table>\n");
@@ -168,9 +177,9 @@ while($rel = mysql_fetch_array($reliz)){?>
   print("<tr><td><input name=\"reasontype\" type=\"radio\" value=\"3\">&nbsp;Nuked</td><td><input type=\"text\" size=\"40\" name=\"reason[]\"></td></tr>\n");
   print("<tr><td><input name=\"reasontype\" type=\"radio\" value=\"4\">&nbsp;Правила</td><td><input type=\"text\" size=\"40\" name=\"reason[]\">(Обязательно)</td></tr>");
   print("<tr><td><input name=\"reasontype\" type=\"radio\" value=\"5\" checked>&nbsp;Другое:</td><td><input type=\"text\" size=\"40\" name=\"reason[]\">(Обязательно)</td></tr>\n");
-	print("<input type=\"hidden\" name=\"id\" value=\"$id\">\n");
+	print("<input type=\"hidden\" name=\"id\" value=\"".$id."\">\n");
 	if (isset($_GET["returnto"]))
-		print("<input type=\"hidden\" name=\"returnto\" value=\"" . htmlspecialchars($_GET["returnto"]) . "\" />\n");
+		print("<input type=\"hidden\" name=\"returnto\" value=\"" . htmlspecialchars_uni($_GET["returnto"]) . "\" />\n");
   print("<td colspan=\"2\" align=\"center\"><input type=submit value='Удалить' style='height: 25px'></td></tr>\n");
   print("</table>");
 	print("</form>\n");

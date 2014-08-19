@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 # IMPORTANT: Do not edit below unless you know what you are doing!
 if(!defined('IN_TRACKER'))
@@ -816,7 +816,7 @@ bbcode.addTag("codeAlign", function(e) { var v=e.value; e.selectedIndex=0; retur
 </td>
 </tr>
 
-<tr><td style="margin: 0px; padding: 0px;" align="center" class="b"><input type="button" name="preview" class="btn" title="ALT+ENTER Предпросмотр просмотр" value="Предпросмотр" onclick="javascript:ajaxpreview('<?=$name;?>');"/> <input type="reset" class="btn" value="Обратить изменения"/></td></tr>
+<tr><td style="margin: 0px; padding: 0px;" align="center" class="b"><input type="button" name="preview" class="btn" title="ALT+ENTER Предпросмотр просмотр" value="Предпросмотр" onclick="javascript:ajaxpreview('<?=$name;?>');"/> <!--input type="reset" class="btn" value="Обратить изменения"/--></td></tr>
 <tr><td id="preview" style="margin: 0px; padding: 0px;" class="a"></td></tr>
 
 </table>

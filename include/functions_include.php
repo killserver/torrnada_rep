@@ -1,7 +1,7 @@
 ﻿<?php
 
 function view_saves($text) {
-	return str_replace(array("&quot;","&amp;nbsp;","&nbsp;","&amp;", "&amp;amp;", "&lt;", "&gt;"), array("\"", " ", " ", "&", "&", "<", ">"), $text);
+	return str_replace(array("&amp;quot;", "&quot;","&amp;nbsp;","&nbsp;","&amp;", "&amp;amp;", "&lt;", "&gt;"), array("\"", "\"", " ", " ", "&", "&", "<", ">"), $text);
 }
 
 function watermark($path) {

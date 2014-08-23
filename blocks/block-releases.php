@@ -26,14 +26,13 @@ $content .= "<table cellspacing=\"0\" cellpadding=\"5\" width=\"100%\"><tr><td i
 //and category <> 19
     $content .= $pagertop;
     $content .= "</td></tr>";
-    while ($release = mysql_fetch_array($res)) {
+    while ($release = mysql_fetch_assoc($res)) {
         $catid = $release["catid"];
         $catname = $release["catname"];
-        $catimage = $release["catimage"]; 
-                $torname = $release["name"];
-		$torname=view_saves($torname);
+        $catimage = $release["catimage"];
+		$torname=view_saves($release["name"]);
 
-                $tornew = $release["new"] == "yes" ? "<img src=pic/new.png>" : "";
+                $tornew = $release["new"] == "yes" ? "<img src=\"pic/new.png\" alt=\"new\">" : "";
 
         $descr=$release["descr"];
 
@@ -44,9 +43,9 @@ $uprow = (isset($release["username"]) ? ("<a href=id" . $release["owner"] . ">" 
         $sss = '';
 
 if(!empty($release['image1']) || !empty($release['image6']))
-$img1 = "<a href=details-$release[id]><img width=\"160\" border='0'  class=\"glossy\" src=\"torrents/images/".(!empty($release['image1']) ? $release['image1'] : $release['image6'])."\" /></a>";
+$img1 = "<a href=details-".$release['id']."><img width=\"160\" border='0'  class=\"glossy\" src=\"torrents/images/".(!empty($release['image1']) ? $release['image1'] : $release['image6'])."\" /></a>";
 else
-$img1 = "<a href=details-$release[id]><img width=\"160\" border='0'  class=\"glossy\" src=\"pic/no_poster.png\" /></a>";
+$img1 = "<a href=details-".$release['id']."><img width=\"160\" border='0'  class=\"glossy\" src=\"pic/no_poster.png\" /></a>";
         $content .= "<tr><td>";
         $content .= "<table width=\"100%\" class=\"main\" border=\"1\" cellspacing=\"0\" cellpadding=\"5\">";
         $content .= "<tr>";
@@ -55,7 +54,7 @@ $img1 = "<a href=details-$release[id]><img width=\"160\" border='0'  class=\"glo
                     $content .= "<img src=pic/freedownload.gif border=0 /> - ";
 
 
-        $content .= "".$tornew." ".htmlspecialchars($torname)."</a>";
+        $content .= "".$tornew." ".($torname)."</a>";//htmlspecialchars
         $content .= "</td>";
         $content .= "</tr>";
 
@@ -68,22 +67,22 @@ $img1 = "<a href=details-$release[id]><img width=\"160\" border='0'  class=\"glo
         $content .= "</td>";
 
 
-        $content .= "<td><div align=\"left\">".(!empty($catname) ? "<a href=\"browse.php?cat=$catid\">
-            <img src=\"pic/cats/$catimage\" alt=\"$catname\" title=\"$catname\" align=\"right\" border=\"0\" /></a>" : "")."
+        $content .= "<td><div align=\"left\">".(!empty($catname) ? "<a href=\"browse.php?cat=".$catid."\">
+            <img src=\"pic/cats/".$catimage."\" alt=\"".$catname."\" title=\"".$catname."\" align=\"right\" border=\"0\" /></a>" : "")."
             ".format_comment($descr)." <br>
             <br><div style=\"border: 3px dashed #ddd;  background: #f7f7f7; margin: 0 0 5px 0; padding: 3px; class=more-cont\">
             <b style='color: #00b;'>Раздал: </b>$uprow<br>
             <b style='color: #0b9;'>Размер: </b>".mksize($release["size"])."<br>
             <b style='color: #0a0;'>Раздают: </b>".$release["seeders"]." <br>
             <b style='color: #f00;'>Качают: </b>".$release["leechers"]." <br>
-            <b style='color: #C6B;'>Скачиваний: </b>$release[times_completed]  <br>
- <b style='color: #b00;'>Комментарии: </b>$release[comments]</b><br>
+            <b style='color: #C6B;'>Скачиваний: </b>".$release['times_completed']."  <br>
+ <b style='color: #b00;'>Комментарии: </b>".$release['comments']."</b><br>
             </div>
             <br>
                      
             </div>
 
-<div align=\"right\"> [<a href=\"details-$release[id]\" alt=\"$release[name]\" title=\"$release[name]\"><b>Подробнее...<img src=pic/next.gif></b></a>]</div></td>";
+<div align=\"right\"> [<a href=\"details-".$release['id']."\" alt=\"".$release['name']."\" title=\"".$release['name']."\"><b>Подробнее...<img src=\"pic/next.gif\"></b></a>]</div></td>";
         $content .= "</tr>";
         $content .= "</table>";
         $content .= "</td></tr>";

@@ -21,6 +21,8 @@ if($row['block_edit']!="false" && get_user_class() < UC_MODERATOR) {
 	stderr($tracker_lang['error'], "Администрация, в лице ".$row['block_edit_added']." заблокировала возможность редактирования данного торрента!");
 }
 
+$row['name'] = view_saves($row['name']);
+
 stdhead("Редактирование торрента \"" . $row["name"] . "\"");
 
 if(!isset($CURUSER) || ($CURUSER["id"] != $row["owner"] && get_user_class() < UC_MODERATOR)) {

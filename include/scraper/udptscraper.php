@@ -43,7 +43,7 @@
 			$port = isset($m[2]) ? $m[2] : 80;
 			
 			$transaction_id = mt_rand(0,65535);
-			$fp = fsockopen($tracker, $port, $errno, $errstr);
+			$fp = @fsockopen($tracker, $port, $errno, $errstr);
 			if(!$fp){ throw new ScraperException('Could not open UDP connection: ' . $errno . ' - ' . $errstr,0,true); }
 			stream_set_timeout($fp, $this->timeout);
 			

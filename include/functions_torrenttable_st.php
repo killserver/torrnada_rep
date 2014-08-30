@@ -64,10 +64,6 @@ function torrenttable_st($res, $variant = "index") {
 		global $pic_base_url, $CURUSER, $use_wait, $use_ttl, $ttl_days, $tracker_lang;
 
 
-?>
-<script type="text/javascript" src="js/wz_tooltip.js"></script>
-<?
-
   if ($use_wait)
   if (($CURUSER["class"] < UC_VIP) && $CURUSER) {
 		  $gigs = $CURUSER["uploaded"] / (1024*1024*1024);
@@ -485,7 +481,7 @@ print("<b>$dispname</b></a> $thisisfree $tstatus\n");
 			if (empty($row["status"]) || $row['status'] == "0")
 				print("<td align=\"center\"><font color=\"red\"><b>Нет</b></font></td>\n");
 			else
-				print("<td align=\"center\"><a href=\"userdetails.php?id=".$row['moderatedby']."\"><font color=\"green\"><b>Да</b></font></a></td>\n");
+				print("<td align=\"center\"><a href=\"userdetails.php?id=".$row['modby']."\"><font color=\"green\"><b>Да</b></font></a></td>\n");
 		}
 
 		//if ((get_user_class() >= UC_MODERATOR) && $variant == "index")

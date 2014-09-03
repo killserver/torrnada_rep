@@ -466,7 +466,7 @@ sql_query("DELETE FROM torrents_descr WHERE id = ".$id);
 		}
 		sql_query('REPLACE INTO torrents_descr (tid, descr_hash, descr_parsed) VALUES ('.implode(', ', array_map('sqlesc', array($id, md5($row['descr']), $descr))).')') or sqlerr(__FILE__,__LINE__);
 	}
-	tr("", $im1.$img6."<br /><br /><br /><hr /><br />".$descr. "<br>", 1, 1);
+	tr("", $im1.$img6."<br /><br /><br /><hr /><h1 style=\"font-size: 20px\"><font face=\"Georgia\"><strong>".$row['name']."</strong></font></h1><br /><hr /><br />".$descr. "<br>", 1, 1);
 ///////// Поиск по актерам by Йожжж END/////////
 
 

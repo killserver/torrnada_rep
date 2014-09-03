@@ -176,7 +176,7 @@ if (!is_valid_id($id) || empty($id))
 header("Refresh: 0; url=browse.php");
 
 
-$res = sql_query("SELECT td.descr_hash, td.descr_parsed, torrents.block_edit, torrents.karmushka, torrents.kp, torrents.multitracker, torrents.ban, torrents.category, torrents.youtube, torrents.relizgroup, torrents.new, torrents.comment_lock, (SELECT username FROM users WHERE id = torrents.modby) as modby, (SELECT class FROM users WHERE id = torrents.modby) as modbyclass, torrents.banned, torrents.info_hash, torrents.filename, UNIX_TIMESTAMP() - UNIX_TIMESTAMP(torrents.last_action) AS lastseed, torrents.numratings, torrents.name, torrents.owner, torrents.save_as, torrents.descr, torrents.visible, torrents.size, torrents.added, torrents.views, torrents.hits, torrents.times_completed, torrents.id, torrents.type, torrents.numfiles, torrents.image1, torrents.image2, torrents.image3, torrents.image4, torrents.image5, torrents.image6, torrents.status, categories.name AS cat_name, users.username " . ($CURUSER ? ", (SELECT COUNT(*) FROM karma WHERE cat='torrents' AND uid = $CURUSER[id] AND pid = $id) AS ktotal" : "") . " FROM torrents LEFT JOIN categories ON torrents.category = categories.id LEFT JOIN users ON torrents.owner = users.id LEFT JOIN torrents_descr AS td ON td.tid = $id WHERE torrents.id = $id", 86400,"details/details_id".$id.".txt")
+$res = sql_query("SELECT td.descr_hash, td.descr_parsed, torrents.block_edit, torrents.karmushka, torrents.kp, torrents.multitracker, torrents.category, torrents.youtube, torrents.relizgroup, torrents.new, torrents.comment_lock, (SELECT username FROM users WHERE id = torrents.modby) as modby, (SELECT class FROM users WHERE id = torrents.modby) as modbyclass, torrents.banned, torrents.info_hash, torrents.filename, UNIX_TIMESTAMP() - UNIX_TIMESTAMP(torrents.last_action) AS lastseed, torrents.numratings, torrents.name, torrents.owner, torrents.save_as, torrents.descr, torrents.visible, torrents.size, torrents.added, torrents.views, torrents.hits, torrents.times_completed, torrents.id, torrents.type, torrents.numfiles, torrents.image1, torrents.image2, torrents.image3, torrents.image4, torrents.image5, torrents.image6, torrents.status, categories.name AS cat_name, users.username " . ($CURUSER ? ", (SELECT COUNT(*) FROM karma WHERE cat='torrents' AND uid = $CURUSER[id] AND pid = $id) AS ktotal" : "") . " FROM torrents LEFT JOIN categories ON torrents.category = categories.id LEFT JOIN users ON torrents.owner = users.id LEFT JOIN torrents_descr AS td ON td.tid = $id WHERE torrents.id = $id", 86400,"details/details_id".$id.".txt")
         or sqlerr(__FILE__, __LINE__);
 
 //$row = mysql_fetch_array($res);
@@ -191,9 +191,6 @@ $owned = $moderator = 0;
         elseif ($CURUSER["id"] == $row["owner"])
                 $owned = 1;
 //}
-
-if($row["ban"] == "yes" && !$moderator)
-        stderr($tracker_lang['error'], "Торрент забанен");
 
 if (!$row || ($row["banned"] == "yes" && !$moderator))
         stderr($tracker_lang['error'], $tracker_lang['no_torrent_with_such_id']);
@@ -389,20 +386,7 @@ HTML;
                 tr("Статус", $cstatus, 1);
                 }
 
-if($row['ban'] == "yes"){
-if($CURUSER['class'] == UC_SYSTEM){
-print("<tr><td></td><td>Ваш торрент забанен,<a href=unban.php?id=$id>Разбанить?</a></td></tr>");
-}else{
-print("<tr><td></td><td>Ваш торрент забанен</td></tr>");
-}
-} else {
-if($CURUSER['class'] == UC_SYSTEM){
-print("<tr><td></td><td>Торрент не забанен,<a href=ban.php?id=$id>Забанить?</a></td></tr>");
-}
-}
 
-
-                tr($tracker_lang['info_hash'], $row["info_hash"]);
 		if(!empty($row["kp"])) {
 			$kp ="".$row['kp'].""; 
 		} 
@@ -445,7 +429,7 @@ if($HOLIDAYS['eggs']) {
 if(!empty($row["image6"])) {
 	$img6 = "<br /><br /><a href=\"torrents/images/".$row['image6']."\" rel=\"lightbox\"><img border='0' width=250 src='torrents/images/".$row['image6']."' /></a>";
 }
-tr('Постер', $im1.$img6, 1);
+//tr('Постер', $im1.$img6, 1);
 
 
 
@@ -482,7 +466,7 @@ sql_query("DELETE FROM torrents_descr WHERE id = ".$id);
 		}
 		sql_query('REPLACE INTO torrents_descr (tid, descr_hash, descr_parsed) VALUES ('.implode(', ', array_map('sqlesc', array($id, md5($row['descr']), $descr))).')') or sqlerr(__FILE__,__LINE__);
 	}
-	tr($tracker_lang['description'], $descr. "<br>", 1, 1);
+	tr("", $im1.$img6."<br /><br /><br /><hr /><br />".$descr. "<br>", 1, 1);
 ///////// Поиск по актерам by Йожжж END/////////
 
 
@@ -580,6 +564,7 @@ $reliz_group = "<img src=\"pic/reliz-grup/$rel[img]\" title=\"$rel[link]\">";
 
 
 
+                tr($tracker_lang['info_hash'], $row["info_hash"]);
                 if ($row["visible"] == "no")
                         tr($tracker_lang['visible'], "<b>".$tracker_lang['no']."</b> (".$tracker_lang['dead'].")", 1);
                 if ($moderator)

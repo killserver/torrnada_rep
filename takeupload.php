@@ -7,8 +7,9 @@ require_once("include/bittorrent.php");
 
 ini_set("upload_max_filesize",$max_torrent_size);
 
-function bark($msg) {
-	genbark($msg, $tracker_lang['error']);
+function bark($msg, $view=false) {
+global $tracker_lang;
+	genbark($msg, $tracker_lang['error'], $view);
 }
 
 
@@ -41,23 +42,10 @@ foreach(explode(":", "descr:type:name") as $v) {
 }
 
 
-//if (!isset($_FILES["tfile"]))
-//bark("missing form data");
-
-
-//$f = $_FILES["tfile"];
-
-//$tmpname = $f["tmp_name"];
-
-$f = $_FILES["tfile"];
-$fname = trim($f["name"]);
-
-
-
-if($_POST['reliz'] != 0) { 
-$reliz = intval($_POST['reliz']);
-} else { 
-$reliz = 0; 
+if($_POST['reliz'] != 0) {
+	$reliz = intval($_POST['reliz']);
+} else {
+	$reliz = 0;
 }
 
 
@@ -73,11 +61,6 @@ else
     $sticky = "no";
 
 
-
-if (!isset($f) || empty($fname) || !validfilenamee($fname) || !preg_match('/^(.+)\.torrent$/si', $fname, $matches))
-stderr("Ошибка", "Не верное имя файла");
-
-
 $descr = unesc($_POST["descr"]);
 if (!$descr)
 	bark("Вы должны ввести описание!");
@@ -87,8 +70,22 @@ $youtube = unesc($_POST["youtube"]);
 $catid = (int)$_POST["type"];
 if (!is_valid_id($catid))
 bark("Вы должны выбрать категорию, в которую поместить торрент!");
-	
 
+//alter table torrents add future enum('yes','no') not null default 'no', add key `future`(`future`);
+$is_future = "yes";
+$shortfname = ToTranslit($_POST['name']);
+$torrent = htmlspecialchars_uni($_POST["name"]);
+$ret = sql_query("SHOW TABLE STATUS LIKE 'torrents'");
+$row = mysql_fetch_array($ret);
+$next_id = $row['Auto_increment'];
+$infohash = sha1($next_id."|".$torrent);
+if(!isset($_POST['future']) || $_POST['future']!="yes") {
+$is_future = "no";
+$f = $_FILES["tfile"];
+$fname = trim($f["name"]);
+
+if (!isset($f) || empty($fname) || !validfilenamee($fname) || !preg_match('/^(.+)\.torrent$/si', $fname, $matches))
+stderr("Ошибка", "Не верное имя файла");
 $shortfname = $torrent = $matches[1];
 
 
@@ -107,12 +104,8 @@ bark("Что за хрень ты загружаешь? Это не бинарн
 
 //function dict_check($d, $s) {
 $info = $dict['info'];
+$multi_infohash = sha1($info["string"]);
 list($dname, $plen, $pieces, $totallen) = array($info['name'], $info['piece length'], $info['pieces'], $info['length']);
-
-
-$ret = sql_query("SHOW TABLE STATUS LIKE 'torrents'");
-$row = mysql_fetch_array($ret);
-$next_id = $row['Auto_increment'];
 
 if (strlen($pieces) % 20 != 0)
 	bark("invalid pieces");
@@ -175,6 +168,14 @@ $dict['publisher-url'] = "$DEFAULTBASEURL/id$CURUSER[id]"; // change publisher-u
 $dict['publisher-url.utf-8'] = "$DEFAULTBASEURL/id$CURUSER[id]"; // change publisher-url.utf-8
 
 $infohash = sha1(BEncode($dict['info']));
+$sel = sql_query("SELECT id, name FROM torrents WHERE info_hash = \"".$infohash."\"");
+if(mysql_num_rows($sel)>0) {
+	$string = "";
+	while($row = mysql_fetch_assoc($sel)) {
+		$string .= "<a href=\"details.php?id=".$row['id']."\">".$row['name']."</a><br />";
+	}
+bark("Такая раздача уже есть:<br />".$string, true);
+}
 
 if (empty($_POST["multitr"])) {
 	if (!empty($dict['announce-list'])) {
@@ -196,7 +197,7 @@ if (empty($_POST["multitr"])) {
 		}
 	}
 }
-
+}
 
 //////////////////////////////////////////////
 //////////////Take Image Uploads//////////////
@@ -240,7 +241,7 @@ if (!($_FILES[image.$x]['name'] == "")) {
 $image=file_get_contents($_FILES[image.$x]['tmp_name']);
 if (!$image)
 bark("Не изображение");
- 
+
 validimage($_FILES[image.$x]["tmp_name"],"takeupload");
 
   	$ifilename = $next_id . $x . '.' . end(explode('.', $_FILES[image.$x]['name']));
@@ -249,9 +250,9 @@ validimage($_FILES[image.$x]["tmp_name"],"takeupload");
 	$copy = copy($ifile, $uploaddir.$ifilename);
 
 	if (!$copy)
-	bark("Ошибка копировании изображения на сервер $y");
+	bark("Ошибка копировании изображения на сервер $x<br />Техническая информация: ".base64_encode($ifile."\n".$uploaddir."\n".$ifilename));
 
-//водяной знак
+/*//водяной знак
 
 $margin = 7; 
 
@@ -315,7 +316,7 @@ elseif ($_FILES[image.$x]['type']=="image/jpg" or $_FILES[image.$x]['type']=="im
     imagejpeg($creimg,$ifn); 
 elseif ($_FILES[image.$x]['type']=="image/png") 
     imagepng($creimg,$ifn);
-
+*/
     $inames[$x] = $ifilename;  
 
 //водяной знак
@@ -349,12 +350,11 @@ $stats = (get_user_class() >= UC_MODERATOR ? "3" : "0");
 $statu = (get_user_class() >= UC_MODERATOR ? sqlesc($CURUSER["id"]) : "0");
 
 
-$ret = sql_query("INSERT INTO torrents (search_text, filename, owner, visible, sticky, info_hash, multi_infohash, name, size, numfiles, type, descr, ori_descr, youtube, multitracker, free, image1, image2, image3, image4, image5, image6, category, save_as, added, last_action, kp, relizgroup, status, modby, addtime) VALUES (" . implode(",", array_map("sqlesc", array(searchfield("$shortfname $dname $torrent"), $filename, $CURUSER["id"], $visible, $sticky, $infohash, $multi_infohash, $torrent, $totallen, count($filelist), $type, $descr, $descr, $youtube, $multut, $free, $inames[0], $inames[1], $inames[2], $inames[3], $inames[4],$inames[5], intval($_POST["type"]), $namet.$dname))) . ", '" . get_date_time() . "', '" . get_date_time() . "', ".sqlesc($kp).", '$reliz', ".$stats.", ".$statu.", UNIX_TIMESTAMP());");
+$ret = sql_query("INSERT INTO torrents (search_text, filename, owner, visible, sticky, info_hash, multi_infohash, name, size, numfiles, type, descr, ori_descr, youtube, multitracker, free, image1, image2, image3, image4, image5, image6, category, save_as, added, last_action, kp, relizgroup, status, modby, addtime, future) VALUES (" . implode(",", array_map("sqlesc", array(searchfield("$shortfname $dname $torrent"), $filename, $CURUSER["id"], $visible, $sticky, $infohash, $multi_infohash, $torrent, $totallen, count($filelist), $type, $descr, $descr, $youtube, $multut, $free, $inames[0], $inames[1], $inames[2], $inames[3], $inames[4],$inames[5], intval($_POST["type"]), $namet.$dname))) . ", '" . get_date_time() . "', '" . get_date_time() . "', ".sqlesc($kp).", '$reliz', ".$stats.", ".$statu.", UNIX_TIMESTAMP(), \"".$is_future."\");");
 
 if (!$ret) {
 if (mysql_errno() == 1062)
-bark("torrent already uploaded!");
-bark("mysql puked: ".mysql_error());
+bark("torrent already uploaded!<br />".mysql_error());
 }
 
 $id = mysql_insert_id();

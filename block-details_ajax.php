@@ -73,9 +73,8 @@ $name2 = preg_replace("/\(((\s|.)+?)\)/is", "", preg_replace("/\[((\s|.)+?)\]/is
 
 $proc = @similar_text($name1, $name2);
 
-if ($id <> $t["id"] && $proc >= $Torrent_Config["procents"]){
-    $t['name']=view_saves(htmlspecialchars_uni($t['name']));
-echo "<li><a href=\"details.php?id=".$t['id']."\">".($t['name'])."</a> ".($CURUSER ? "<a title=\"Нажмите, чтобы скачать файл\" href=\"download.php?id=".$t['id']."\">[".mksize($t["size"])."]</a>":"[".mksize($t["size"])."]")."</li>";
+if ($id <> $t["id"] && $proc >= $Torrent_Config["procents"]) {
+echo "<li><a href=\"details.php?id=".$t['id']."\">".view_saves(htmlspecialchars_uni($t['name']))."</a> ".($CURUSER ? "<a title=\"Нажмите, чтобы скачать файл\" href=\"download.php?id=".$t['id']."\">[".mksize($t["size"])."]</a>":"[".mksize($t["size"])."]")."</li>";
 
 $pogre[] = $proc;
 $num_p = 1;
@@ -262,11 +261,7 @@ while($scrape = mysql_fetch_array($sres)) {
 }
 
 
-if(!empty($row['multi_infohash'])) {
-	$rows = $row['multi_infohash'];
-} else {
-	$rows = $row['info_hash'];
-}
+$rows = $row['info_hash'];
 
 $announce_urls[] = $DEFAULTBASEURL."/announce.php?passkey=".$CURUSER['passkey'];
 $announce_urls[] = "http://corbinaretracker.dyndns.org:80/announce.php";
@@ -275,7 +270,7 @@ $announce_urls[] = "udp://tracker.publicbt.com:80/announce";
 $announce_urls[] = "udp://bt.rutor.org:2710";
 $announce_urls[] = "http://tracker2.torrentino.com/announce";
 $announce_urls[] = "udp://tracker.openbittorrent.com:80/announce";
-$announce_urls[] = "http://bt.nnm-club.info:2710/003c0589569f75ccc933a385abd268bb/announce";
+//$announce_urls[] = "http://bt.nnm-club.info:2710/003c0589569f75ccc933a385abd268bb/announce";
 
 $nannounce_urls = array_merge($announce_urls, $sql_ann);
 $nannounce_urls = array_unique($nannounce_urls);
@@ -355,19 +350,16 @@ while($scrape = mysql_fetch_array($sres)) {
 }
 
 
-if(!empty($torrent['multi_infohash'])) {
-	$rows = $torrent['multi_infohash'];
-} else {
 	$rows = $torrent['info_hash'];
-}
 
+$announce_urls[] = $DEFAULTBASEURL."/announce.php?passkey=".$CURUSER['passkey'];
 $announce_urls[] = "http://corbinaretracker.dyndns.org:80/announce.php";
 $announce_urls[] = "udp://tracker.prq.to/announce";
 $announce_urls[] = "udp://tracker.publicbt.com:80/announce";
 $announce_urls[] = "udp://bt.rutor.org:2710";
 $announce_urls[] = "http://tracker2.torrentino.com/announce";
 $announce_urls[] = "udp://tracker.openbittorrent.com:80/announce";
-$announce_urls[] = "http://bt.nnm-club.info:2710/003c0589569f75ccc933a385abd268bb/announce";
+//$announce_urls[] = "http://bt.nnm-club.info:2710/003c0589569f75ccc933a385abd268bb/announce";
 $nannounce_urls = array_merge($announce_urls, $sql_ann);
 $nannounce_urls = array_unique($nannounce_urls);
     

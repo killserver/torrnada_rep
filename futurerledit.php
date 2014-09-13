@@ -7,45 +7,38 @@ loggedinorreturn();
 if (!mkglobal("id"))
 stderr("Ошибка", "Введите ID");
 $id = (int) $_GET["id"];
-if (!$id){
+if (!$id) {
 stderr("Ошибка", "Введите ID");
 die();
 }
 
 $act = $_GET['act'];
-
-if($act == 'delete'){
+if($act == 'delete') {
 
 if (get_user_class() <  UC_MODERATOR || $CURUSER['id']!=8505)
 stderr("Woot!", "Fuck off.........");
 
-$id = (int) $_POST['id'];
-
-mysql_query("DELETE FROM futurerls WHERE id=$id");
-mysql_query("DELETE FROM comments WHERE trailers=$id");
+$id = (int) $_GET['id'];
+sql_query("DELETE FROM futurerls WHERE id=".$id) or sqlerr();
+sql_query("DELETE FROM comments WHERE trailer=".$id) or sqlerr();
 header("Refresh: 0; url=futurerls.php");
 die();
 }
 
-if($act == 'takerelease'){
-
-
-$downid = $_POST["download"];
-
-mysql_query("UPDATE futurerls SET download=$downid WHERE id=$id");
-
+if($act == 'takerelease') {
+$downid = saves($_POST["download"]);
+sql_query("UPDATE futurerls SET download=".$downid." WHERE id=".$id) or sqlerr();
 header("Refresh: 0; url=futurerls.php");
-
 die();
 }
 
-if($act == 'take'){
+if($act == 'take') {
 stdhead();
 begin_frame("Выполнение ожидаемого релиза");
 
-print("<center><form action=\"futurerledit.php?act=takerelease&id=$id\" name=\"takerelease\" method=post>\n");
+print("<center><form action=\"futurerledit.php?act=takerelease&id=".$id."\" name=\"takerelease\" method=\"post\">\n");
 print("<b>Введите ID релиза:</b> <input type='text' name='download'  size='30' /> ");
-print("<input type=\"hidden\" name=\"id\" value=\"$id\">\n"); 
+print("<input type=\"hidden\" name=\"id\" value=\"".$id."\">\n"); 
 print(" <input type=submit class=btn value='Выполнить!'>\n");
 print("</form>\n");
 end_frame();
@@ -53,18 +46,18 @@ stdfoot();
 die();
 }
 
-$res = mysql_query("SELECT futurerls.id, futurerls.cat, futurerls.name, futurerls.userid, futurerls.trailer, futurerls.comments, futurerls.added, futurerls.realeasedate, futurerls.descr, users.username FROM futurerls LEFT JOIN users ON users.id=futurerls.userid WHERE futurerls.id = $id")or sqlerr();
+$res = sql_query("SELECT futurerls.id, futurerls.cat, futurerls.name, futurerls.userid, futurerls.trailer, futurerls.comments, futurerls.added, futurerls.realeasedate, futurerls.descr, users.username FROM futurerls LEFT JOIN users ON users.id=futurerls.userid WHERE futurerls.id = ".$id) or sqlerr();
 $row = mysql_fetch_array($res);
 if (!$row)	
 stderr("Ошибка", "Неверный релиз");
 $id = (int) $_GET["id"];
 if (!$id)
 die();
-if ($CURUSER["id"] != $row["userid"] && get_user_class() < UC_POWER_USER){
+if ($CURUSER["id"] != $row["userid"] && get_user_class() < UC_POWER_USER) {
 stderr("Ошибка", "Вы не можете редактировать этот ожидаемый релиз.");
 }
-$where = "WHERE userid = " . $CURUSER["id"] . "";
-$res2 = mysql_query("SELECT * FROM futurerls $where") or sqlerr();
+$where = "WHERE userid = " . $CURUSER["id"];
+$res2 = sql_query("SELECT * FROM futurerls ".$where) or sqlerr();
 $num2 = mysql_num_rows($res2);
 stdhead("Редактирование ожилаемого релиза");
 begin_frame("Редактирование ожилаемого релиза");
@@ -111,12 +104,12 @@ foreach($cats as $subrow) {
 $s .= "</select>\n";
 
 print("<b>Категория:</b> ".$s."<br />");
-print("<input type=\"hidden\" name=\"id\" value=\"$id\">\n");
+print("<input type=\"hidden\" name=\"id\" value=\"".$id."\">\n");
 print("<input type=submit class=btn value='Изменить!'>\n");
 print("</form>\n");
 
 print("<form method=\"post\" action=\"futurerledit.php?act=delete&id=".$id."\">\n");
-print("<input type=\"hidden\" name=\"id\" value=\"$id\">\n"); 
+print("<input type=\"hidden\" name=\"id\" value=\"".$id."\">\n"); 
 print("<input type=submit value='Удалить!' style='height: 20px'>\n");
 
 end_frame();

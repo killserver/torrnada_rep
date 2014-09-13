@@ -369,7 +369,7 @@ foreach ($filelist as $file) {
 }
 
 sql_query('REPLACE INTO torrents_index (torrent, descr) VALUES ('.implode(', ', array_map('sqlesc', array($id, strip_bbcode($descr)))).')') or sqlerr();
-
+sql_query("UPDATE torrents SET addtime = UNIX_TIMESTAMP(added)");
 
 move_uploaded_file($tmpname, $torrent_dir."/".$id.".torrent");
 

@@ -439,6 +439,7 @@ $updateset[] = "modby=".sqlesc($CURUSER["id"]);
 }*/
 
 sql_query("UPDATE torrents SET " . join(",", $updateset) . " WHERE id = ".$id) or sqlerr();
+sql_query("UPDATE torrents SET addtime = UNIX_TIMESTAMP(added)");
 
 
 @unlink('cache/details/details_id'.$id.'.txt');

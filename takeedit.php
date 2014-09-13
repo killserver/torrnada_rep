@@ -180,13 +180,6 @@ for ($x=1; $x <= 6; $x++) {
 if (isset($_FILES["tfile"]) && !empty($_FILES["tfile"]["name"]))
 	$update_torrent = true;
 
-$is_future = "yes";
-$infohash = $multi_infohash = sha1($id."|".$row['name']);
-if(!isset($_POST['future']) || $_POST['future']!="yes") {
-	$is_future = "no";
-	$update_torrent = false;
-}
-
 if ($update_torrent) {
 	$f = $_FILES["tfile"];
 	$fname = unesc($f["name"]);
@@ -390,7 +383,7 @@ if(get_user_class() >= UC_ADMINISTRATOR) {
 	$updateset[] = "free = '".htmlspecialchars_uni($_POST["free"])."'";
 }
 $updateset[] = "visible = '" . ($_POST["visible"] ? "yes" : "no") . "'";
-$updateset[] = "future = \"".$is_future."\"";
+$updateset[] = "future = \"no\"";
 
 /*if(get_user_class() >= UC_MODERATOR){
 $updateset[] = "moderated = 'yes'";

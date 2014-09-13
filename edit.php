@@ -53,7 +53,6 @@ if(!isset($CURUSER) || ($CURUSER["id"] != $row["owner"] && get_user_class() < UC
 	if (isset($_GET["returnto"]))
 		print("<input type=\"hidden\" name=\"returnto\" value=\"" . htmlspecialchars_uni($_GET["returnto"]) . "\" />\n");
 
-	tr("Ожидаемый релиз", "<label><input type=\"checkbox\" ".(!empty($name_link)? "checked":"")." name=\"future\" value=\"yes\"" .($row["future"] == "yes" ? " checked=\"checked\"" : "")."><i>Включить / Выключить.</i> </label><br>Если включена эта опция - торрент-файл игнорируется!", 1);
 	tr("Мульти-трекер <font color=red>*</font>", "<label><input type=radio name=multitr value=yes" .($row["multitracker"] == "yes" ? " checked=\"checked\"" : "").">Да </label><label><input type=radio name=multitr value=no" .($row["multitracker"] == "no" ? " checked" : "").">Нет </label><i>Разрешить / Запретить подключение внешних сидов и пиров (для обеспечения max скорости скачивания)</i> <br>Работает только с обновлением torrent файла (<b>вкладка ниже</b>)", 1);
 
 

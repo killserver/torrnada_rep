@@ -72,15 +72,11 @@ if (!is_valid_id($catid))
 bark("Вы должны выбрать категорию, в которую поместить торрент!");
 
 //alter table torrents add future enum('yes','no') not null default 'no', add key `future`(`future`);
-$is_future = "yes";
-$shortfname = ToTranslit($_POST['name']);
 $torrent = htmlspecialchars_uni($_POST["name"]);
 $ret = sql_query("SHOW TABLE STATUS LIKE 'torrents'");
 $row = mysql_fetch_array($ret);
 $next_id = $row['Auto_increment'];
-$infohash = sha1($next_id."|".$torrent);
-if(!isset($_POST['future']) || $_POST['future']!="yes") {
-$is_future = "no";
+
 $f = $_FILES["tfile"];
 $fname = trim($f["name"]);
 
@@ -196,7 +192,6 @@ if (empty($_POST["multitr"])) {
 			sql_query('REPLACE INTO torrents_scrape (tid, info_hash, url) VALUES ('.implode(', ', array_map('sqlesc', array($next_id, $infohash, $al_url[0]))).')') or sqlerr(__FILE__,__LINE__);
 		}
 	}
-}
 }
 
 //////////////////////////////////////////////
@@ -350,7 +345,7 @@ $stats = (get_user_class() >= UC_MODERATOR ? "3" : "0");
 $statu = (get_user_class() >= UC_MODERATOR ? sqlesc($CURUSER["id"]) : "0");
 
 
-$ret = sql_query("INSERT INTO torrents (search_text, filename, owner, visible, sticky, info_hash, multi_infohash, name, size, numfiles, type, descr, ori_descr, youtube, multitracker, free, image1, image2, image3, image4, image5, image6, category, save_as, added, last_action, kp, relizgroup, status, modby, addtime, future) VALUES (" . implode(",", array_map("sqlesc", array(searchfield("$shortfname $dname $torrent"), $filename, $CURUSER["id"], $visible, $sticky, $infohash, $multi_infohash, $torrent, $totallen, count($filelist), $type, $descr, $descr, $youtube, $multut, $free, $inames[0], $inames[1], $inames[2], $inames[3], $inames[4],$inames[5], intval($_POST["type"]), $namet.$dname))) . ", '" . get_date_time() . "', '" . get_date_time() . "', ".sqlesc($kp).", '$reliz', ".$stats.", ".$statu.", UNIX_TIMESTAMP(), \"".$is_future."\");");
+$ret = sql_query("INSERT INTO torrents (search_text, filename, owner, visible, sticky, info_hash, multi_infohash, name, size, numfiles, type, descr, ori_descr, youtube, multitracker, free, image1, image2, image3, image4, image5, image6, category, save_as, added, last_action, kp, relizgroup, status, modby, addtime, future) VALUES (" . implode(",", array_map("sqlesc", array(searchfield("$shortfname $dname $torrent"), $filename, $CURUSER["id"], $visible, $sticky, $infohash, $multi_infohash, $torrent, $totallen, count($filelist), $type, $descr, $descr, $youtube, $multut, $free, $inames[0], $inames[1], $inames[2], $inames[3], $inames[4],$inames[5], intval($_POST["type"]), $namet.$dname))) . ", '" . get_date_time() . "', '" . get_date_time() . "', ".sqlesc($kp).", '$reliz', ".$stats.", ".$statu.", UNIX_TIMESTAMP(), \"no\");");
 
 if (!$ret) {
 if (mysql_errno() == 1062)

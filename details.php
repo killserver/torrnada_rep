@@ -176,7 +176,7 @@ if (!is_valid_id($id) || empty($id))
 header("Refresh: 0; url=browse.php");
 
 
-$res = sql_query("SELECT td.descr_hash, td.descr_parsed, torrents.future, torrents.block_edit, torrents.karmushka, torrents.kp, torrents.multitracker, torrents.category, torrents.youtube, torrents.relizgroup, torrents.new, torrents.comment_lock, (SELECT username FROM users WHERE id = torrents.modby) as modby, (SELECT class FROM users WHERE id = torrents.modby) as modbyclass, torrents.banned, torrents.info_hash, torrents.filename, UNIX_TIMESTAMP() - UNIX_TIMESTAMP(torrents.last_action) AS lastseed, torrents.numratings, torrents.name, torrents.owner, torrents.save_as, torrents.descr, torrents.visible, torrents.size, torrents.added, torrents.views, torrents.hits, torrents.times_completed, torrents.id, torrents.type, torrents.numfiles, torrents.image1, torrents.image2, torrents.image3, torrents.image4, torrents.image5, torrents.image6, torrents.status, categories.name AS cat_name, users.username " . ($CURUSER ? ", (SELECT COUNT(*) FROM karma WHERE cat='torrents' AND uid = $CURUSER[id] AND pid = $id) AS ktotal" : "") . " FROM torrents LEFT JOIN categories ON torrents.category = categories.id LEFT JOIN users ON torrents.owner = users.id LEFT JOIN torrents_descr AS td ON td.tid = $id WHERE torrents.id = $id", 86400,"details/details_id".$id.".txt")
+$res = sql_query("SELECT td.descr_hash, td.descr_parsed, torrents.block_edit, torrents.karmushka, torrents.kp, torrents.multitracker, torrents.category, torrents.youtube, torrents.relizgroup, torrents.new, torrents.comment_lock, (SELECT username FROM users WHERE id = torrents.modby) as modby, (SELECT class FROM users WHERE id = torrents.modby) as modbyclass, torrents.banned, torrents.info_hash, torrents.filename, UNIX_TIMESTAMP() - UNIX_TIMESTAMP(torrents.last_action) AS lastseed, torrents.numratings, torrents.name, torrents.owner, torrents.save_as, torrents.descr, torrents.visible, torrents.size, torrents.added, torrents.views, torrents.hits, torrents.times_completed, torrents.id, torrents.type, torrents.numfiles, torrents.image1, torrents.image2, torrents.image3, torrents.image4, torrents.image5, torrents.image6, torrents.status, categories.name AS cat_name, users.username " . ($CURUSER ? ", (SELECT COUNT(*) FROM karma WHERE cat='torrents' AND uid = $CURUSER[id] AND pid = $id) AS ktotal" : "") . " FROM torrents LEFT JOIN categories ON torrents.category = categories.id LEFT JOIN users ON torrents.owner = users.id LEFT JOIN torrents_descr AS td ON td.tid = $id WHERE torrents.id = $id", 86400,"details/details_id".$id.".txt")
         or sqlerr(__FILE__, __LINE__);
 
 //$row = mysql_fetch_array($res);
@@ -300,8 +300,6 @@ if($row["status"] == "1" && get_user_class() < UC_MODERATOR) {
 	$s = "Правообладатель закрыл этот торрент."; 
 } elseif($row["status"] == "8") {
 	$s = "Торрент был поглощён"; 
-} elseif($row["future"] == "yes") {
-	$s = ($row["new"] == "yes" ? "<center><b><img src=\"pic/new.gif\">":"</b></center>") ."<b>" . $row["name"] . "</b>"; 
 }
 if($row["status"] == "0" && get_user_class() < UC_MODERATOR) {
 	$s = "<b>".$row['name']."</b><br /><h2><font color=\"red\">Данный релиз находится на проверке. После проверки - релиз будет доступен к скачиванию. Благодарим за понимание!</font></h2>"; 
@@ -530,11 +528,9 @@ if($row["status"] == "0" && get_user_class() < UC_MODERATOR){
 		$link = "<a href=\"download.php?id=$id&amp;name=[torrnada.ru]_".rawurlencode($row["filename"])."\"><b><img src=pic/button2.png></b></a>";
 	}
 }
-if($row["future"] != "yes") {
+
 tr ("", $link."<br /><left><div class='pluso pluso-theme-color pluso-round' style='background:#eaeaea;'><div class='pluso-more-container'><a class='pluso-more' href=''></a><ul class='pluso-counter-container'><li></li><li class='pluso-counter'></li><li></li></ul></div><a class='pluso-facebook'></a><a class='pluso-twitter'></a><a class='pluso-vkontakte'></a><a class='pluso-odnoklassniki'></a><a class='pluso-google'></a><a class='pluso-livejournal'></a><a class='pluso-moimir'></a><a class='pluso-liveinternet'></a></div><script type='text/javascript'>if(!window.pluso){pluso={version:'0.9.2',url:'http://share.pluso.ru/'};h=document.getElementsByTagName('head')[0];l=document.createElement('link');l.href=pluso.url+'pluso.css';l.type='text/css';l.rel='stylesheet';s=document.createElement('script');s.charset='UTF-8';s.src=pluso.url+'pluso.js';h.appendChild(l);h.appendChild(s)}</script></left>", 1);
-} else {
-tr ("", "<h2>Ожидается!</h2><br /><left><div class='pluso pluso-theme-color pluso-round' style='background:#eaeaea;'><div class='pluso-more-container'><a class='pluso-more' href=''></a><ul class='pluso-counter-container'><li></li><li class='pluso-counter'></li><li></li></ul></div><a class='pluso-facebook'></a><a class='pluso-twitter'></a><a class='pluso-vkontakte'></a><a class='pluso-odnoklassniki'></a><a class='pluso-google'></a><a class='pluso-livejournal'></a><a class='pluso-moimir'></a><a class='pluso-liveinternet'></a></div><script type='text/javascript'>if(!window.pluso){pluso={version:'0.9.2',url:'http://share.pluso.ru/'};h=document.getElementsByTagName('head')[0];l=document.createElement('link');l.href=pluso.url+'pluso.css';l.type='text/css';l.rel='stylesheet';s=document.createElement('script');s.charset='UTF-8';s.src=pluso.url+'pluso.js';h.appendChild(l);h.appendChild(s)}</script></left>", 1);
-}
+
                  if ($row["youtube"] <> NULL) {
 tr("Видео", '<a href="javascript: show_hide(\'s2\')"> 
          <marquee onmouseover=this.stop() onmouseout=this.start() scrollAmount=5 scrollDelay=1 direction=right  border=1> 
@@ -578,11 +574,9 @@ $reliz_group = "<img src=\"pic/reliz-grup/$rel[img]\" title=\"$rel[link]\">";
 }
 
 
-		if($row["future"] != "yes") {
-			tr($tracker_lang['info_hash'], $row["info_hash"]);
-			if ($row["visible"] == "no")
-				tr($tracker_lang['visible'], "<b>".$tracker_lang['no']."</b> (".$tracker_lang['dead'].")", 1);
-		}
+		tr($tracker_lang['info_hash'], $row["info_hash"]);
+		if ($row["visible"] == "no")
+			tr($tracker_lang['visible'], "<b>".$tracker_lang['no']."</b> (".$tracker_lang['dead'].")", 1);
                 if ($moderator)
                         tr($tracker_lang['banned'], ($row["banned"] == 'no' ? $tracker_lang['no'] : $tracker_lang['yes']) );
 
@@ -591,10 +585,8 @@ $reliz_group = "<img src=\"pic/reliz-grup/$rel[img]\" title=\"$rel[link]\">";
                 else
                         tr($tracker_lang['type'], "(".$tracker_lang['no_choose'].")");
 
-		if($row["future"] != "yes") {
-			tr($tracker_lang['seeder'], $tracker_lang['seeder_last_seen']." ".mkprettytime($row["lastseed"]) . " ".$tracker_lang['ago']);
-			tr($tracker_lang['size'],mksize($row["size"]) . " (" . number_format($row["size"]) . " ".$tracker_lang['bytes'].")");
-		}
+		tr($tracker_lang['seeder'], $tracker_lang['seeder_last_seen']." ".mkprettytime($row["lastseed"]) . " ".$tracker_lang['ago']);
+		tr($tracker_lang['size'],mksize($row["size"]) . " (" . number_format($row["size"]) . " ".$tracker_lang['bytes'].")");
 
 
                 tr($tracker_lang['added'], $row["added"]);
@@ -610,7 +602,7 @@ $reliz_group = "<img src=\"pic/reliz-grup/$rel[img]\" title=\"$rel[link]\">";
 
 
 
-if(!empty($CURUSER['id']) && $row["future"] != "yes") {
+if(!empty($CURUSER['id'])) {
 				$FileList="<div id=\"GetFileList\"><a href=\"#\">Показать список(Кол-во файлов: ".$row["numfiles"].")</a></div><div></div>
 					<script language=javascript>
 						jQuery('#GetFileList > a').click(function() {
@@ -662,7 +654,7 @@ ajax.sendAJAX(varsString);
 <?
 }
 
-if (!isset($_GET["dllist"]) && $row["future"] != "yes") {
+if (!isset($_GET["dllist"])) {
 echo '<script>
 function multion() {
 jQuery.post("block-details_ajax.php" , {action:"multion", id:"'.$id.'"}, function(response) {
@@ -674,7 +666,7 @@ setTimeout("multion();", 1000);
 </script>';
 
 tr($tracker_lang['thistracker'], "<div id=\"multion\">".$tracker_lang['thistracker']." - ".$tracker_lang['load_and_update']."</div>",1);
-} elseif($row["future"] != "yes") {
+} else {
 	$downloaders = array();
 	$seeders = array();
 	$subres = sql_query("SELECT seeder, finishedat, downloadoffset, uploadoffset, peers.ip, port, peers.uploaded, peers.downloaded, to_go, UNIX_TIMESTAMP(started) AS st, connectable, agent, peer_id, UNIX_TIMESTAMP(last_action) AS la, UNIX_TIMESTAMP(prev_action) AS pa, userid, users.username, users.class FROM peers INNER JOIN users ON peers.userid = users.id WHERE torrent = $id") or sqlerr(__FILE__, __LINE__);
@@ -714,7 +706,6 @@ tr($tracker_lang['thistracker'], "<div id=\"multion\">".$tracker_lang['thistrack
 	tr("<a name=\"leechers\">{$tracker_lang['details_leeching']}</a><br /><a href=\"details.php?id=$id$keepget\" class=\"sublink\">[{$tracker_lang['close_list']}]</a>", dltable($tracker_lang['details_leeching'], $downloaders, $row), 1);
 }
 
-if($row["future"] != "yes") {
 if (!empty($CURUSER['id']) && $Functs_Patch["multitracker"] == true && $row["multitracker"] == "yes") {
 echo '<script>
 function one_mult() {
@@ -810,8 +801,6 @@ tr($tracker_lang['multitracker'], "<div id=\"multioff\">".$tracker_lang['multitr
 
 
                         tr($tracker_lang['torrent_info'], "<a href=\"torrent_info.php?id=$id\">".$tracker_lang['show_data']."</a>", 1);
-
-}
 
 if($CURUSER) {
 

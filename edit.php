@@ -53,14 +53,14 @@ if(!isset($CURUSER) || ($CURUSER["id"] != $row["owner"] && get_user_class() < UC
 	if (isset($_GET["returnto"]))
 		print("<input type=\"hidden\" name=\"returnto\" value=\"" . htmlspecialchars_uni($_GET["returnto"]) . "\" />\n");
 
-	tr("Мульти-трекер <font color=red>*</font>", "<label><input type=radio name=multitr value=yes" .($row["multitracker"] == "yes" ? " checked" : "").">Да </label><label><input type=radio name=multitr value=no" .($row["multitracker"] == "no" ? " checked" : "").">Нет </label><i>Разрешить / Запретить подключение внешних сидов и пиров (для обеспечения max скорости скачивания)</i> <br>Работает только с обновлением torrent файла (<b>вкладка ниже</b>)", 1);
+	tr("Ожидаемый релиз", "<label><input type=\"checkbox\" ".(!empty($name_link)? "checked":"")." name=\"future\" value=\"yes\"" .($row["future"] == "yes" ? " checked=\"checked\"" : "")."><i>Включить / Выключить.</i> </label><br>Если включена эта опция - торрент-файл игнорируется!", 1);
+	tr("Мульти-трекер <font color=red>*</font>", "<label><input type=radio name=multitr value=yes" .($row["multitracker"] == "yes" ? " checked=\"checked\"" : "").">Да </label><label><input type=radio name=multitr value=no" .($row["multitracker"] == "no" ? " checked" : "").">Нет </label><i>Разрешить / Запретить подключение внешних сидов и пиров (для обеспечения max скорости скачивания)</i> <br>Работает только с обновлением torrent файла (<b>вкладка ниже</b>)", 1);
 
 
 	tr($tracker_lang['torrent_file'], "<input type=file name=tfile size=80>\n", 1);
 	tr($tracker_lang['torrent_name'], "<input type=\"text\" name=\"name\" value=\"" . $row["name"] . "\" size=\"80\" />", 1);
 	tr($tracker_lang['img_poster'], "<input type=radio name=img1action value='keep' checked>Оставить постер&nbsp&nbsp"."<input type=radio name=img1action value='delete'>Удалить постер&nbsp&nbsp"."<input type=radio name=img1action value='update'>Обновить постер<br /><b>Постер:</b>&nbsp&nbsp<input type=file name=image0 size=80><br />".
-
-"<input type=radio name=img6action value='keep' checked>Оставить постер&nbsp&nbsp"."<input type=radio name=img6action value='delete'>Удалить постер&nbsp&nbsp"."<input type=radio name=img6action value='update'>Обновить постер<br /><b>Постер:</b>&nbsp&nbsp<input type=file name=image5 size=80><br />", 1);
+					"<input type=radio name=img6action value='keep' checked>Оставить постер&nbsp&nbsp"."<input type=radio name=img6action value='delete'>Удалить постер&nbsp&nbsp"."<input type=radio name=img6action value='update'>Обновить постер<br /><b>Постер:</b>&nbsp&nbsp<input type=file name=image5 size=80><br />", 1);
 	tr($tracker_lang['images'],
 		"<input type=radio name=img2action value='keep' checked>Оставить скриншот №1&nbsp&nbsp"."<input type=radio name=img2action value='delete'>Удалить скриншот №1&nbsp&nbsp"."<input type=radio name=img2action value='update'>Обновить скриншот №1<br /><b>Картинка №2:</b>&nbsp&nbsp<input type=file name=image1 size=80><br /><br />".
 		"<input type=radio name=img3action value='keep' checked>Оставить скриншот №2&nbsp&nbsp"."<input type=radio name=img3action value='delete'>Удалить скриншот №2&nbsp&nbsp"."<input type=radio name=img3action value='update'>Обновить скриншот №2<br /><b>Картинка №3:</b>&nbsp&nbsp<input type=file name=image2 size=80><br /><br />".
@@ -91,29 +91,26 @@ font-weight:bold;
 <?
 
 	$s = "<select name=\"type\">\n";
-
 	$cats = genrelist();
 	foreach ($cats as $subrow) {  
-        if ($subrow["parent"] == 0) {  
-            $s .= "<option class='bigcat' label=\"\">".$subrow["name"]."";  
-            foreach ($cats as $grp) {  
-                if ($grp["parent"] == $subrow["id"]){  
-                    $s .= "<option value=\"" . $grp["id"]. "\"";  
-                    if ($grp["id"] == $row["category"])  
+                if ($subrow["parent"] == 0) {  
+                    $s .= "<option class='bigcat' label=\"\">".$subrow["name"]."";  
+                    foreach ($cats as $grp) {  
+                        if ($grp["parent"] == $subrow["id"]){  
+                            $s .= "<option value=\"" . $grp["id"]. "\"";  
+                            if ($grp["id"] == $row["category"])  
+                                $s .= " selected=\"selected\"";  
+                            $s .= ">" . htmlspecialchars_uni($grp["name"]) . "</option>\n";  
+                        }  
+                    }  
+                    $s .= "</option>";  
+                } elseif ($subrow["parent"] == -1){  
+                    $s .= "<option value=\"" . $subrow["id"] . "\"";  
+                    if ($subrow["id"] == $row["category"])  
                         $s .= " selected=\"selected\"";  
-                    $s .= ">" . htmlspecialchars_uni($grp["name"]) . "</option>\n";  
-                }  
-            }  
-            $s .= "</option>";  
-        }  
-        elseif ($subrow["parent"] == -1){  
-            $s .= "<option value=\"" . $subrow["id"] . "\"";  
-            if ($subrow["id"] == $row["category"])  
-                $s .= " selected=\"selected\"";  
-            $s .= ">" . htmlspecialchars_uni($subrow["name"]) . "</option>\n";  
-        }  
+                    $s .= ">" . htmlspecialchars_uni($subrow["name"]) . "</option>\n";  
+                }
 	}
-
 	$s .= "</select>\n";
 	tr("Тип", $s, 1);
 

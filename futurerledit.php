@@ -19,8 +19,10 @@ if (get_user_class() <  UC_MODERATOR || $CURUSER['id']!=8505)
 stderr("Woot!", "Fuck off.........");
 
 $id = (int) $_GET['id'];
-sql_query("DELETE FROM futurerls WHERE id=".$id) or sqlerr();
-sql_query("DELETE FROM comments WHERE trailer=".$id) or sqlerr();
+if($id>0) {
+	sql_query("DELETE FROM futurerls WHERE id=".$id) or sqlerr();
+	sql_query("DELETE FROM comments WHERE trailer=".$id) or sqlerr();
+}
 header("Refresh: 0; url=futurerls.php");
 die();
 }

@@ -15,15 +15,14 @@ die();
 $act = $_GET['act'];
 if($act == 'delete') {
 
-if (get_user_class() <  UC_MODERATOR || $CURUSER['id']!=8505)
+if(get_user_class() < UC_MODERATOR)
 stderr("Woot!", "Fuck off.........");
-
 $id = (int) $_GET['id'];
 if($id>0) {
 	sql_query("DELETE FROM futurerls WHERE id=".$id) or sqlerr();
 	sql_query("DELETE FROM comments WHERE trailer=".$id) or sqlerr();
 }
-header("Refresh: 0; url=futurerls.php");
+header("Location: futurerls.php");
 die();
 }
 

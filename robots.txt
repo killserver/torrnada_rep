@@ -5,6 +5,9 @@ Disallow: /recover.php
 Disallow: /rules.php
 Disallow: /download.php
 Disallow: /download_file.php
+Disallow: /*.swf
+Disallow: /*.js$
+Disallow: /*.css$
 Allow: /
 Crawl-delay: 0.1
 Sitemap: http://torrnada.ru/sitemap.xml

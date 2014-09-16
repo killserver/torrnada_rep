@@ -77,6 +77,85 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
             print(format_comment($user['info']));
         die();
     }
+    elseif ($act == "presents")
+    {
+echo "<table width=\"100%\">";
+///////////////////////////////////////////////////////////////
+  //[jQuery]Подарки by Женадий
+  ///////////////////////////////////////////////////////////////
+  ?>
+  <link rel="stylesheet" href="presents/system/css/style.css" type="text/css">
+  <link rel="stylesheet" href="presents/system/css/box.css" type="text/css">
+  <script src="presents/system/js/main.js"> </script>
+  <div class="popup_box_container message_box" id="box_present" style="width: 600px; height: auto;top: 250px; margin-left: -310px;display:none">
+	<div class="box_layout" >
+	<div class="box_title_wrap">
+	<div class="box_title">Просмотр подарка</div>
+
+	</div>
+	<div class="box_body" style="padding: 0pt;">
+	<div class="simplePage" style="line-height: 170%; padding-bottom: 20px;">
+	<a name="Подарить подарок"/>
+	<div style="" align=left>
+	<div id="res_present"></div>
+
+
+	</div>
+	</div>
+
+	</div>
+	</div>
+	<div class="box_controls_wrap">
+	<div class="box_controls">
+
+
+	<div class="button_no">
+	<div id="check_exit">Закрыть</div>
+	</div>
+
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	<script>
+
+	//Отмена
+	$("#check_exit").click(function() {
+		$("#box_present").fadeOut("slow"); //Выводим в эффектом
+	});
+ 
+	</script>
+  <?
+  $present = sql_query("SELECT p.* ,p.id AS p_id, u.id AS user_id, u.username, u.avatar, u .class,
+						pl.pic AS p_pic
+						FROM presents AS p
+						LEFT JOIN users AS u ON u.id=p.id_user_to
+						LEFT JOIN presents_list  AS pl ON pl.id=p.id_present
+						WHERE p.id_user=".sqlesc($id)." 
+						ORDER BY p.added DESC LIMIT 4") or die(mysql_error());
+		
+
+  
+
+  echo '<tr><td colspan="2"> ';
+  echo '<span class=argmore1><font class=small> <a href="presents.add.php?id='.$id.'" >Подарить</a></font></span>';
+  echo '<span class=argmore><font class=small> <a href="presents.my.php" onClick="all_present('.$id.')">Все</a></font></span>';
+  if(!mysql_num_rows($present))
+	stdmsg("Подарков нет");
+  else {
+		$kolonok = 4;
+		echo '<table cellspacing="0" border="0" width="100%" id="all_present">';
+		while($row = mysql_fetch_object($present)) {
+			print(($c && $c % $kolonok == 0) ? "</td><tr>" : "");
+			echo '<td id="present_'.$row->id.'" width="1%" style="border:none" onClick="info_present('.$row->p_id.'); "><center><img src="presents/'.$row->p_pic.'" border="0" width="200"><br>'.htmlspecialchars($row->text).'</center></td>';
+			$c++;
+		}
+		echo '</table>';
+  }	
+  echo '</td></tr>';
+echo "</table>";
+    }
     elseif ($act == "friends")
     {
         $res = sql_query("SELECT f.friendid as id, u.username AS name, u.class, u.avatar, u.gender, u.title, u.donor, u.warned, u.enabled, u.last_access FROM friends AS f LEFT JOIN users as u ON f.friendid = u.id WHERE f.userid=$id AND f.status = 'yes' ORDER BY name") or sqlerr(__FILE__, __LINE__);
@@ -170,14 +249,65 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
     }
     elseif ($act == "uploaded")
     {
-        $res = sql_query("SELECT t.id, t.name, t.added, (t.f_seeders + t.seeders) as seeders, (t.f_leechers + t.leechers) as leechers, t.category, c.name AS catname, c.image AS catimage, c.id AS catid FROM torrents AS t LEFT JOIN categories AS c ON t.category = c.id WHERE t.owner = ".$id." ORDER BY t.name") or sqlerr(__FILE__, __LINE__);
+        $res = sql_query("SELECT t.addtime, t.id, t.name, t.added, (t.f_seeders + t.seeders) as seeders, (t.f_leechers + t.leechers) as leechers, t.category, c.name AS catname, c.image AS catimage, c.id AS catid FROM torrents AS t LEFT JOIN categories AS c ON t.category = c.id WHERE t.owner = ".$id." ORDER BY t.addtime DESC") or sqlerr(__FILE__, __LINE__);
         if (mysql_num_rows($res) > 0)
         {
             print("<table class=\"tt\">\n" .
             "<tr><td class=\"tt\" style=\"padding:0;margin:0;width:45px;\" align=\"center\"><img src=\"pic/genre.gif\" title=\"Категория\" alt=\"\" /></td><td class=\"tt\"><img src=\"pic/release.gif\" title=\"Название\" alt=\"\" /></td><td class=\"tt\" width=\"30\" align=\"center\"><img src=\"pic/seeders.gif\" title=\"Раздают\" alt=\"\" /></td><td class=\"tt\" width=\"30\" align=\"center\"><img src=\"pic/leechers.gif\" title=\"Качают\" alt=\"\" /></td></tr>\n");
+            $num_torr = array();
+            $roll = sql_query("SELECT addtime FROM torrents WHERE owner = ".$id." ORDER BY addtime DESC") or sqlerr(__FILE__, __LINE__);
+            while ($rows = mysql_fetch_assoc($roll))
+            {
+                   $nam = date('jmY', $rows['addtime']);
+                   if(isset($num_torr[$nam])) {
+                        $num_torr[$nam] += 1;
+                   } else {
+                        $num_torr[$nam] = 1;
+                   }
+            }
             while ($row = mysql_fetch_assoc($res))
             {
-		        $cat = "<a href=\"browse.php?cat=".$row['catid']."\"><img src=\"pic/cats/".$row['catimage']."\" alt=\"".$row['catname']."\" border=\"0\" /></a>";
+		$day_added = $row['addtime'];
+		$thisdate = date('Y-m-d',$day_added);
+		if($thisdate==$prevdate) {
+			$cleandate = '';
+		} else {
+			$day_added = '  '.date('l d M Y', $row['addtime']);
+			$dat = date('jmY', $row['addtime']);
+			$cleandate = "<tr><td colspan=15 class=colhead>Торренты за ".$day_added."(".$num_torr[$dat].")</td></tr>\n";
+		}
+		$prevdate = $thisdate;
+		$man = array(
+			'Jan' => 'Января',
+			'Feb' => 'Февраля',
+			'Mar' => 'Марта',
+			'Apr' => 'Апреля',
+			'May' => 'Мая',
+			'Jun' => 'Июня',
+			'Jul' => 'Июля',
+			'Aug' => 'Августа',
+			'Sep' => 'Сентября',
+			'Oct' => 'Октября',
+			'Nov' => 'Ноября',
+			'Dec' => 'Декабря'
+		);
+		foreach($man as $eng => $rus){
+			$cleandate = str_replace($eng, $rus,$cleandate);
+		}
+		$dag = array(
+			'Mon' => 'Понедельник',
+			'Tues' => 'Вторник',
+			'Wednes' => 'Среда',
+			'Thurs' => 'Четверг',
+			'Fri' => 'Пятница',
+			'Satur' => 'Суббота',
+			'Sun' => 'Воскресенье'
+		);
+		foreach($dag as $eng => $rus) {
+			$cleandate = str_replace($eng.'day', $rus.'',$cleandate);
+		}
+		echo $cleandate."\n";
+		$cat = "<a href=\"browse.php?cat=".$row['catid']."\"><img src=\"pic/cats/".$row['catimage']."\" alt=\"".$row['catname']."\" border=\"0\" /></a>";
                 print("<tr><td rowspan=\"2\" style=\"padding:0;margin:0;\">".$cat."</td><td colspan=\"3\"><a href=\"details.php?id=" . $row["id"] . "&hit=1\"><b>" . view_saves($row["name"]) . "</b></a></td></tr>\n");
                 print("<tr><td><font color=\"#808080\" size=\"1\">" . $row["added"] . "</font></td><td align=\"center\">".$row['seeders']."</td><td align=\"center\">".$row['leechers']."</td></tr>\n");
             }
@@ -236,7 +366,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_SERVER["REQUEST_ME
                 if (get_user_class() == UC_SYSOP)
                     $maxclass = UC_SYSOP;
                 elseif (get_user_class() == UC_MODERATOR)
-                    $maxclass = UC_UPLOADER;
+                    $maxclass = UC_VIP;
                 else
                     $maxclass = get_user_class() - 1;
                 for ($i = 0; $i <= $maxclass; ++$i)
@@ -470,7 +600,7 @@ print ( "<tr><td class=\"rowhead\">Изменить бонус</td><td align=\"l
                 die("<div class=\"error\">Пользователь отказал Вам в дружбе.</div>");
             else
             {
-                sql_query("INSERT INTO friends (userid, friendid) VALUES (" . sqlesc($CURUSER['id']) . ", ".$id.")") or sqlerr(__FILE__, __LINE__);
+                sql_query("INSERT IGNORE INTO friends (userid, friendid) VALUES (" . sqlesc($CURUSER['id']) . ", ".$id.")") or sqlerr(__FILE__, __LINE__);
                 $newid = mysql_insert_id();
                 $dt = sqlesc(get_date_time());
                 $msg = sqlesc("Пользователь [url=userdetails.php?id=" . $CURUSER['id'] . "]" . $CURUSER['username'] . "[/url] желает добавить Вас в список друзей. [[url=friends.php?id=".$newid."&act=accept&user=" . $CURUSER['id'] . "]Принять[/url]] [[url=friends.php?id=".$newid."&act=surrender&user=" . $CURUSER['id'] . "]Отказать[/url]]");

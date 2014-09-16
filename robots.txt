@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /announce.php
+Disallow: /singup.php
+Disallow: /recover.php
+Disallow: /rules.php
+Disallow: /download.php
+Disallow: /download_file.php
+Allow: /
+Crawl-delay: 0.1
+Sitemap: http://torrnada.ru/sitemap.xml
+Host: torrnada.ru

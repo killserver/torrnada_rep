@@ -274,7 +274,7 @@ echo "</table>";
 		} else {
 			$day_added = '  '.date('l d M Y', $row['addtime']);
 			$dat = date('jmY', $row['addtime']);
-			$cleandate = "<tr><td colspan=15 class=colhead>Торренты за ".$day_added."(".$num_torr[$dat].")</td></tr>\n";
+			$cleandate = "<tr><td colspan=\"15\" class=\"colhead\">Торренты за ".$day_added."(".$num_torr[$dat].")</td></tr>\n";
 		}
 		$prevdate = $thisdate;
 		$man = array(

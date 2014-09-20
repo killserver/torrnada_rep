@@ -67,7 +67,7 @@ print("<br>");
 
 if(preg_match("/vk.com/", $row['video']) || preg_match("/(.*).flv/", $row['video']) || preg_match("/(.*).mp4/", $row['video']) || !empty($row['youtube'])){
 $delete_array = array(
-"video_ext.php?", "http://vk.com/",
+"video_ext.php?", "http://vk.com/", "https://vk.com/",
 );
 $row['videos'] = str_replace($delete_array, "", $row['video']);
 $row['videos'] = str_replace("&", "&amp;", $row['videos']);

@@ -543,13 +543,15 @@ tr("Видео", '<a href="javascript: show_hide(\'s2\')">
 
 				$images = array();
 				for ($i = 2; $i <= 5; $i++) {
-					if(!empty($row['image'.$i])) {
-					if(file_exists(dirname(__FILE__)."/torrents/images/thumbnails/".$row['image'.$i])) {
-						$thumb = "torrents/images/thumbnails/".$row['image'.$i];
-					} else {
-						$thumb = "preview-".$row['image'.$i];
-					}
-					$images[] = '<a href="torrents/images/' . $row['image'.$i] . '" rel="lightbox" title="Скриншот №'.($i - 1).'"><img title="Скриншот №'.($i - 1).'" border="0" src="'.$thumb.'" /></a>';
+					if(!empty($row['image'.$i]) && strpos($row['image'.$i], "http")===false) {
+						if(file_exists(dirname(__FILE__)."/torrents/images/thumbnails/".$row['image'.$i])) {
+							$thumb = "torrents/images/thumbnails/".$row['image'.$i];
+						} else {
+							$thumb = "preview-".$row['image'.$i];
+						}
+						$images[] = '<a href="torrents/images/' . $row['image'.$i] . '" rel="lightbox" title="Скриншот №'.($i - 1).'"><img title="Скриншот №'.($i - 1).'" border="0" src="'.$thumb.'" /></a>';
+					} else if(!empty($row['image'.$i]) && strpos($row['image'.$i], "http")!==false) {
+						$images[] = '<a href="' . $row['image'.$i] . '" rel="lightbox" title="Скриншот №'.($i - 1).'"><img title="Скриншот №'.($i - 1).'" border="0" src="' . $row['image'.$i] . '" style="max-width:400px;" /></a>';
 					}
 				}
 				if(sizeof($images))

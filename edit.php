@@ -71,7 +71,11 @@ else
   $c = " checked";
 	//tr("Описание", "<textarea name=\"descr\" rows=\"10\" cols=\"80\">" . htmlspecialchars($row["ori_descr"]) . "</textarea><br />(HTML <b>не</b> разрешен. Нажмите <a href=tags.php>сюда</a> для получения информации о тегах.)", 1);
 	print("<tr><td class=rowhead style='padding: 3px'>".$tracker_lang['description']."</td><td>");
-	textbbcode("edit","descr",htmlspecialchars_uni($row["ori_descr"]));
+	if(!empty($row["ori_descr"])) {
+		textbbcode("edit","descr",htmlspecialchars_uni($row["ori_descr"]));
+	} else {
+		textbbcode("edit","descr",htmlspecialchars_uni($row["descr"]));
+	}
 	print("</td></tr>\n");
 /*
 	print("<tr><td class=rowhead style='padding: 3px'>Видео</td><td>");

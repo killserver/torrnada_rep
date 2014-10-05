@@ -488,9 +488,7 @@ if(isset($CURUSER['id']) && $CURUSER["id"] == $row["owner"]) {
 } elseif(isset($CURUSER['id']) && $CURUSER["username"] != "Нуб") {
 	$ld = "download.php?id=".$row['id']."&name=".$row['filename'];
 } else {
-//<a href=\"".$DEFAULTBASEURL."/media/".$id."/\"><img border=\"0\" src=\"".$DEFAULTBASEURL."/pic/mediaget.png\" /></a>
-	//$ld = "download_file.php?id=".$row['id']."&name=".$row['filename'];
-	$ld = $DEFAULTBASEURL."/media/".$id."/";
+	$ld = "download_file.php?id=".$row['id']."&name=".$row['filename'];
 $media = <<<HTML
 <!--noindex--><div id="cc157"></div><!--/noindex-->
 <!--noindex--> <script type="text/javascript"> (function (c,n,s) { n.cc157 = ({q: "{$row['name']}", id: 10201, ver: 3, se: 0, is_blank: 0, is_center: 1}); var e='script',a=c.createElement(e),b=c.getElementsByTagName(e)[0];a.async=1;a.src=s;b.parentNode.insertBefore(a,b); })(document,window,'https://promonew.biz/v2/button/86/cc157.js'); </script> <!--/noindex-->

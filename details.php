@@ -482,7 +482,7 @@ sql_query("DELETE FROM torrents_descr WHERE id = ".$id);
 		}
 	}
 	$magnet = (isset($CURUSER['username']) ? "&nbsp;<a href=\"".magnet($row)."\"><img src=\"/pic/button_magnite.gif\" alt=\"Примагнититься\" title=\"Примагнититься\"></a>" : "");
-	$ld = $ldadd = "";
+	$media = $ld = $ldadd = "";
 if(isset($CURUSER['id']) && $CURUSER["id"] == $row["owner"]) {
 	$ld = "download.php?id=".$id."&amp;name=[torrnada.ru]_".rawurlencode($row["filename"]);
 } elseif(isset($CURUSER['id']) && $CURUSER["username"] != "Нуб") {
@@ -491,6 +491,10 @@ if(isset($CURUSER['id']) && $CURUSER["id"] == $row["owner"]) {
 //<a href=\"".$DEFAULTBASEURL."/media/".$id."/\"><img border=\"0\" src=\"".$DEFAULTBASEURL."/pic/mediaget.png\" /></a>
 	//$ld = "download_file.php?id=".$row['id']."&name=".$row['filename'];
 	$ld = $DEFAULTBASEURL."/media/".$id."/";
+$media = <<<HTML
+<!--noindex--><div id="cc157"></div><!--/noindex-->
+<!--noindex--> <script type="text/javascript"> (function (c,n,s) { n.cc157 = ({q: "{$row['name']}", id: 10201, ver: 3, se: 0, is_blank: 0, is_center: 1}); var e='script',a=c.createElement(e),b=c.getElementsByTagName(e)[0];a.async=1;a.src=s;b.parentNode.insertBefore(a,b); })(document,window,'https://promonew.biz/v2/button/86/cc157.js'); </script> <!--/noindex-->
+HTML;
 	if($row["status"] == "0") {
 		$ldadd .= "<br><small>Вы не можите скачивать не проверенные торренты</small>";
 	}
@@ -501,7 +505,7 @@ if(isset($CURUSER['id']) && in_array($row["category"], array(46,91,92,93,94,95,9
 } else {
 	$vd = "";
 }
-$link = "<a href=\"".$ld."\">" . ($row["new"] == "yes" ? "<center><b><img src=pic/new.gif>":"</b></center>") ."<b><img src=pic/button2.png></b></a>".($guest ? "&nbsp;".$magnet.$vd.$ldadd : "");
+$link = "<a href=\"".$ld."\">" . ($row["new"] == "yes" ? "<center><b><img src=pic/new.gif>":"</b></center>") ."<b><img src=pic/button2.png></b></a>".($guest ? "&nbsp;".$magnet.$media.$vd.$ldadd : "");
 if($row["status"] == "1" && get_user_class() < UC_MODERATOR) {
 	$ldadd = $magnet = "";
 	$link = "Торрент проверяется";
@@ -551,7 +555,7 @@ tr("Видео", '<a href="javascript: show_hide(\'s2\')">
 						}
 						$images[] = '<a href="torrents/images/' . $row['image'.$i] . '" rel="lightbox" title="Скриншот №'.($i - 1).'"><img title="Скриншот №'.($i - 1).'" border="0" src="'.$thumb.'" /></a>';
 					} else if(!empty($row['image'.$i]) && strpos($row['image'.$i], "http")!==false) {
-						$images[] = '<a href="' . $row['image'.$i] . '" rel="lightbox" title="Скриншот №'.($i - 1).'"><img title="Скриншот №'.($i - 1).'" border="0" src="' . $row['image'.$i] . '" style="max-width:400px;" /></a>';
+						$images[] = '<a href="' . $row['image'.$i] . '" rel="lightbox" title="Скриншот №'.($i - 1).'"><img title="Скриншот №'.($i - 1).'" border="0" src="' . $row['image'.$i] . '" style="max-width:300px;" /></a>';
 					}
 				}
 				if(sizeof($images))
